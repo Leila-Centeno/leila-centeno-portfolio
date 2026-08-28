@@ -1,257 +1,574 @@
-<script>
-  // reading progress bar
-  const progress = document.getElementById('progress');
-  const toTop = document.getElementById('toTop');
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leila Centeno | Project Manager & Client Success</title>
+  <!-- FontAwesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
 
-  function onScroll() {
-    const h = document.documentElement;
-    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
-    progress.style.width = scrolled + '%';
-    toTop.classList.toggle('show', h.scrollTop > 600);
-  }
-  document.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  toTop.addEventListener('keydown', e => { if (e.key === 'Enter') window.scrollTo({ top: 0, behavior: 'smooth' }); });
-
-  // scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => revealObserver.observe(el));
-
-  // timeline jobs stagger + connecting line
-  const jobs = document.querySelectorAll('.job');
-  const jobObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        jobObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  jobs.forEach(el => jobObserver.observe(el));
-
-  const track = document.getElementById('experienceTrack');
-  const line = document.getElementById('experienceLine');
-  const lineObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        line.style.height = '100%';
-        lineObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.05 });
-  lineObserver.observe(track);
-
-  // animated counters
-  const counters = document.querySelectorAll('[data-count]');
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      const target = parseInt(el.dataset.count, 10);
-      const suffix = el.dataset.suffix || '';
-      const duration = 1200;
-      const start = performance.now();
-      function tick(now) {
-        const p = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = Math.round(eased * target) + suffix;
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-      counterObserver.unobserve(el);
-    });
-  }, { threshold: 0.6 });
-  counters.forEach(el => counterObserver.observe(el));
-
-  // active nav link on scroll
-  const sections = ['impact', 'experience', 'expertise', 'contact']
-    .map(id => document.getElementById(id)).filter(Boolean);
-  const navLinks = document.querySelectorAll('[data-nav]');
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const id = entry.target.id;
-      const link = document.querySelector('[data-nav][href="#' + id + '"]');
-      if (!link) return;
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-      }
-    });
-  }, { threshold: 0.4, rootMargin: '-80px 0px -40% 0px' });
-  sections.forEach(s => navObserver.observe(s));
-
-  // ---------- floating skill words ----------
-  const skillWords = [
-    "Stakeholder Management", "Client Success", "Process Improvement",
-    "Cross-Functional Leadership", "Technical Deployments", "Vendor Management",
-    "Remote Collaboration", "Client Onboarding", "NPS: 10", "Google Workspace",
-    "Microsoft 365", "Project Delivery", "Renewals", "Quarterly Roadmaps"
-  ];
-
-  function buildFloatingWords() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const container = document.getElementById('floatingWords');
-    if (!container) return;
-    const count = window.innerWidth < 700 ? 8 : 14;
-    for (let i = 0; i < count; i++) {
-      const word = skillWords[Math.floor(Math.random() * skillWords.length)];
-      const el = document.createElement('span');
-      el.textContent = word;
-      const left = (Math.random() * 90 + 3).toFixed(1);
-      const duration = 16 + Math.random() * 14;
-      const delay = Math.random() * -duration;
-      const size = (0.85 + Math.random() * 0.55).toFixed(2);
-      const drift = (Math.random() * 60 - 30).toFixed(0) + 'px';
-      el.style.left = left + '%';
-      el.style.fontSize = size + 'rem';
-      el.style.setProperty('--drift', drift);
-      el.style.animationDuration = duration + 's';
-      el.style.animationDelay = delay + 's';
-      container.appendChild(el);
+  <style>
+    /* --- PALETA DE COLORES --- */
+    :root {
+      --bg-cream: #FAF7F2;
+      --pink-primary: #D48C95;
+      --pink-highlight: #F4E3E5;
+      --text-dark: #2D2A2E;
+      --mauve-neutral: #8C828A;
+      --white: #FFFFFF;
+      --shadow: 0 10px 30px rgba(45, 42, 46, 0.08);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-  }
-  buildFloatingWords();
 
-  // ---------- chat widget ----------
-  const KB = [
-    {
-      keywords: ["current role", " now", "today", "currently", "interlaced", "what does she do", "job now", "present", "doing now"],
-      answer: "Since March 2024, Leila has been a Project Manager at Interlaced.io, leading technical deployment projects for US-based clients — managing 25–30 concurrent projects, leading 40+ onboardings, coordinating a team of 7, and maintaining an NPS score of 10."
-    },
-    {
-      keywords: ["before", "previous", "punto rojo", "tiendanube", "bibam", "almundo", "history", "career path", "past experience", "used to"],
-      answer: "Leila has 8+ years of total professional experience. Prior to Interlaced, she was a Client Success Manager at Punto Rojo (2022–2024), Customer Support Specialist at Tiendanube (2020–2022) and Bibam Group (2019–2020), and Travel Consultant at Almundo (2018–2019)."
-    },
-    {
-      keywords: ["skill", "expertise", "tool", "stack", "good at", "strength", "capable"],
-      answer: "Her core skills include Project Management & Delivery, Client Onboarding & Implementation, Client Success & Retention, Stakeholder Management, Vendor & Migration Coordination, using tools like Asana, Monday.com, Notion, HubSpot, Intercom, Zendesk, ConnectWise, and Google Workspace."
-    },
-    {
-      keywords: ["remote", "location", "based", "where", "argentina", "timezone", "gmt", "relocate"],
-      answer: "Leila is based in Buenos Aires, Argentina (GMT-3), with full overlap with US business hours and daily experience collaborating with English-speaking, distributed teams."
-    },
-    {
-      keywords: ["contact", "email", "reach", "hire her", "linkedin", "connect", "get in touch"],
-      answer: "You can reach Leila at leilacenteno@gmail.com, or connect with her on LinkedIn at linkedin.com/in/leilagcenteno."
-    },
-    {
-      keywords: ["why hire", "why should", "value", "strength as pm", "human side", "stand out"],
-      answer: "Leila combines project management rigors with deep client success experience: leading technical implementations while keeping an NPS score of 10 and building long-term account trust."
-    },
-    {
-      keywords: ["nps", "satisfaction score"],
-      answer: "Leila has maintained an NPS score of 10 across her client portfolio at Interlaced.io over the past year."
-    },
-    {
-      keywords: ["team size", "people manage", "how many people", "manages"],
-      answer: "She coordinates a cross-functional delivery team of 7 professionals while managing 25–30 concurrent projects."
-    },
-    {
-      keywords: ["hello", "hi", "hey", "who are you", "who is leila"],
-      answer: "Hi! I'm here to answer questions about Leila's experience, skills, and availability — try one of the suggestions below or type your own question."
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.6;
     }
-  ];
 
-  function findAnswer(msg) {
-    const text = ' ' + msg.toLowerCase() + ' ';
-    let best = null, bestScore = 0;
-    KB.forEach(entry => {
-      let score = 0;
-      entry.keywords.forEach(k => { if (text.includes(k)) score += k.trim().split(' ').length; });
-      if (score > bestScore) { bestScore = score; best = entry; }
-    });
-    return best ? best.answer : "I don't have that specific detail here yet — feel free to email Leila directly at leilacenteno@gmail.com or reach out via LinkedIn!";
-  }
-
-  const launcher = document.getElementById('chatLauncher');
-  const panel = document.getElementById('chatPanel');
-  const closeBtn = document.getElementById('chatClose');
-  const chatMessages = document.getElementById('chatMessages');
-  const chatForm = document.getElementById('chatForm');
-  const chatInput = document.getElementById('chatInput');
-  const suggestionsBox = document.getElementById('chatSuggestions');
-
-  const starterQuestions = [
-    "What does she do now?",
-    "Is she open to remote work?",
-    "What are her key skills?",
-    "How can I contact her?"
-  ];
-
-  let chatOpened = false;
-
-  function addMessage(text, sender) {
-    const div = document.createElement('div');
-    div.className = 'msg ' + sender;
-    div.textContent = text;
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }
-
-  function showTyping() {
-    const div = document.createElement('div');
-    div.className = 'msg bot typing';
-    div.innerHTML = '<span></span><span></span><span></span>';
-    chatMessages.appendChild(div);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-    return div;
-  }
-
-  function respond(text) {
-    addMessage(text, 'user');
-    const typingEl = showTyping();
-    const delay = 500 + Math.random() * 500;
-    setTimeout(() => {
-      typingEl.remove();
-      addMessage(findAnswer(text), 'bot');
-    }, delay);
-  }
-
-  function renderSuggestions() {
-    suggestionsBox.innerHTML = '';
-    starterQuestions.forEach(q => {
-      const btn = document.createElement('button');
-      btn.className = 'chip';
-      btn.type = 'button';
-      btn.textContent = q;
-      btn.addEventListener('click', () => respond(q));
-      suggestionsBox.appendChild(btn);
-    });
-  }
-
-  function openChat() {
-    panel.classList.add('open');
-    if (!chatOpened) {
-      chatOpened = true;
-      addMessage("Hi! I can answer questions about Leila's experience, skills, and availability. Try one of these, or type your own:", 'bot');
-      renderSuggestions();
+    /* --- HERO INTRO CANVAS (EL REMOLINO TECH) --- */
+    #intro-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: var(--bg-cream);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
     }
-    chatInput.focus();
-  }
+    #intro-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    .intro-ui {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      pointer-events: none;
+    }
+    .intro-ui h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .intro-ui p {
+      color: var(--mauve-neutral);
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
+    .btn-enter {
+      pointer-events: auto;
+      background: var(--pink-primary);
+      color: var(--white);
+      border: none;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(212, 140, 149, 0.4);
+      transition: var(--transition);
+    }
+    .btn-enter:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 25px rgba(212, 140, 149, 0.6);
+    }
 
-  function closeChat() {
-    panel.classList.remove('open');
-  }
+    /* --- LAYOUT & NAVBAR --- */
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(250, 247, 242, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      border-bottom: 1px solid var(--pink-highlight);
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--pink-primary); }
 
-  launcher.addEventListener('click', openChat);
-  launcher.addEventListener('keydown', e => { if (e.key === 'Enter') openChat(); });
-  closeBtn.addEventListener('click', closeChat);
+    .container { max-width: 1100px; margin: 0 auto; padding: 100px 20px 40px; }
 
-  chatForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const val = chatInput.value.trim();
-    if (!val) return;
-    chatInput.value = '';
-    respond(val);
-  });
-</script>
+    /* --- HEADER PROFILE --- */
+    .profile-header {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+    .profile-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1fr solid var(--pink-highlight);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .avatar-icon {
+      width: 100px; height: 100px;
+      background: var(--pink-highlight);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: var(--pink-primary);
+      font-size: 2.5rem;
+    }
+    .badge-remote {
+      display: inline-block;
+      background: var(--pink-highlight);
+      color: var(--pink-primary);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .bio-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    .bio-text h3 {
+      color: var(--pink-primary);
+      font-weight: 600;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    /* --- METRICS COUNTER --- */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+    .metric-card {
+      background: var(--white);
+      padding: 25px;
+      border-radius: 16px;
+      border-left: 4px solid var(--pink-primary);
+      box-shadow: var(--shadow);
+    }
+    .metric-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--pink-primary);
+    }
+    .metric-label { font-size: 0.9rem; color: var(--mauve-neutral); font-weight: 500; }
+
+    /* --- TABS EXPERTISE --- */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin: 50px 0 25px;
+      text-align: center;
+    }
+    .filter-btns {
+      display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;
+    }
+    .filter-btn {
+      background: var(--white);
+      border: 1px solid var(--pink-highlight);
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--pink-primary);
+      color: var(--white);
+      border-color: var(--pink-primary);
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    /* --- TIMELINE EXPERIENCE --- */
+    .timeline { position: relative; margin: 40px 0; }
+    .timeline::before {
+      content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+      width: 2px; background: var(--pink-highlight);
+    }
+    .timeline-item { position: relative; padding-left: 60px; margin-bottom: 35px; }
+    .timeline-dot {
+      position: absolute; left: 11px; top: 0;
+      width: 20px; height: 20px;
+      border-radius: 50%; background: var(--pink-primary);
+      border: 4px solid var(--bg-cream);
+    }
+    .timeline-content {
+      background: var(--white);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .job-title { font-weight: 700; font-size: 1.1rem; }
+    .job-company { color: var(--pink-primary); font-weight: 600; margin-bottom: 10px; }
+    .job-date { font-size: 0.85rem; color: var(--mauve-neutral); margin-bottom: 15px; }
+    .timeline-content ul { padding-left: 20px; }
+    .timeline-content li { margin-bottom: 8px; font-size: 0.95rem; }
+
+    /* --- MINI CHAT ASSISTANT --- */
+    #chat-widget {
+      position: fixed;
+      bottom: 25px; right: 25px;
+      z-index: 99;
+    }
+    .chat-toggle {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: var(--pink-primary);
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .chat-box {
+      position: absolute;
+      bottom: 75px; right: 0;
+      width: 320px; height: 400px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-header {
+      background: var(--pink-primary);
+      color: white;
+      padding: 15px;
+      font-weight: 600;
+      display: flex; justify-content: space-between;
+    }
+    .chat-body {
+      flex: 1; padding: 15px; overflow-y: auto; font-size: 0.85rem; display: flex; flex-direction: column; gap: 10px;
+    }
+    .chat-msg { padding: 8px 12px; border-radius: 10px; max-width: 80%; }
+    .chat-msg.bot { background: var(--pink-highlight); align-self: flex-start; }
+    .chat-msg.user { background: var(--pink-primary); color: white; align-self: flex-end; }
+    .chat-input { display: flex; border-top: 1px solid #eee; }
+    .chat-input input { flex: 1; border: none; padding: 10px; outline: none; }
+    .chat-input button { background: var(--pink-primary); color: white; border: none; padding: 10px 15px; cursor: pointer; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .profile-header { grid-template-columns: 1fr; text-align: center; }
+      .timeline::before { left: 10px; }
+      .timeline-item { padding-left: 40px; }
+      .timeline-dot { left: 1px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- INTRO INTERACTIVA CON CANVASES Y REMOLINO TECH -->
+  <div id="intro-screen">
+    <canvas id="intro-canvas"></canvas>
+    <div class="intro-ui">
+      <h1>Leila Centeno</h1>
+      <p>Project Manager & Client Success Specialist</p>
+      <button class="btn-enter" onclick="startSparkleTransition()">Explorar Perfil <i class="fa-solid fa-sparkles"></i></button>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN -->
+  <nav>
+    <a href="#" class="logo">LC.</a>
+    <ul class="nav-links">
+      <li><a href="#about">Inicio</a></li>
+      <li><a href="#metrics">Impacto</a></li>
+      <li><a href="#experience">Experiencia</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <div class="container" id="about">
+    <!-- HEADER -->
+    <header class="profile-header">
+      <div class="profile-card">
+        <div class="avatar-icon"><i class="fa-solid fa-user-gear"></i></div>
+        <h2>Leila Centeno</h2>
+        <span class="badge-remote"><i class="fa-solid fa-globe"></i> Buenos Aires (GMT-3) | Full US Overlap</span>
+      </div>
+      <div class="bio-text">
+        <h2>Transformando la gestión de clientes e implementación de proyectos.</h2>
+        <h3>Project Manager & Client Success Professional (+8 años de experiencia)</h3>
+        <p>Especialista en coordinar integraciones complejas, migraciones técnicas y garantizar la retención de clientes clave para empresas de EE.UU. Gestión proactiva con enfoque humano y técnico.</p>
+      </div>
+    </header>
+
+    <!-- METRICAS ANIMADAS -->
+    <section id="metrics" class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-number" data-target="10">0</div>
+        <div class="metric-label">Client NPS Sostenido</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number" data-target="40">0</div>
+        <div class="metric-label">+ Client Onboardings (2025-2026)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number" data-target="30">0</div>
+        <div class="metric-label">Proyectos Simultáneos (Promedio)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-number" data-target="8">0</div>
+        <div class="metric-label">+ Años de Experiencia Total</div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA PROFESIONAL -->
+    <section id="experience">
+      <h2 class="section-title">Experiencia Profesional</h2>
+      <div class="timeline">
+        
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="job-title">Project Manager</div>
+            <div class="job-company">Interlaced.io | Marzo 2024 - Presente</div>
+            <ul>
+              <li>Liderazgo integral en la implementación de soluciones tecnológicas para clientes de EE. UU. (7 a 200+ empleados).</li>
+              <li>Coordinación de equipos de entrega de 7 integrantes manejando carteras de hasta 50 proyectos en pico.</li>
+              <li>Migraciones técnicas multiplataforma (Email, SharePoint) con cero pérdida de datos.</li>
+              <li>Mantenimiento de un NPS constante de 10.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="job-title">Customer Success Manager</div>
+            <div class="job-company">Puntorojo | Julio 2022 - Febrero 2024</div>
+            <ul>
+              <li>Gestión del ciclo de vida de 15-20 cuentas en e-commerce, banca y turismo.</li>
+              <li>Elaboración de reportes analíticos mensuales con Google Analytics y Search Console.</li>
+              <li>Obtención de reviews satisfechas en Clutch para el 35%+ de las cuentas activas.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="job-title">Customer Support Specialist</div>
+            <div class="job-company">Tiendanube | Octubre 2020 - Julio 2022</div>
+            <ul>
+              <li>Soporte y onboarding a emprendedores manteniendo tiempos de respuesta menores a 5 minutos.</li>
+              <li>Capacitación e integración de 4 cohorts de nuevos ingresos (~28 empleados).</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- WIDGET DE CHAT INTERACTIVO -->
+  <div id="chat-widget">
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <span>Asistente Virtual de Leila</span>
+        <span style="cursor:pointer" onclick="toggleChat()">&times;</span>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="chat-msg bot">¡Hola! Soy el asistente de Leila. ¿Qué te gustaría saber sobre su experiencia?</div>
+      </div>
+      <div class="chat-input">
+        <input type="text" id="chatInput" placeholder="Ej: ¿Qué herramientas usa?" onkeypress="handleChatKey(event)">
+        <button onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+      </div>
+    </div>
+    <button class="chat-toggle" onclick="toggleChat()"><i class="fa-solid fa-comments"></i></button>
+  </div>
+
+  <!-- LOGICA JS -->
+  <script>
+    /* --- ANIMACIÓN CANVAS INTRO (REMOLINO TECH) --- */
+    const canvas = document.getElementById('intro-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const icons = ['💻', '⌨️', '🖱️', '⚙️', '📊', '🚀'];
+    const particles = [];
+    const numParticles = 40;
+    let exploding = false;
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.angle = Math.random() * Math.PI * 2;
+        this.radius = Math.random() * (Math.min(width, height) * 0.4) + 50;
+        this.speed = 0.01 + Math.random() * 0.02;
+        this.icon = icons[Math.floor(Math.random() * icons.length)];
+        this.size = 20 + Math.random() * 20;
+        this.x = 0;
+        this.y = 0;
+        this.vx = 0;
+        this.vy = 0;
+      }
+      update() {
+        if (!exploding) {
+          this.angle += this.speed;
+          this.x = width / 2 + Math.cos(this.angle) * this.radius;
+          this.y = height / 2 + Math.sin(this.angle) * this.radius;
+        } else {
+          this.x += this.vx;
+          this.y += this.vy;
+        }
+      }
+      draw() {
+        ctx.font = `${this.size}px sans-serif`;
+        ctx.fillText(this.icon, this.x, this.y);
+      }
+    }
+
+    for (let i = 0; i < numParticles; i++) particles.push(new Particle());
+
+    function animateIntro() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateIntro);
+    }
+    animateIntro();
+
+    function startSparkleTransition() {
+      exploding = true;
+      particles.forEach(p => {
+        const angle = Math.random() * Math.PI * 2;
+        const force = 10 + Math.random() * 20;
+        p.vx = Math.cos(angle) * force;
+        p.vy = Math.sin(angle) * force;
+      });
+
+      const introScreen = document.getElementById('intro-screen');
+      introScreen.style.opacity = '0';
+      setTimeout(() => {
+        introScreen.style.visibility = 'hidden';
+        animateNumbers();
+      }, 700);
+    }
+
+    /* --- CONTADOR DINÁMICO --- */
+    function animateNumbers() {
+      const counters = document.querySelectorAll('.metric-number');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const speed = target / 30;
+        const updateCount = () => {
+          count += speed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count);
+            setTimeout(updateCount, 40);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    }
+
+    /* --- MINI CHAT ASSISTANT --- */
+    function toggleChat() {
+      const box = document.getElementById('chatBox');
+      box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    function handleChatKey(e) {
+      if (e.key === 'Enter') sendChatMessage();
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chatInput');
+      const body = document.getElementById('chatBody');
+      const val = input.value.trim();
+      if (!val) return;
+
+      // Render mensaje usuario
+      const userMsg = document.createElement('div');
+      userMsg.className = 'chat-msg user';
+      userMsg.innerText = val;
+      body.appendChild(userMsg);
+      input.value = '';
+
+      // Respuesta bot
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = 'chat-msg bot';
+        
+        const text = val.toLowerCase();
+        if (text.includes('herramientas') || text.includes('tools')) {
+          botMsg.innerText = 'Leila domina Asana, Monday.com, Notion, HubSpot, Intercom, Zendesk, ConnectWise y Google Workspace.';
+        } else if (text.includes('contacto') || text.includes('email')) {
+          botMsg.innerText = 'Puedes escribirle a leilacenteno@gmail.com o enviarle un mensaje en LinkedIn.';
+        } else if (text.includes('experiencia') || text.includes('años')) {
+          botMsg.innerText = 'Cuenta con 8+ años de experiencia total en Project Management, Onboarding y Client Success.';
+        } else {
+          botMsg.innerText = '¡Gracias por tu mensaje! Leila estará encantada de conversar más contigo directamente.';
+        }
+
+        body.appendChild(botMsg);
+        body.scrollTop = body.scrollHeight;
+      }, 600);
+    }
+  </script>
+</body>
+</html>
