@@ -124,6 +124,49 @@
     .nav-links a.active::after { width: 100%; }
     .nav-links a.active { color: var(--accent); }
 
+    /* ---------- cv download badge ---------- */
+    .cv-download {
+      position: fixed;
+      top: 88px;
+      right: 22px;
+      z-index: 150;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 16px 9px 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: .82rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,.6);
+      transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+      opacity: 0;
+      animation: fadeDown .5s var(--ease) .6s forwards;
+    }
+    .cv-download:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 14px 34px -8px rgba(110,231,255,.35);
+    }
+    .cv-icon {
+      width: 28px; height: 22px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent);
+      color: #071015;
+      border-radius: 6px;
+      font-size: .95rem;
+      flex-shrink: 0;
+    }
+    .cv-label { white-space: nowrap; }
+
+    @media(max-width: 700px) {
+      .cv-download { top: 78px; right: 14px; padding: 8px 12px 8px 8px; }
+      .cv-label { display: none; }
+    }
+
     /* ---------- hero ---------- */
     .hero {
       min-height: 100vh;
@@ -703,6 +746,10 @@
 
 <div class="progress" id="progress"></div>
 
+<a class="cv-download" href="cv.pdf" download="Leila-Centeno-CV.pdf" aria-label="Download Leila's CV">
+  <span class="cv-icon">🖥️</span><span class="cv-label">Download CV Here</span>
+</a>
+
 <nav>
   <div class="nav">
     <div class="brand">LEILA<span>.</span></div>
@@ -1106,7 +1153,7 @@
 
   // ---------- floating skill words ----------
   const skillWords = [
-    "SQL", "Stakeholder Management", "Client Success", "Process Improvement",
+    "Stakeholder Management", "Client Success", "Process Improvement",
     "Cross-Functional Leadership", "Technical Deployments", "Vendor Management",
     "Remote Collaboration", "Client Onboarding", "NPS: 10", "Google Workspace",
     "Microsoft 365", "Project Delivery", "Renewals", "Quarterly Roadmaps"
