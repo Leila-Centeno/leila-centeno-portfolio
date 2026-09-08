@@ -12,9 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* --- COLOR PALETTE --- */
+    /* --- COLOR PALETTE & VARIABLES --- */
     :root {
-      --bg-cream: #FAF7F2;
+      --bg-cream: #F8F5F0;
       --pink-primary: #D48C95;
       --pink-highlight: #F4E3E5;
       --text-dark: #2D2A2E;
@@ -27,19 +27,49 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     
-    /* Elegant & Subtle Professional Background Pattern */
+    /* --- MAIN PAGE BACKGROUND & DECORATIVE MESH --- */
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-cream);
       background-image: 
-        radial-gradient(var(--pink-highlight) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(250, 247, 242, 0.8), rgba(244, 227, 229, 0.3));
-      background-size: 24px 24px, 100% 100%;
-      background-attachment: fixed;
+        radial-gradient(var(--pink-primary) 0.75px, transparent 0.75px),
+        radial-gradient(var(--mauve-neutral) 0.75px, #F8F5F0 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
       color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
       overflow-y: hidden; /* Controlled by splash overlay until clicked */
+      position: relative;
+    }
+
+    /* Ambient Background Geometric Glows */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.35;
+    }
+    body::before {
+      background: radial-gradient(circle, rgba(212,140,149,0.5) 0%, rgba(244,227,229,0) 70%);
+      bottom: 5%;
+      left: -100px;
+      animation: floatBg 15s ease-in-out infinite alternate;
+    }
+    body::after {
+      background: radial-gradient(circle, rgba(220,180,190,0.4) 0%, rgba(248,245,240,0) 70%);
+      top: 40%;
+      right: -100px;
+      animation: floatBg 18s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes floatBg {
+      0% { transform: translateY(0px) scale(1); }
+      100% { transform: translateY(-40px) scale(1.1); }
     }
 
     h1, h2, h3, h4, .logo {
@@ -127,10 +157,10 @@
     nav {
       position: fixed;
       top: 0; width: 100%;
-      background: rgba(250, 247, 242, 0.94);
+      background: rgba(250, 247, 242, 0.92);
       backdrop-filter: blur(12px);
       z-index: 100;
-      border-bottom: 1px solid var(--pink-highlight);
+      border-bottom: 1px solid rgba(212, 140, 149, 0.2);
       padding: 16px 8%;
       display: flex;
       justify-content: space-between;
@@ -168,15 +198,16 @@
 
     .container { max-width: 1050px; margin: 0 auto; padding: 110px 24px 60px; }
 
-    /* --- HERO HEADER (Shadow removed) --- */
+    /* --- HERO HEADER (NO PINK SHADOW) --- */
     .hero {
       background: var(--white);
-      border: 1px solid var(--pink-highlight);
+      border: 1px solid rgba(212, 140, 149, 0.25);
       border-radius: 24px;
       padding: 45px;
       box-shadow: var(--shadow);
       margin-bottom: 40px;
       position: relative;
+      overflow: hidden;
     }
     .hero-top {
       display: flex;
@@ -556,7 +587,7 @@
     .chat-box {
       position: absolute;
       bottom: 75px; right: 0;
-      width: 340px; height: 450px;
+      width: 350px; height: 470px;
       background: white;
       border-radius: 20px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.12);
@@ -1040,12 +1071,12 @@
       </div>
       <div class="chat-body" id="chatBody">
         <div class="chat-msg bot">
-          Hi there! 👋 I'm Leila's profile assistant. I can answer questions about her PM experience, fast-paced environment background, onboarding expertise, or recommendations!
+          Hi there! 👋 I'm Leila's profile assistant. I can answer questions about her PM experience, rate & hiring terms, onboarding expertise, or client recommendations!
           <span class="chat-followup">What would you like to know first?</span>
           <div class="chat-quick-btns">
+            <button class="quick-btn" onclick="sendQuickQuery('Hourly rate & compensation')">💰 Hourly Rate?</button>
             <button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience?</button>
             <button class="quick-btn" onclick="sendQuickQuery('Client Recommendations')">⭐ Recommendations?</button>
-            <button class="quick-btn" onclick="sendQuickQuery('Download Resume')">📄 Download CV?</button>
           </div>
         </div>
       </div>
@@ -1063,7 +1094,7 @@
 
   <!-- JAVASCRIPT ENGINE -->
   <script>
-    /* --- WEB AUDIO SYNTHESIZER --- */
+    /* --- ENHANCED CRYSTAL & CHIME AUDIO SYNTHESIZER --- */
     let audioCtx = null;
 
     function initAudio() {
@@ -1072,29 +1103,31 @@
       }
     }
 
+    /* Bright Crystal Chime for Welcome */
     function playWelcomeChime() {
       initAudio();
       if (!audioCtx) return;
 
-      const notes = [261.63, 329.63, 392.00, 523.25];
-      notes.forEach((freq, idx) => {
+      const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // Bright C Major Chime
+      freqs.forEach((freq, idx) => {
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.1);
+        osc.type = 'triangle'; // Richer harmonics
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.08);
 
-        gain.gain.setValueAtTime(0, audioCtx.currentTime + idx * 0.1);
-        gain.gain.linearRampToValueAtTime(0.12, audioCtx.currentTime + idx * 0.1 + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + idx * 0.1 + 1.2);
+        gain.gain.setValueAtTime(0, audioCtx.currentTime + idx * 0.08);
+        gain.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + idx * 0.08 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + idx * 0.08 + 0.9);
 
         osc.connect(gain);
         gain.connect(audioCtx.destination);
 
-        osc.start(audioCtx.currentTime + idx * 0.1);
-        osc.stop(audioCtx.currentTime + idx * 0.1 + 1.3);
+        osc.start(audioCtx.currentTime + idx * 0.08);
+        osc.stop(audioCtx.currentTime + idx * 0.08 + 1.0);
       });
     }
 
+    /* Crisp High-Frequency Hover Sound */
     function playHoverSound() {
       if (!audioCtx) return;
       try {
@@ -1102,8 +1135,10 @@
         const gain = audioCtx.createGain();
 
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime); // High A5
+        osc.frequency.exponentialRampToValueAtTime(1320, audioCtx.currentTime + 0.04);
+
+        gain.gain.setValueAtTime(0.012, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
 
         osc.connect(gain);
@@ -1114,7 +1149,36 @@
       } catch (e) {}
     }
 
+    /* Sparkle Click Sound */
     function playClickSound() {
+      if (!audioCtx) return;
+      try {
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc1.type = 'triangle';
+        osc2.type = 'sine';
+
+        osc1.frequency.setValueAtTime(1046.50, audioCtx.currentTime); // C6
+        osc2.frequency.setValueAtTime(1567.98, audioCtx.currentTime); // G6
+
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc1.start();
+        osc2.start();
+        osc1.stop(audioCtx.currentTime + 0.09);
+        osc2.stop(audioCtx.currentTime + 0.09);
+      } catch (e) {}
+    }
+
+    /* Soft Tone for Accordions */
+    function playAccordionSound() {
       if (!audioCtx) return;
       try {
         const osc = audioCtx.createOscillator();
@@ -1124,7 +1188,7 @@
         osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
         osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.08);
 
-        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.025, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
 
         osc.connect(gain);
@@ -1135,45 +1199,27 @@
       } catch (e) {}
     }
 
-    function playAccordionSound() {
-      if (!audioCtx) return;
-      try {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(329.63, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(493.88, audioCtx.currentTime + 0.12);
-
-        gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.12);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.13);
-      } catch (e) {}
-    }
-
+    /* Bright Double Sparkle Chime for Chatbot Responses */
     function playBotReplySound() {
       if (!audioCtx) return;
       try {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
+        const notes = [1046.50, 1318.51, 1567.98]; // C6 - E6 - G6 High Arpeggio
+        notes.forEach((freq, idx) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
 
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
-        osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.06);
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.04);
 
-        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.03, audioCtx.currentTime + idx * 0.04);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + idx * 0.04 + 0.12);
 
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
 
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.16);
+          osc.start(audioCtx.currentTime + idx * 0.04);
+          osc.stop(audioCtx.currentTime + idx * 0.04 + 0.13);
+        });
       } catch (e) {}
     }
 
@@ -1282,7 +1328,7 @@
       element.classList.toggle('active');
     }
 
-    /* --- CHATBOT ASSISTANT --- */
+    /* --- SMART CHATBOT ASSISTANT --- */
     function toggleChat() {
       const box = document.getElementById('chatBox');
       box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
@@ -1321,14 +1367,20 @@
         let followupText = "";
         let quickBtnsHTML = "";
 
-        if (t.includes('fast') || t.includes('paced') || t.includes('speed') || t.includes('agil')) {
+        // Smart Context & Intent Matching
+        if (t.includes('rate') || t.includes('hourly') || t.includes('cost') || t.includes('price') || t.includes('salary') || t.includes('compensation') || t.includes('pay')) {
+          replyText = "Leila's hourly rate and full-time/contract compensation details are negotiable based on project scope, role requirements, and engagement duration. You can reach out directly via email to discuss proposed rates!";
+          followupText = "Would you like to connect with Leila or review her full CV?";
+          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Contact info')">✉️ Email Leila</button>
+                           <button class="quick-btn" onclick="sendQuickQuery('Download Resume')">📄 Download CV</button>`;
+        } else if (t.includes('fast') || t.includes('paced') || t.includes('speed') || t.includes('agil') || t.includes('quick')) {
           replyText = "Leila excels in fast-paced environments! At Interlaced and Tiendanube, she simultaneously managed up to 30-50 client projects and high-volume operations with zero drop in customer experience.";
           followupText = "Would you like to review her client feedback or tools portfolio next?";
           quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Client Recommendations')">⭐ Recommendations</button>
                            <button class="quick-btn" onclick="sendQuickQuery('Tools used')">🛠️ Tools Used</button>`;
-        } else if (t.includes('recommend') || t.includes('review') || t.includes('client') || t.includes('hector')) {
+        } else if (t.includes('recommend') || t.includes('review') || t.includes('client') || t.includes('hector') || t.includes('testimonial')) {
           replyText = "Leila has stellar endorsements from leadership like Hector Duque & Joey Viola, plus key clients like Nickita Savrov and Kimberly Holden-Gonzalez!";
-          followupText = "Would you like to see her resume download or her timeline?";
+          followupText = "Would you like to see her resume download or her work history?";
           quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Download Resume')">📄 Download CV</button>
                            <button class="quick-btn" onclick="sendQuickQuery('Experience timeline')">💼 Work History</button>`;
         } else if (t.includes('cv') || t.includes('resume') || t.includes('download') || t.includes('pdf')) {
@@ -1336,20 +1388,21 @@
           followupText = "Would you like me to highlight her main accomplishments at Interlaced?";
           quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Interlaced experience')">🏢 Interlaced Highlights</button>
                            <button class="quick-btn" onclick="sendQuickQuery('Contact info')">✉️ Contact Info</button>`;
-        } else if (t.includes('tool') || t.includes('software') || t.includes('stack')) {
+        } else if (t.includes('tool') || t.includes('software') || t.includes('stack') || t.includes('tech')) {
           replyText = "Leila's daily tech stack includes Asana, Monday.com, Notion, Rocketlane, Intercom, Zendesk, ConnectWise, HubSpot, and Google Workspace.";
           followupText = "Interested in learning more about her fast-paced remote workflow?";
           quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience</button>
                            <button class="quick-btn" onclick="sendQuickQuery('Contact info')">✉️ Contact Info</button>`;
-        } else if (t.includes('contact') || t.includes('email') || t.includes('reach')) {
-          replyText = "You can reach Leila directly at leilacenteno@gmail.com or connect with her on LinkedIn (linkedin.com/in/leilagcenteno).";
+        } else if (t.includes('contact') || t.includes('email') || t.includes('reach') || t.includes('hire') || t.includes('location')) {
+          replyText = "Leila is based in Buenos Aires, Argentina (GMT-3) with 100% full U.S. business hours overlap. Reach her directly at leilacenteno@gmail.com or via LinkedIn!";
           followupText = "Is there anything else I can help you evaluate?";
-          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience</button>
+          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Hourly rate & compensation')">💰 Rates & Compensation</button>
                            <button class="quick-btn" onclick="sendQuickQuery('Download Resume')">📄 Download CV</button>`;
         } else {
           replyText = "Leila is a results-driven Project Manager and Client Success Manager with 8+ years of experience leading U.S. client implementations.";
           followupText = "Where should we jump to next?";
-          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience</button>
+          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Hourly rate & compensation')">💰 Hourly Rate?</button>
+                           <button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience</button>
                            <button class="quick-btn" onclick="sendQuickQuery('Client Recommendations')">⭐ Recommendations</button>`;
         }
 
@@ -1359,7 +1412,7 @@
 
         body.appendChild(botMsg);
         body.scrollTop = body.scrollHeight;
-      }, 500);
+      }, 400);
     }
   </script>
 </body>
