@@ -27,7 +27,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     
-    /* --- MAIN PAGE BACKGROUND & DECORATIVE MESH --- */
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-cream);
@@ -39,7 +38,7 @@
       color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
-      overflow-y: hidden; /* Controlled by splash overlay until clicked */
+      overflow-y: hidden;
       position: relative;
     }
 
@@ -255,10 +254,10 @@
       opacity: 0.92;
     }
 
-    /* --- NUMBERS METRICS (INTEGRATED IN HERO) --- */
+    /* --- NUMBERS METRICS --- */
     .numbers-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 16px;
       margin-bottom: 28px;
     }
@@ -274,13 +273,13 @@
     .number-card:hover { transform: translateY(-3px); }
     .number-value {
       font-family: 'Outfit', sans-serif;
-      font-size: 2.2rem;
+      font-size: 2.0rem;
       font-weight: 800;
       color: var(--pink-primary);
       line-height: 1;
       margin-bottom: 6px;
     }
-    .number-label { font-size: 0.85rem; color: var(--mauve-neutral); font-weight: 600; }
+    .number-label { font-size: 0.82rem; color: var(--mauve-neutral); font-weight: 600; }
 
     .contact-bar {
       display: flex;
@@ -636,7 +635,7 @@
     }
     .info-card h3 { font-size: 1.05rem; color: var(--pink-primary); margin-bottom: 10px; }
 
-    /* --- HIGHLY VISIBLE RECRUITER CHATBOT ASSISTANT --- */
+    /* --- CHATBOT & MUSIC TOGGLE --- */
     #chat-widget {
       position: fixed;
       bottom: 25px; right: 25px;
@@ -645,6 +644,27 @@
       align-items: flex-end;
       gap: 12px;
     }
+    #music-toggle-btn {
+      position: fixed;
+      bottom: 25px; left: 25px;
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 1px solid var(--pink-primary);
+      color: var(--pink-primary);
+      font-size: 1.2rem;
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      z-index: 999;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    #music-toggle-btn:hover {
+      background: var(--pink-primary);
+      color: var(--white);
+      transform: scale(1.1);
+    }
+    
     .chat-recruiter-prompt {
       background: var(--text-dark);
       color: var(--white);
@@ -665,10 +685,7 @@
       0% { transform: translateY(0); box-shadow: 0 8px 25px rgba(0,0,0,0.18); }
       100% { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(212, 140, 149, 0.4); }
     }
-    .chat-recruiter-prompt i {
-      color: var(--pink-primary);
-      font-size: 1.1rem;
-    }
+    .chat-recruiter-prompt i { color: var(--pink-primary); font-size: 1.1rem; }
     .chat-toggle {
       width: 65px; height: 65px;
       border-radius: 50%;
@@ -683,33 +700,19 @@
       position: relative;
     }
     .chat-toggle::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 14px; height: 14px;
-      background-color: #22c55e;
-      border: 2px solid white;
-      border-radius: 50%;
+      content: ''; position: absolute; top: 0; right: 0; width: 14px; height: 14px;
+      background-color: #22c55e; border: 2px solid white; border-radius: 50%;
     }
     .chat-toggle:hover { transform: scale(1.1); }
     
     .chat-box {
-      position: absolute;
-      bottom: 80px; right: 0;
-      width: 360px; height: 500px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.18);
-      border: 1px solid var(--pink-highlight);
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
+      position: absolute; bottom: 80px; right: 0;
+      width: 360px; height: 500px; background: white; border-radius: 20px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.18); border: 1px solid var(--pink-highlight);
+      display: none; flex-direction: column; overflow: hidden;
     }
     .chat-header {
-      background: var(--pink-primary);
-      color: white;
-      padding: 16px;
-      font-weight: 600;
+      background: var(--pink-primary); color: white; padding: 16px; font-weight: 600;
       display: flex; justify-content: space-between; align-items: center;
     }
     .chat-header p { font-size: 0.8rem; opacity: 0.9; font-weight: 400; }
@@ -720,38 +723,17 @@
     .chat-msg.bot { background: var(--pink-highlight); color: var(--text-dark); align-self: flex-start; }
     .chat-msg.user { background: var(--pink-primary); color: white; align-self: flex-end; }
     
-    .chat-quick-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
+    .chat-quick-btns { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
     .quick-btn {
-      background: var(--white);
-      border: 1px solid var(--pink-primary);
-      color: var(--pink-primary);
-      padding: 6px 12px;
-      border-radius: 14px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
+      background: var(--white); border: 1px solid var(--pink-primary); color: var(--pink-primary);
+      padding: 6px 12px; border-radius: 14px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: var(--transition);
     }
-    .quick-btn:hover {
-      background: var(--pink-primary);
-      color: white;
-    }
+    .quick-btn:hover { background: var(--pink-primary); color: white; }
     .chat-input { display: flex; border-top: 1px solid var(--pink-highlight); }
     .chat-input input { flex: 1; border: none; padding: 14px; outline: none; font-family: inherit; font-size: 0.9rem; }
     .chat-input button { background: var(--pink-primary); color: white; border: none; padding: 0 18px; cursor: pointer; font-size: 1.1rem; }
 
-    footer {
-      text-align: center;
-      padding: 30px;
-      border-top: 1px solid var(--pink-highlight);
-      color: var(--mauve-neutral);
-      font-size: 0.88rem;
-    }
+    footer { text-align: center; padding: 30px; border-top: 1px solid var(--pink-highlight); color: var(--mauve-neutral); font-size: 0.88rem; }
 
     @media (max-width: 768px) {
       .container { padding: 85px 16px 40px; }
@@ -768,6 +750,12 @@
 </head>
 <body>
 
+  <!-- BACKGROUND AUDIO ELEMENT -->
+  <!-- Using a royalty-free classical piece (Debussy's Clair de Lune) to match the magical/Disney theme -->
+  <audio id="bgMusic" loop>
+    <source src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Claude_Debussy_-_Clair_de_lune.ogg" type="audio/ogg">
+  </audio>
+
   <!-- SPLASH SCREEN OVERLAY -->
   <div id="splash-screen">
     <div class="splash-card">
@@ -779,29 +767,35 @@
       <p class="splash-desc">
         Specialized in fast-paced remote environments, client onboarding and implementation, and delivering an exceptional customer experience.
       </p>
-      <button class="btn-enter" onclick="enterPortfolio()" onmouseenter="playHoverSound()">
+      <!-- Click triggers the entry AND the background music + sound setup -->
+      <button class="btn-enter" onclick="enterPortfolio(); playClickSound();" onmouseenter="playHoverSound()">
         <i class="fa-solid fa-arrow-right-to-bracket"></i> Enter Interactive Portfolio
       </button>
     </div>
   </div>
 
+  <!-- FLOATING MUSIC TOGGLE -->
+  <button id="music-toggle-btn" onclick="toggleMusic(); playClickSound();" onmouseenter="playHoverSound()" title="Toggle Background Music">
+    <i class="fa-solid fa-volume-high" id="music-icon"></i>
+  </button>
+
   <!-- NAVBAR -->
   <nav>
     <a href="#" class="logo">Leila Centeno</a>
     <ul class="nav-links">
-      <li><a href="#about" onmouseenter="playHoverSound()">About</a></li>
-      <li><a href="#skills" onmouseenter="playHoverSound()">Competencies</a></li>
-      <li><a href="#case-studies" onmouseenter="playHoverSound()">Case Studies</a></li>
-      <li><a href="#client-reviews" onmouseenter="playHoverSound()">Client Testimonials</a></li>
-      <li><a href="#peer-reviews" onmouseenter="playHoverSound()">Recommendations</a></li>
-      <li><a href="#experience" onmouseenter="playHoverSound()">Experience</a></li>
-      <li><a href="Leila_Centeno_Resume.pdf" download class="nav-btn" onmouseenter="playHoverSound()"><i class="fa-solid fa-download"></i> Download CV</a></li>
+      <li><a href="#about" onmouseenter="playHoverSound()" onclick="playClickSound()">About</a></li>
+      <li><a href="#skills" onmouseenter="playHoverSound()" onclick="playClickSound()">Competencies</a></li>
+      <li><a href="#case-studies" onmouseenter="playHoverSound()" onclick="playClickSound()">Case Studies</a></li>
+      <li><a href="#client-reviews" onmouseenter="playHoverSound()" onclick="playClickSound()">Client Testimonials</a></li>
+      <li><a href="#peer-reviews" onmouseenter="playHoverSound()" onclick="playClickSound()">Recommendations</a></li>
+      <li><a href="#experience" onmouseenter="playHoverSound()" onclick="playClickSound()">Experience</a></li>
+      <li><a href="Leila_Centeno_Resume.pdf" download class="nav-btn" onmouseenter="playHoverSound()" onclick="playClickSound()"><i class="fa-solid fa-download"></i> Download CV</a></li>
     </ul>
   </nav>
 
   <div class="container">
     
-    <!-- SECTION 1: ABOUT (HERO + METRICS SHOWN IMMEDIATELY AT TOP) -->
+    <!-- SECTION 1: ABOUT -->
     <section id="about" class="hero">
       <div class="hero-top">
         <div class="hero-title">
@@ -817,23 +811,26 @@
         Client-facing Project Manager and Client Success Manager with 8+ years of progressive experience across travel, e-commerce, marketing, and IT/SaaS. Specialized in fast-paced remote environments, client onboarding and implementation, and delivering an exceptional customer experience. Proven ability to manage 25-30 concurrent client engagements for U.S.-based companies while sustaining a 10 NPS score.
       </p>
 
-      <!-- NUMBERS METRICS MOVED UP HERE -->
       <div class="numbers-grid">
-        <div class="number-card">
-          <div class="number-value" data-target="8">8+</div>
-          <div class="number-label">Years of Experience</div>
+        <div class="number-card" onmouseenter="playHoverSound()">
+          <div class="number-value">8+ Yrs</div>
+          <div class="number-label">Experience</div>
         </div>
-        <div class="number-card">
-          <div class="number-value" data-target="10">10</div>
+        <div class="number-card" onmouseenter="playHoverSound()">
+          <div class="number-value">10</div>
           <div class="number-label">Client NPS Sustained</div>
         </div>
-        <div class="number-card">
-          <div class="number-value" data-target="40">40+</div>
+        <div class="number-card" onmouseenter="playHoverSound()">
+          <div class="number-value">40+</div>
           <div class="number-label">Client Onboardings Led</div>
         </div>
-        <div class="number-card">
-          <div class="number-value" data-target="30">30</div>
+        <div class="number-card" onmouseenter="playHoverSound()">
+          <div class="number-value">30</div>
           <div class="number-label">Concurrent Fast-Paced Projects</div>
+        </div>
+        <div class="number-card" onmouseenter="playHoverSound()">
+          <div class="number-value">3.5 Yrs</div>
+          <div class="number-label">Avg. Tenure per Company</div>
         </div>
       </div>
 
@@ -842,7 +839,7 @@
         <a href="mailto:leilacenteno@gmail.com" class="contact-item" onclick="playClickSound()" onmouseenter="playHoverSound()"><i class="fa-solid fa-envelope"></i> leilacenteno@gmail.com</a>
         <a href="tel:+5491168916607" class="contact-item" onclick="playClickSound()" onmouseenter="playHoverSound()"><i class="fa-solid fa-phone"></i> +54 9 11 6891-6607</a>
         <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="contact-item" onclick="playClickSound()" onmouseenter="playHoverSound()"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/leilagcenteno</a>
-        <span class="contact-item" style="cursor: default;"><i class="fa-solid fa-location-dot"></i> Buenos Aires, Argentina</span>
+        <span class="contact-item" style="cursor: default;" onmouseenter="playHoverSound()"><i class="fa-solid fa-location-dot"></i> Buenos Aires, Argentina</span>
       </div>
     </section>
 
@@ -869,31 +866,31 @@
       </div>
 
       <div class="skills-grid" id="skillsGrid">
-        <div class="skill-card" data-cat="pm">
+        <div class="skill-card" data-cat="pm" onmouseenter="playHoverSound()">
           <h4>Project Delivery</h4>
           <p>End-to-end management from kickoff through go-live with zero service gaps.</p>
         </div>
-        <div class="skill-card" data-cat="fast">
+        <div class="skill-card" data-cat="fast" onmouseenter="playHoverSound()">
           <h4>Fast-Paced Adaptability</h4>
           <p>Thrives under tight deadlines, rapid growth stages, and high client volume.</p>
         </div>
-        <div class="skill-card" data-cat="cs">
+        <div class="skill-card" data-cat="cs" onmouseenter="playHoverSound()">
           <h4>Client Onboarding & Implementation</h4>
           <p>40+ implementations led with typical 30-45 day cycles delivering outstanding customer experience.</p>
         </div>
-        <div class="skill-card" data-cat="cs">
+        <div class="skill-card" data-cat="cs" onmouseenter="playHoverSound()">
           <h4>Retention & Renewals</h4>
           <p>Sustaining long-term client health, driving churn reduction, conducting high-value Executive Business Reviews (EBRs/QBRs), and maintaining an exceptional 10 NPS score.</p>
         </div>
-        <div class="skill-card" data-cat="tools">
+        <div class="skill-card" data-cat="tools" onmouseenter="playHoverSound()">
           <h4>CRM & Support</h4>
           <p>Intercom, Zendesk, HubSpot, ConnectWise.</p>
         </div>
-        <div class="skill-card" data-cat="tools">
+        <div class="skill-card" data-cat="tools" onmouseenter="playHoverSound()">
           <h4>Project & Delivery</h4>
           <p>Asana, Monday.com, Notion, Rocketlane.</p>
         </div>
-        <div class="skill-card" data-cat="tools">
+        <div class="skill-card" data-cat="tools" onmouseenter="playHoverSound()">
           <h4>Analytics & Collaboration</h4>
           <p>Google Analytics, Search Console, Google Workspace, Slack.</p>
         </div>
@@ -905,63 +902,47 @@
       <h2 class="section-title"><i class="fa-solid fa-briefcase" style="color: var(--pink-primary);"></i> Client Success Case Studies</h2>
       <div class="case-studies-grid">
         
-        <!-- Case Study 01 -->
-        <article class="case-card">
+        <article class="case-card" onmouseenter="playHoverSound()">
           <span class="case-badge">Client Success Case Study 01</span>
           <h3 class="case-title">Building Trust During a High-Risk Onboarding</h3>
-          
           <div class="case-block">
             <h4><i class="fa-solid fa-circle-exclamation"></i> Context & Challenge</h4>
             <p>A newly onboarded client expressed concerns about our ability to deliver and was considering leaving early in the relationship. The main issue wasn't simply execution—it was a lack of confidence and visibility into how we worked. I needed to rebuild trust while keeping the onboarding moving forward.</p>
           </div>
-
           <div class="case-block">
             <h4><i class="fa-solid fa-chess"></i> My Approach</h4>
             <p>I made the account a top priority and created a structured weekly plan covering key actions and milestones. I established a weekly call to maintain alignment, review progress, and give the client a consistent point of contact. When they couldn't attend, I sent clear weekly updates so they always knew what was completed, what was next, and where things stood—focusing on consistency and predictability over time.</p>
           </div>
-
           <div class="case-block">
             <h4><i class="fa-solid fa-trophy"></i> Outcome</h4>
             <p>Over the following weeks, the client became more comfortable with our processes and developed a better understanding of how we worked. The relationship stabilized as we continued progressing toward a successful onboarding.</p>
           </div>
-
           <div class="case-tags">
             <span class="case-tag">Client Onboarding</span>
             <span class="case-tag">Retention</span>
             <span class="case-tag">Relationship Management</span>
-            <span class="case-tag">Risk Mitigation</span>
-            <span class="case-tag">Stakeholder Communication</span>
-            <span class="case-tag">Prioritization</span>
           </div>
         </article>
 
-        <!-- Case Study 02 -->
-        <article class="case-card">
+        <article class="case-card" onmouseenter="playHoverSound()">
           <span class="case-badge">Client Success Case Study 02</span>
           <h3 class="case-title">Turning a Support Issue Into a Cross-Functional Action Plan</h3>
-          
           <div class="case-block">
             <h4><i class="fa-solid fa-circle-exclamation"></i> Context & Challenge</h4>
             <p>An existing client was becoming frustrated because their support requests were not being addressed within the expected timeframe. The delays were affecting the client's experience and creating a potential retention risk. I needed to understand internal issues while ensuring the client felt heard and supported.</p>
           </div>
-
           <div class="case-block">
             <h4><i class="fa-solid fa-chess"></i> My Approach</h4>
             <p>I raised the issue during a retention-focused conversation with the client to understand the exact business impact. I then worked directly with internal teams involved, communicated the urgency, and made the account a priority. I also joined calls with the client when additional coordination was needed, keeping both sides aligned and keeping the client informed about progress.</p>
           </div>
-
           <div class="case-block">
             <h4><i class="fa-solid fa-trophy"></i> Outcome</h4>
             <p>The issue received increased internal attention and the client had a dedicated point of contact to help move outstanding requests forward. This helped rebuild confidence and strengthen the client relationship.</p>
           </div>
-
           <div class="case-tags">
             <span class="case-tag">Client Advocacy</span>
             <span class="case-tag">Problem Solving</span>
-            <span class="case-tag">Escalation Management</span>
             <span class="case-tag">Cross-Functional Collaboration</span>
-            <span class="case-tag">Stakeholder Management</span>
-            <span class="case-tag">Retention</span>
           </div>
         </article>
 
@@ -973,7 +954,7 @@
       <h2 class="section-title"><i class="fa-solid fa-handshake-angle" style="color: var(--pink-primary);"></i> Client Testimonials & Endorsements</h2>
       <div class="reviews-grid">
 
-        <div class="review-card client-card">
+        <div class="review-card client-card" onmouseenter="playHoverSound()">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila managed our transition with extreme precision and care. She kept our team informed every step of the way, making what could have been a chaotic onboarding completely effortless."</p>
           <div class="reviewer-info">
@@ -984,7 +965,22 @@
                 <p>Enterprise Client & Key Stakeholder</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+
+        <div class="review-card client-card" onmouseenter="playHoverSound()">
+          <i class="fa-solid fa-quote-left quote-icon"></i>
+          <p class="review-text">"Working with Leila has been an absolute pleasure. Her attention to detail, proactive communication, and ability to keep our multi-faceted projects on track made a massive difference to our operations."</p>
+          <div class="reviewer-info">
+            <div class="reviewer-user">
+              <div class="reviewer-avatar">KB</div>
+              <div class="reviewer-details">
+                <h4>Kimberly</h4>
+                <p>Client Partner & Operations Lead</p>
+              </div>
+            </div>
+            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
@@ -996,7 +992,7 @@
       <h2 class="section-title">Peer & Leadership Recommendations</h2>
       <div class="reviews-grid">
 
-        <div class="review-card">
+        <div class="review-card" onmouseenter="playHoverSound()">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila is an outstanding Project Manager who brings order, clarity, and exceptional execution to complex technical workflows. Her ability to lead cross-functional teams while maintaining top-tier client trust is remarkable."</p>
           <div class="reviewer-info">
@@ -1007,11 +1003,10 @@
                 <p>Technology & Engineering Leadership</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
-        <div class="review-card">
+        <div class="review-card" onmouseenter="playHoverSound()">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila is an incredible Project Manager and Client Success leader. Her ability to juggle multiple high-stakes client onboardings while keeping satisfaction exceptionally high is unmatched."</p>
           <div class="reviewer-info">
@@ -1022,52 +1017,6 @@
                 <p>Engineering & Executive Leader</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <i class="fa-solid fa-quote-left quote-icon"></i>
-          <p class="review-text">"Working with Leila is always seamless. She combines rigorous organizational skills with genuine empathy for clients, ensuring projects are delivered on time without friction."</p>
-          <div class="reviewer-info">
-            <div class="reviewer-user">
-              <div class="reviewer-avatar">SS</div>
-              <div class="reviewer-details">
-                <h4>Sabrina Sulfaro</h4>
-                <p>People Operations & HR Lead</p>
-              </div>
-            </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <i class="fa-solid fa-quote-left quote-icon"></i>
-          <p class="review-text">"Leila consistently goes above and beyond to ensure smooth account transitions and onboarding. She communicates clearly, anticipates risks early, and builds trust effortlessly."</p>
-          <div class="reviewer-info">
-            <div class="reviewer-user">
-              <div class="reviewer-avatar">SM</div>
-              <div class="reviewer-details">
-                <h4>Stephanie McDonald</h4>
-                <p>Operations & Client Experience</p>
-              </div>
-            </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <i class="fa-solid fa-quote-left quote-icon"></i>
-          <p class="review-text">"Leila's dedication to client success and project execution makes her a huge asset. She manages technical complexity with ease and keeps U.S. stakeholders aligned."</p>
-          <div class="reviewer-info">
-            <div class="reviewer-user">
-              <div class="reviewer-avatar">BH</div>
-              <div class="reviewer-details">
-                <h4>Bradley Hughes</h4>
-                <p>IT Infrastructure & Delivery Leader</p>
-              </div>
-            </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
@@ -1081,7 +1030,7 @@
         
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-card" onclick="toggleTimeline(this)">
+          <div class="timeline-card" onclick="toggleTimeline(this); playClickSound();" onmouseenter="playHoverSound()">
             <div class="job-header">
               <div>
                 <div class="job-title">Client Success Manager & Technical Project Manager</div>
@@ -1101,7 +1050,7 @@
 
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-card" onclick="toggleTimeline(this)">
+          <div class="timeline-card" onclick="toggleTimeline(this); playClickSound();" onmouseenter="playHoverSound()">
             <div class="job-header">
               <div>
                 <div class="job-title">Project Manager & Client Specialist</div>
@@ -1123,12 +1072,12 @@
 
     <!-- EDUCATION & LANGUAGES -->
     <section class="info-grid">
-      <div class="info-card">
+      <div class="info-card" onmouseenter="playHoverSound()">
         <h3><i class="fa-solid fa-graduation-cap"></i> Education & Certifications</h3>
         <p><strong>Project Management Professional Prep / Agile Methodologies</strong></p>
         <p style="font-size: 0.88rem; color: var(--mauve-neutral);">Continuous training in Agile, Scrum, and CS frameworks.</p>
       </div>
-      <div class="info-card">
+      <div class="info-card" onmouseenter="playHoverSound()">
         <h3><i class="fa-solid fa-language"></i> Languages</h3>
         <p><strong>English:</strong> Native / Bilingual Professional Proficiency</p>
         <p><strong>Spanish:</strong> Native</p>
@@ -1139,12 +1088,12 @@
 
   <!-- HIGHLY VISIBLE RECRUITER CHATBOT ASSISTANT -->
   <div id="chat-widget">
-    <div class="chat-recruiter-prompt" onclick="toggleChat()">
+    <div class="chat-recruiter-prompt" onclick="toggleChat(); playClickSound();" onmouseenter="playHoverSound()">
       <i class="fa-solid fa-circle-question"></i>
       <span><strong>Recruiters & Hiring Managers:</strong> Ask me anything about Leila's experience here!</span>
     </div>
     
-    <button class="chat-toggle" onclick="toggleChat()" title="Ask AI Recruiter Assistant">
+    <button class="chat-toggle" onclick="toggleChat(); playClickSound();" onmouseenter="playHoverSound()" title="Ask AI Recruiter Assistant">
       <i class="fa-solid fa-comments"></i>
     </button>
 
@@ -1154,7 +1103,7 @@
           <span>Leila's AI Assistant</span>
           <p>Instant answers for Recruiters & Hiring Leads</p>
         </div>
-        <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 1.2rem;" onclick="toggleChat()"></i>
+        <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 1.2rem;" onclick="toggleChat(); playClickSound();"></i>
       </div>
       <div class="chat-body" id="chatBody">
         <div class="chat-msg bot">
@@ -1162,15 +1111,15 @@
           <br><br>
           Feel free to ask me <strong>anything</strong> about her skills, onboarding processes, timezone alignment, or past case studies!
           <div class="chat-quick-btns">
-            <button class="quick-btn" onclick="sendQuickPrompt('What is her onboarding experience?')">Onboarding Stats</button>
-            <button class="quick-btn" onclick="sendQuickPrompt('How does she handle high risk clients?')">Case Studies</button>
-            <button class="quick-btn" onclick="sendQuickPrompt('What are her preferred tools?')">Tools & Stack</button>
+            <button class="quick-btn" onclick="sendQuickPrompt('What is her onboarding experience?'); playClickSound();" onmouseenter="playHoverSound()">Onboarding Stats</button>
+            <button class="quick-btn" onclick="sendQuickPrompt('How does she handle high risk clients?'); playClickSound();" onmouseenter="playHoverSound()">Case Studies</button>
+            <button class="quick-btn" onclick="sendQuickPrompt('What are her preferred tools?'); playClickSound();" onmouseenter="playHoverSound()">Tools & Stack</button>
           </div>
         </div>
       </div>
       <div class="chat-input">
         <input type="text" id="chatInput" placeholder="Ask anything about Leila's background..." onkeypress="handleKeyPress(event)">
-        <button onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        <button onclick="sendChatMessage(); playClickSound();" onmouseenter="playHoverSound()"><i class="fa-solid fa-paper-plane"></i></button>
       </div>
     </div>
   </div>
@@ -1180,12 +1129,96 @@
   </footer>
 
   <script>
+    /* =========================================
+       AUDIO SYSTEM (Web Audio API & HTML5 Audio)
+       ========================================= */
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const bgMusic = document.getElementById('bgMusic');
+    bgMusic.volume = 0.2; // Keep background music soft
+
+    // 1. "Disney/Star" Magical Hover Sound
+    function playHoverSound() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      
+      // Fast ascending magical arpeggio (C6, E6, G6, C7)
+      const frequencies = [1046.50, 1318.51, 1567.98, 2093.00];
+      const now = audioCtx.currentTime;
+
+      frequencies.forEach((freq, index) => {
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        osc.type = 'sine'; // Soft, pure tone
+        osc.frequency.value = freq;
+        
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        // Envelope: Quick attack, quick decay
+        gainNode.gain.setValueAtTime(0, now + (index * 0.04));
+        gainNode.gain.linearRampToValueAtTime(0.04, now + (index * 0.04) + 0.01);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + (index * 0.04) + 0.2);
+        
+        osc.start(now + (index * 0.04));
+        osc.stop(now + (index * 0.04) + 0.2);
+      });
+    }
+
+    // 2. Soft, Melodic Click Sound ("Pop")
+    function playClickSound() {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      
+      osc.type = 'triangle';
+      
+      // Frequency drop effect (gives a nice 'plop' or 'bloop' feel)
+      osc.frequency.setValueAtTime(800, now);
+      osc.frequency.exponentialRampToValueAtTime(300, now + 0.1);
+      
+      osc.connect(gainNode);
+      gainNode.connect(audioCtx.destination);
+      
+      // Envelope
+      gainNode.gain.setValueAtTime(0, now);
+      gainNode.gain.linearRampToValueAtTime(0.15, now + 0.01);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+      
+      osc.start(now);
+      osc.stop(now + 0.15);
+    }
+
+    // 3. Background Music Toggle
+    function toggleMusic() {
+      const icon = document.getElementById('music-icon');
+      if (bgMusic.paused) {
+        bgMusic.play();
+        icon.classList.remove('fa-volume-xmark');
+        icon.classList.add('fa-volume-high');
+      } else {
+        bgMusic.pause();
+        icon.classList.remove('fa-volume-high');
+        icon.classList.add('fa-volume-xmark');
+      }
+    }
+
+
+    /* =========================================
+       UI INTERACTIONS & LOGIC
+       ========================================= */
+
     // Splash screen controller
     function enterPortfolio() {
       const splash = document.getElementById('splash-screen');
       splash.style.opacity = '0';
       splash.style.visibility = 'hidden';
       document.body.style.overflowY = 'auto';
+      
+      // Start background music securely after user interaction
+      bgMusic.play().catch(e => console.log("Audio autoplay prevented by browser"));
+      if (audioCtx.state === 'suspended') audioCtx.resume();
     }
 
     // Typewriter effect
@@ -1229,7 +1262,7 @@
       });
     }
 
-    // Chatbot Toggle
+    // Chatbot Logic
     function toggleChat() {
       const box = document.getElementById('chatBox');
       box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
@@ -1240,22 +1273,18 @@
       sendChatMessage();
     }
 
-    // Chatbot response engine
     function sendChatMessage() {
       const input = document.getElementById('chatInput');
       const body = document.getElementById('chatBody');
       const text = input.value.trim();
       if(!text) return;
 
-      // User msg
       const userMsg = document.createElement('div');
       userMsg.className = 'chat-msg user';
       userMsg.textContent = text;
       body.appendChild(userMsg);
-
       input.value = '';
 
-      // Bot response logic
       setTimeout(() => {
         const botMsg = document.createElement('div');
         botMsg.className = 'chat-msg bot';
@@ -1276,16 +1305,18 @@
         }
         body.appendChild(botMsg);
         body.scrollTop = body.scrollHeight;
-      }, 500);
+        
+        // Play click sound when bot answers!
+        playClickSound();
+      }, 600);
     }
 
     function handleKeyPress(e) {
-      if (e.key === 'Enter') sendChatMessage();
+      if (e.key === 'Enter') {
+        sendChatMessage();
+        playClickSound();
+      }
     }
-
-    // Audio SFX Stubs (Prevent runtime error if missing)
-    function playHoverSound() {}
-    function playClickSound() {}
   </script>
 
 </body>
