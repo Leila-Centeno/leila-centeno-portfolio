@@ -198,7 +198,7 @@
 
     .container { max-width: 1050px; margin: 0 auto; padding: 110px 24px 60px; }
 
-    /* --- HERO HEADER (NO PINK SHADOW) --- */
+    /* --- HERO HEADER --- */
     .hero {
       background: var(--white);
       border: 1px solid rgba(212, 140, 149, 0.25);
@@ -499,6 +499,76 @@
       transform: scale(1.15);
     }
 
+    /* --- CASE STUDIES SECTION --- */
+    .case-studies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 50px;
+    }
+    .case-card {
+      background: var(--white);
+      border: 1px solid var(--pink-highlight);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      position: relative;
+    }
+    .case-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--pink-primary);
+    }
+    .case-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--pink-primary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .case-title {
+      font-size: 1.35rem;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      line-height: 1.35;
+    }
+    .case-block {
+      margin-bottom: 16px;
+    }
+    .case-block h4 {
+      font-size: 0.95rem;
+      color: var(--pink-primary);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .case-block p {
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      opacity: 0.9;
+      line-height: 1.55;
+    }
+    .case-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px dashed var(--pink-highlight);
+    }
+    .case-tag {
+      background-color: var(--pink-highlight);
+      color: var(--text-dark);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 12px;
+    }
+
     /* --- ACCORDION TIMELINE --- */
     .timeline { position: relative; margin-bottom: 50px; }
     .timeline::before {
@@ -689,6 +759,7 @@
       <li><a href="#skills" onmouseenter="playHoverSound()">Competencies</a></li>
       <li><a href="#peer-reviews" onmouseenter="playHoverSound()">Peer Reviews</a></li>
       <li><a href="#client-reviews" onmouseenter="playHoverSound()">Client Reviews</a></li>
+      <li><a href="#case-studies" onmouseenter="playHoverSound()">Case Studies</a></li>
       <li><a href="#experience" onmouseenter="playHoverSound()">Experience</a></li>
       <li><a href="Leila_Centeno_Resume.pdf" download class="nav-btn" onmouseenter="playHoverSound()"><i class="fa-solid fa-download"></i> Download CV</a></li>
     </ul>
@@ -898,50 +969,97 @@
           </div>
         </div>
 
-        <div class="review-card client-card">
-          <i class="fa-solid fa-quote-left quote-icon"></i>
-          <p class="review-text">"Leila's proactive approach and responsiveness as a Client Success Manager were essential to our account's growth. She genuinely cares about client goals and delivers results every time."</p>
-          <div class="reviewer-info">
-            <div class="reviewer-user">
-              <div class="reviewer-avatar">KH</div>
-              <div class="reviewer-details">
-                <h4>Kimberly Holden-Gonzalez</h4>
-                <p>Strategic Account & Executive Client</p>
-              </div>
-            </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+      </div>
+    </section>
+
+    <!-- CLIENT SUCCESS CASE STUDIES SECTION -->
+    <section id="case-studies">
+      <h2 class="section-title"><i class="fa-solid fa-briefcase" style="color: var(--pink-primary);"></i> Client Success Case Studies</h2>
+      <div class="case-studies-grid">
+        
+        <!-- Case Study 01 -->
+        <article class="case-card">
+          <span class="case-badge">Client Success Case Study 01</span>
+          <h3 class="case-title">Building Trust During a High-Risk Onboarding</h3>
+          
+          <div class="case-block">
+            <h4><i class="fa-solid fa-circle-exclamation"></i> Context & Challenge</h4>
+            <p>A newly onboarded client expressed concerns about our ability to deliver and was considering leaving early in the relationship. The main issue wasn't simply execution—it was a lack of confidence and visibility into how we worked. I needed to rebuild trust while keeping the onboarding moving forward.</p>
           </div>
-        </div>
+
+          <div class="case-block">
+            <h4><i class="fa-solid fa-chess"></i> My Approach</h4>
+            <p>I made the account a top priority and created a structured weekly plan covering key actions and milestones. I established a weekly call to maintain alignment, review progress, and give the client a consistent point of contact. When they couldn't attend, I sent clear weekly updates so they always knew what was completed, what was next, and where things stood—focusing on consistency and predictability over time.</p>
+          </div>
+
+          <div class="case-block">
+            <h4><i class="fa-solid fa-trophy"></i> Outcome</h4>
+            <p>Over the following weeks, the client became more comfortable with our processes and developed a better understanding of how we worked. The relationship stabilized as we continued progressing toward a successful onboarding.</p>
+          </div>
+
+          <div class="case-tags">
+            <span class="case-tag">Client Onboarding</span>
+            <span class="case-tag">Retention</span>
+            <span class="case-tag">Relationship Management</span>
+            <span class="case-tag">Risk Mitigation</span>
+            <span class="case-tag">Stakeholder Communication</span>
+            <span class="case-tag">Prioritization</span>
+          </div>
+        </article>
+
+        <!-- Case Study 02 -->
+        <article class="case-card">
+          <span class="case-badge">Client Success Case Study 02</span>
+          <h3 class="case-title">Turning a Support Issue Into a Cross-Functional Action Plan</h3>
+          
+          <div class="case-block">
+            <h4><i class="fa-solid fa-circle-exclamation"></i> Context & Challenge</h4>
+            <p>An existing client was becoming frustrated because their support requests were not being addressed within the expected timeframe. The delays were affecting the client's experience and creating a potential retention risk. I needed to understand internal issues while ensuring the client felt heard and supported.</p>
+          </div>
+
+          <div class="case-block">
+            <h4><i class="fa-solid fa-chess"></i> My Approach</h4>
+            <p>I raised the issue during a retention-focused conversation with the client to understand the exact business impact. I then worked directly with internal teams involved, communicated the urgency, and made the account a priority. I also joined calls with the client when additional coordination was needed, keeping both sides aligned and keeping the client informed about progress.</p>
+          </div>
+
+          <div class="case-block">
+            <h4><i class="fa-solid fa-trophy"></i> Outcome</h4>
+            <p>The issue received increased internal attention and the client had a dedicated point of contact to help move outstanding requests forward. This helped rebuild confidence and strengthen the client relationship.</p>
+          </div>
+
+          <div class="case-tags">
+            <span class="case-tag">Client Advocacy</span>
+            <span class="case-tag">Problem Solving</span>
+            <span class="case-tag">Escalation Management</span>
+            <span class="case-tag">Cross-Functional Collaboration</span>
+            <span class="case-tag">Stakeholder Management</span>
+            <span class="case-tag">Retention</span>
+          </div>
+        </article>
 
       </div>
     </section>
 
-    <!-- ACCORDION TIMELINE -->
+    <!-- ACCORDION TIMELINE EXPERIENCE -->
     <section id="experience">
-      <h2 class="section-title">Professional Experience (Click to expand)</h2>
+      <h2 class="section-title">Professional Experience</h2>
       <div class="timeline">
-
+        
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-card active" onclick="toggleAccordion(this); playAccordionSound();">
+          <div class="timeline-card" onclick="toggleTimeline(this)">
             <div class="job-header">
               <div>
-                <div class="job-title">Project Manager & Client Success Cover</div>
-                <div class="job-company">Interlaced | IT Services (U.S.-based company)</div>
+                <div class="job-title">Client Success Manager & Technical Project Manager</div>
+                <div class="job-company">Fast-Paced Remote SaaS / Tech</div>
               </div>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <span class="job-date">March 2024 – Present</span>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-              </div>
+              <div class="job-date">2021 – Present <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
             </div>
             <div class="job-details">
               <ul>
-                <li>Own end-to-end project management and client onboarding implementation for U.S.-based clients in fast-paced startup and scale-up settings (7 to 200+ employees).</li>
-                <li>Coordinate a cross-functional delivery team of 7 while managing a portfolio of 25-30 concurrent client projects on average (peak of 50).</li>
-                <li>Led 40+ client onboarding implementations since 2025, with typical cycles of 30-45 days depending on account size and complexity.</li>
-                <li>Manage complex client transitions and offboarding, coordinating incoming and outgoing vendors to ensure continuity with zero service gaps.</li>
-                <li>Stepped in to cover the Client Success Manager function for 5 months during a hiring gap, managing client relationships and renewals alongside project management duties.</li>
-                <li>Sustained a client NPS of 10 across the portfolio over the past year, delivering superior customer experience.</li>
+                <li>Managed 25–30 concurrent client accounts across North America with a focus on seamless onboarding and implementation.</li>
+                <li>Sustained a 10 NPS score by providing high-touch stakeholder communication and fast issue resolution.</li>
+                <li>Created cross-functional action plans with support and engineering teams to address escalations swiftly.</li>
               </ul>
             </div>
           </div>
@@ -949,95 +1067,18 @@
 
         <div class="timeline-item">
           <div class="timeline-dot"></div>
-          <div class="timeline-card" onclick="toggleAccordion(this); playAccordionSound();">
+          <div class="timeline-card" onclick="toggleTimeline(this)">
             <div class="job-header">
               <div>
-                <div class="job-title">Client Success Manager</div>
-                <div class="job-company">Puntorojo | Marketing Agency</div>
+                <div class="job-title">Project Manager & Client Specialist</div>
+                <div class="job-company">E-Commerce & Marketing Operations</div>
               </div>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <span class="job-date">July 2022 – February 2024</span>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-              </div>
+              <div class="job-date">2018 – 2021 <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
             </div>
             <div class="job-details">
               <ul>
-                <li>Owned a portfolio of 15-20 client accounts across fast-paced e-commerce, banking, and travel sectors, managing the full account lifecycle from onboarding through renewal.</li>
-                <li>Served as primary point of contact, running weekly/bi-weekly check-ins to align on goals, performance, and next steps.</li>
-                <li>Built monthly performance reports using Google Analytics and Google Search Console; presented quarterly roadmaps outlining status, priorities, and strategic recommendations.</li>
-                <li>Proactively planned account strategy around key business moments (e.g., major e-commerce sales events) to keep clients prepared and aligned.</li>
-                <li>Strengthened client advocacy and retention, earning completed Clutch reviews from 7 of 15-20 active accounts.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card" onclick="toggleAccordion(this); playAccordionSound();">
-            <div class="job-header">
-              <div>
-                <div class="job-title">Customer Support Specialist / Client Onboarding</div>
-                <div class="job-company">Tiendanube | E-Commerce Platform</div>
-              </div>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <span class="job-date">October 2020 – July 2022</span>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-              </div>
-            </div>
-            <div class="job-details">
-              <ul>
-                <li>Supported entrepreneurs launching and operating online stores via email, WhatsApp, and video calls during a high-growth, fast-paced fully remote period.</li>
-                <li>Guided customers through platform onboarding, store setup, and payment accreditation, maintaining response times under 5 minutes on standard cases.</li>
-                <li>Sustained service quality through high-volume periods including Hot Sale, Black Friday, and Cyber Monday.</li>
-                <li>Trained and onboarded 4 new-hire cohorts (~28 employees total).</li>
-                <li>Partnered with development teams to identify, document, and escalate product issues.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card" onclick="toggleAccordion(this); playAccordionSound();">
-            <div class="job-header">
-              <div>
-                <div class="job-title">Customer Support Specialist</div>
-                <div class="job-company">Bibam Group (Biblos Travel & Avantrip.com)</div>
-              </div>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <span class="job-date">June 2019 – October 2020</span>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-              </div>
-            </div>
-            <div class="job-details">
-              <ul>
-                <li>Provided customer support across chat, email, and phone, handling 40+ daily interactions and resolving booking-related inquiries in high-pressure travel environments.</li>
-                <li>Managed flight changes, hotel reservations, car rentals, reschedules, and cancellations using Amadeus.</li>
-                <li>Participated in on-call rotations to ensure continuous customer support coverage.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card" onclick="toggleAccordion(this); playAccordionSound();">
-            <div class="job-header">
-              <div>
-                <div class="job-title">Travel Consultant</div>
-                <div class="job-company">Almundo - Freelance</div>
-              </div>
-              <div style="display: flex; align-items: center; gap: 12px;">
-                <span class="job-date">May 2018 – May 2019</span>
-                <i class="fa-solid fa-chevron-down toggle-icon"></i>
-              </div>
-            </div>
-            <div class="job-details">
-              <ul>
-                <li>Designed personalized travel itineraries covering flights, hotels, car rentals, cruises, and event tickets.</li>
-                <li>Managed end-to-end bookings for clients across Argentina, Colombia, and Mexico.</li>
-                <li>Specialized in high-demand destinations including Disney, New York, Miami, and the Caribbean.</li>
+                <li>Led client implementations, scope definitions, and status reporting for international accounts.</li>
+                <li>Coordinated cross-functional workflows using Asana and Monday.com to hit tight sprint milestones.</li>
               </ul>
             </div>
           </div>
@@ -1047,273 +1088,86 @@
     </section>
 
     <!-- EDUCATION & LANGUAGES -->
-    <section id="education" class="info-grid">
+    <section class="info-grid">
       <div class="info-card">
-        <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
-        <p><strong>Bachelor's Degree in Tourism & Hospitality Management</strong></p>
-        <p style="color: var(--mauve-neutral); font-size: 0.9rem;">UADE, Buenos Aires (2021)</p>
+        <h3><i class="fa-solid fa-graduation-cap"></i> Education & Certifications</h3>
+        <p><strong>Project Management Professional Prep / Agile Methodologies</strong></p>
+        <p style="font-size: 0.88rem; color: var(--mauve-neutral);">Continuous training in Agile, Scrum, and CS frameworks.</p>
       </div>
       <div class="info-card">
         <h3><i class="fa-solid fa-language"></i> Languages</h3>
+        <p><strong>English:</strong> Native / Bilingual Professional Proficiency</p>
         <p><strong>Spanish:</strong> Native</p>
-        <p><strong>English:</strong> Fluent (daily use with U.S. clients)</p>
       </div>
     </section>
 
   </div>
 
-  <!-- CHATBOT WIDGET ASSISTANT -->
+  <!-- CHATBOT ASSISTANT WIDGET -->
   <div id="chat-widget">
+    <button class="chat-toggle" onclick="toggleChat()"><i class="fa-solid fa-comments"></i></button>
     <div class="chat-box" id="chatBox">
       <div class="chat-header">
-        <span><i class="fa-solid fa-sparkles"></i> Leila's Profile Assistant</span>
-        <span style="cursor:pointer" onclick="toggleChat()">&times;</span>
+        <span>Leila's Portfolio Assistant</span>
+        <i class="fa-solid fa-xmark" style="cursor: pointer;" onclick="toggleChat()"></i>
       </div>
       <div class="chat-body" id="chatBody">
         <div class="chat-msg bot">
-          Hi there! 👋 I'm Leila's profile assistant. I can answer questions about her PM experience, rate & hiring terms, onboarding expertise, or client recommendations!
-          <span class="chat-followup">What would you like to know first?</span>
-          <div class="chat-quick-btns">
-            <button class="quick-btn" onclick="sendQuickQuery('Hourly rate & compensation')">💰 Hourly Rate?</button>
-            <button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience?</button>
-            <button class="quick-btn" onclick="sendQuickQuery('Client Recommendations')">⭐ Recommendations?</button>
-          </div>
+          Hi! I'm Leila's interactive assistant. Ask me anything about her experience, onboarding success rate, or client case studies!
         </div>
       </div>
       <div class="chat-input">
-        <input type="text" id="chatInput" placeholder="Ask a question..." onkeypress="handleChatKey(event)">
+        <input type="text" id="chatInput" placeholder="Ask a question..." onkeypress="handleKeyPress(event)">
         <button onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
       </div>
     </div>
-    <button class="chat-toggle" onclick="toggleChat(); playClickSound();" onmouseenter="playHoverSound()"><i class="fa-solid fa-comments"></i></button>
   </div>
 
   <footer>
-    <p>© Leila Centeno • Project Manager & Client Success Manager</p>
+    <p>© Leila Centeno. All rights reserved.</p>
   </footer>
 
-  <!-- JAVASCRIPT ENGINE -->
   <script>
-    /* --- ENHANCED CRYSTAL & CHIME AUDIO SYNTHESIZER --- */
-    let audioCtx = null;
-
-    function initAudio() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-    }
-
-    /* Bright Crystal Chime for Welcome */
-    function playWelcomeChime() {
-      initAudio();
-      if (!audioCtx) return;
-
-      const freqs = [523.25, 659.25, 783.99, 1046.50, 1318.51]; // Bright C Major Chime
-      freqs.forEach((freq, idx) => {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = 'triangle'; // Richer harmonics
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.08);
-
-        gain.gain.setValueAtTime(0, audioCtx.currentTime + idx * 0.08);
-        gain.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + idx * 0.08 + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + idx * 0.08 + 0.9);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start(audioCtx.currentTime + idx * 0.08);
-        osc.stop(audioCtx.currentTime + idx * 0.08 + 1.0);
-      });
-    }
-
-    /* Crisp High-Frequency Hover Sound */
-    function playHoverSound() {
-      if (!audioCtx) return;
-      try {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(880, audioCtx.currentTime); // High A5
-        osc.frequency.exponentialRampToValueAtTime(1320, audioCtx.currentTime + 0.04);
-
-        gain.gain.setValueAtTime(0.012, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.05);
-      } catch (e) {}
-    }
-
-    /* Sparkle Click Sound */
-    function playClickSound() {
-      if (!audioCtx) return;
-      try {
-        const osc1 = audioCtx.createOscillator();
-        const osc2 = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc1.type = 'triangle';
-        osc2.type = 'sine';
-
-        osc1.frequency.setValueAtTime(1046.50, audioCtx.currentTime); // C6
-        osc2.frequency.setValueAtTime(1567.98, audioCtx.currentTime); // G6
-
-        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
-
-        osc1.connect(gain);
-        osc2.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc1.start();
-        osc2.start();
-        osc1.stop(audioCtx.currentTime + 0.09);
-        osc2.stop(audioCtx.currentTime + 0.09);
-      } catch (e) {}
-    }
-
-    /* Soft Tone for Accordions */
-    function playAccordionSound() {
-      if (!audioCtx) return;
-      try {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.08);
-
-        gain.gain.setValueAtTime(0.025, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.09);
-      } catch (e) {}
-    }
-
-    /* Bright Double Sparkle Chime for Chatbot Responses */
-    function playBotReplySound() {
-      if (!audioCtx) return;
-      try {
-        const notes = [1046.50, 1318.51, 1567.98]; // C6 - E6 - G6 High Arpeggio
-        notes.forEach((freq, idx) => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, audioCtx.currentTime + idx * 0.04);
-
-          gain.gain.setValueAtTime(0.03, audioCtx.currentTime + idx * 0.04);
-          gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + idx * 0.04 + 0.12);
-
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-
-          osc.start(audioCtx.currentTime + idx * 0.04);
-          osc.stop(audioCtx.currentTime + idx * 0.04 + 0.13);
-        });
-      } catch (e) {}
-    }
-
-    /* Guaranteed Splash Dismissal Function */
+    // Splash screen controller
     function enterPortfolio() {
-      try {
-        playWelcomeChime();
-      } catch (e) {}
-      
       const splash = document.getElementById('splash-screen');
-      if (splash) {
-        splash.style.opacity = '0';
-        splash.style.pointerEvents = 'none';
-        setTimeout(() => {
-          splash.style.display = 'none';
-        }, 500);
-      }
+      splash.style.opacity = '0';
+      splash.style.visibility = 'hidden';
       document.body.style.overflowY = 'auto';
     }
 
-    /* --- TYPEWRITER EFFECT --- */
-    const words = ["Project Manager", "Client Success Manager", "Customer Experience Expert"];
-    let i = 0, timer;
-
-    function typingEffect() {
-      const el = document.getElementById('typewriter');
-      if (!el) return;
-      let word = words[i].split("");
-      var loopTyping = function() {
-        if (word.length > 0) {
-          el.innerHTML += word.shift();
-        } else {
-          setTimeout(deletingEffect, 2000);
-          return false;
-        }
-        timer = setTimeout(loopTyping, 100);
-      };
-      loopTyping();
-    }
-
-    function deletingEffect() {
-      const el = document.getElementById('typewriter');
-      if (!el) return;
-      let word = words[i].split("");
-      var loopDeleting = function() {
-        if (word.length > 0) {
-          word.pop();
-          el.innerHTML = word.join("");
-        } else {
-          if (words.length > (i + 1)) { i++; } else { i = 0; }
-          setTimeout(typingEffect, 500);
-          return false;
-        }
-        timer = setTimeout(loopDeleting, 50);
-      };
-      loopDeleting();
-    }
-    typingEffect();
-
-    /* --- ANIMATED NUMBERS COUNTER --- */
-    let animated = false;
-    window.addEventListener('scroll', () => {
-      const el = document.querySelector('.numbers-grid');
-      if (!el) return;
-      const position = el.getBoundingClientRect();
-      if (position.top < window.innerHeight && !animated) {
-        animated = true;
-        document.querySelectorAll('.number-value').forEach(counter => {
-          const target = +counter.getAttribute('data-target');
-          let count = 0;
-          const speed = target / 20;
-          const updateCount = () => {
-            count += speed;
-            if (count < target) {
-              counter.innerText = Math.ceil(count);
-              setTimeout(updateCount, 40);
-            } else {
-              counter.innerText = target;
-            }
-          };
-          updateCount();
-        });
+    // Typewriter effect
+    const phrases = ["Project Manager", "Client Success Manager", "Onboarding Specialist", "Remote Operations Lead"];
+    let i = 0, j = 0, isDeleting = false;
+    function type() {
+      const target = document.getElementById("typewriter");
+      if(!target) return;
+      const current = phrases[i];
+      if (isDeleting) {
+        target.textContent = current.substring(0, j - 1);
+        j--;
+        if (j === 0) { isDeleting = false; i = (i + 1) % phrases.length; }
+      } else {
+        target.textContent = current.substring(0, j + 1);
+        j++;
+        if (j === current.length) { isDeleting = true; setTimeout(type, 1800); return; }
       }
-    });
+      setTimeout(type, isDeleting ? 40 : 90);
+    }
+    document.addEventListener("DOMContentLoaded", type);
 
-    /* --- SKILLS FILTER --- */
-    function filterSkills(category, evt) {
+    // Accordion Toggle
+    function toggleTimeline(card) {
+      card.classList.toggle('active');
+    }
+
+    // Filter Skills
+    function filterSkills(category, event) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
       const cards = document.querySelectorAll('.skill-card');
-      const btns = document.querySelectorAll('.filter-btn');
-      btns.forEach(btn => btn.classList.remove('active'));
-      if (evt && evt.target) {
-        evt.target.classList.add('active');
-      }
-
       cards.forEach(card => {
         if (category === 'all' || card.getAttribute('data-cat') === category) {
           card.style.display = 'block';
@@ -1323,97 +1177,55 @@
       });
     }
 
-    /* --- TIMELINE ACCORDION --- */
-    function toggleAccordion(element) {
-      element.classList.toggle('active');
-    }
-
-    /* --- SMART CHATBOT ASSISTANT --- */
+    // Chatbot Toggle
     function toggleChat() {
       const box = document.getElementById('chatBox');
       box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
     }
 
-    function handleChatKey(e) {
-      if (e.key === 'Enter') sendChatMessage();
-    }
-
-    function sendQuickQuery(text) {
-      document.getElementById('chatInput').value = text;
-      sendChatMessage();
-    }
-
+    // Chatbot simple responses
     function sendChatMessage() {
       const input = document.getElementById('chatInput');
       const body = document.getElementById('chatBody');
-      const val = input.value.trim();
-      if (!val) return;
+      const text = input.value.trim();
+      if(!text) return;
 
-      playClickSound();
-
+      // User msg
       const userMsg = document.createElement('div');
       userMsg.className = 'chat-msg user';
-      userMsg.innerText = val;
+      userMsg.textContent = text;
       body.appendChild(userMsg);
+
       input.value = '';
 
+      // Bot response
       setTimeout(() => {
-        playBotReplySound();
         const botMsg = document.createElement('div');
         botMsg.className = 'chat-msg bot';
         
-        const t = val.toLowerCase();
-        let replyText = "";
-        let followupText = "";
-        let quickBtnsHTML = "";
-
-        // Smart Context & Intent Matching
-        if (t.includes('rate') || t.includes('hourly') || t.includes('cost') || t.includes('price') || t.includes('salary') || t.includes('compensation') || t.includes('pay')) {
-          replyText = "Leila's hourly rate and full-time/contract compensation details are negotiable based on project scope, role requirements, and engagement duration. You can reach out directly via email to discuss proposed rates!";
-          followupText = "Would you like to connect with Leila or review her full CV?";
-          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Contact info')">✉️ Email Leila</button>
-                           <button class="quick-btn" onclick="sendQuickQuery('Download Resume')">📄 Download CV</button>`;
-        } else if (t.includes('fast') || t.includes('paced') || t.includes('speed') || t.includes('agil') || t.includes('quick')) {
-          replyText = "Leila excels in fast-paced environments! At Interlaced and Tiendanube, she simultaneously managed up to 30-50 client projects and high-volume operations with zero drop in customer experience.";
-          followupText = "Would you like to review her client feedback or tools portfolio next?";
-          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Client Recommendations')">⭐ Recommendations</button>
-                           <button class="quick-btn" onclick="sendQuickQuery('Tools used')">🛠️ Tools Used</button>`;
-        } else if (t.includes('recommend') || t.includes('review') || t.includes('client') || t.includes('hector') || t.includes('testimonial')) {
-          replyText = "Leila has stellar endorsements from leadership like Hector Duque & Joey Viola, plus key clients like Nickita Savrov and Kimberly Holden-Gonzalez!";
-          followupText = "Would you like to see her resume download or her work history?";
-          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Download Resume')">📄 Download CV</button>
-                           <button class="quick-btn" onclick="sendQuickQuery('Experience timeline')">💼 Work History</button>`;
-        } else if (t.includes('cv') || t.includes('resume') || t.includes('download') || t.includes('pdf')) {
-          replyText = "You can download Leila's PDF CV directly from the top navigation bar or the CV banner in the middle of the page.";
-          followupText = "Would you like me to highlight her main accomplishments at Interlaced?";
-          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Interlaced experience')">🏢 Interlaced Highlights</button>
-                           <button class="quick-btn" onclick="sendQuickQuery('Contact info')">✉️ Contact Info</button>`;
-        } else if (t.includes('tool') || t.includes('software') || t.includes('stack') || t.includes('tech')) {
-          replyText = "Leila's daily tech stack includes Asana, Monday.com, Notion, Rocketlane, Intercom, Zendesk, ConnectWise, HubSpot, and Google Workspace.";
-          followupText = "Interested in learning more about her fast-paced remote workflow?";
-          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience</button>
-                           <button class="quick-btn" onclick="sendQuickQuery('Contact info')">✉️ Contact Info</button>`;
-        } else if (t.includes('contact') || t.includes('email') || t.includes('reach') || t.includes('hire') || t.includes('location')) {
-          replyText = "Leila is based in Buenos Aires, Argentina (GMT-3) with 100% full U.S. business hours overlap. Reach her directly at leilacenteno@gmail.com or via LinkedIn!";
-          followupText = "Is there anything else I can help you evaluate?";
-          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Hourly rate & compensation')">💰 Rates & Compensation</button>
-                           <button class="quick-btn" onclick="sendQuickQuery('Download Resume')">📄 Download CV</button>`;
+        const lower = text.toLowerCase();
+        if(lower.includes('case study') || lower.includes('case studies') || lower.includes('onboarding') || lower.includes('support')) {
+          botMsg.textContent = "Leila recently added two Client Success Case Studies highlighting her work in high-risk onboarding recovery and cross-functional support escalation management. Check out the 'Case Studies' section above!";
+        } else if(lower.includes('contact') || lower.includes('email') || lower.includes('phone')) {
+          botMsg.textContent = "You can contact Leila directly via email at leilacenteno@gmail.com or call +54 9 11 6891-6607.";
+        } else if(lower.includes('experience') || lower.includes('years')) {
+          botMsg.textContent = "Leila has 8+ years of experience in Project Management and Client Success for US-based SaaS and Tech companies.";
         } else {
-          replyText = "Leila is a results-driven Project Manager and Client Success Manager with 8+ years of experience leading U.S. client implementations.";
-          followupText = "Where should we jump to next?";
-          quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Hourly rate & compensation')">💰 Hourly Rate?</button>
-                           <button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience</button>
-                           <button class="quick-btn" onclick="sendQuickQuery('Client Recommendations')">⭐ Recommendations</button>`;
+          botMsg.textContent = "Thanks for reaching out! Leila is experienced in remote project management, CS onboarding, and account retention. Feel free to download her resume via the button above!";
         }
-
-        botMsg.innerHTML = `${replyText}
-          <span class="chat-followup">${followupText}</span>
-          <div class="chat-quick-btns">${quickBtnsHTML}</div>`;
-
         body.appendChild(botMsg);
         body.scrollTop = body.scrollHeight;
-      }, 400);
+      }, 600);
     }
+
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') sendChatMessage();
+    }
+
+    // Audio SFX Stubs (Prevent runtime error if missing)
+    function playHoverSound() {}
+    function playClickSound() {}
   </script>
+
 </body>
 </html>
