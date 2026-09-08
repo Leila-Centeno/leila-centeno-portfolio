@@ -26,47 +26,49 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    
+    /* Elegant & Subtle Professional Background Pattern */
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-cream);
+      background-image: 
+        radial-gradient(var(--pink-highlight) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(250, 247, 242, 0.8), rgba(244, 227, 229, 0.3));
+      background-size: 24px 24px, 100% 100%;
+      background-attachment: fixed;
       color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
+      overflow-y: hidden; /* Controlled by splash overlay until clicked */
     }
 
     h1, h2, h3, h4, .logo {
       font-family: 'Outfit', sans-serif;
     }
 
-    /* --- SPLASH SCREEN OVERLAY WITH ANIMATED BACKGROUND & AUDIO --- */
+    /* --- SPLASH SCREEN OVERLAY --- */
     #splash-screen {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
       background: linear-gradient(-45deg, #FAF7F2, #F4E3E5, #EFE6EA, #FAF7F2);
       background-size: 400% 400%;
       animation: gradientBG 12s ease infinite;
-      z-index: 1000;
+      z-index: 9999;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 24px;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    #splash-screen.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      display: none !important;
-    }
     .splash-card {
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(10px);
       border: 1px solid var(--pink-highlight);
       border-radius: 28px;
@@ -166,7 +168,7 @@
 
     .container { max-width: 1050px; margin: 0 auto; padding: 110px 24px 60px; }
 
-    /* --- DYNAMIC HERO HEADER --- */
+    /* --- HERO HEADER (Shadow removed) --- */
     .hero {
       background: var(--white);
       border: 1px solid var(--pink-highlight);
@@ -175,14 +177,6 @@
       box-shadow: var(--shadow);
       margin-bottom: 40px;
       position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; width: 200px; height: 200px;
-      background: radial-gradient(circle, var(--pink-highlight) 0%, rgba(250,247,242,0) 70%);
-      pointer-events: none;
     }
     .hero-top {
       display: flex;
@@ -303,7 +297,7 @@
       background: var(--pink-highlight);
     }
 
-    /* --- DOWNLOAD CV BANNER SECTION --- */
+    /* --- DOWNLOAD CV BANNER --- */
     .download-section {
       background: linear-gradient(135deg, var(--white) 0%, var(--pink-highlight) 100%);
       border: 1px solid var(--pink-primary);
@@ -393,7 +387,7 @@
       opacity: 0.85;
     }
 
-    /* --- RECOMMENDATIONS & REVIEWS SECTIONS --- */
+    /* --- RECOMMENDATIONS & REVIEWS --- */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -540,7 +534,7 @@
     }
     .info-card h3 { font-size: 1.05rem; color: var(--pink-primary); margin-bottom: 10px; }
 
-    /* --- ENHANCED CHATBOT WIDGET ASSISTANT --- */
+    /* --- CHATBOT ASSISTANT --- */
     #chat-widget {
       position: fixed;
       bottom: 25px; right: 25px;
@@ -639,7 +633,7 @@
 </head>
 <body>
 
-  <!-- SPLASH SCREEN OVERLAY WITH ANIMATED GRADIENT BACKGROUND & AUDIO -->
+  <!-- SPLASH SCREEN OVERLAY -->
   <div id="splash-screen">
     <div class="splash-card">
       <div class="splash-avatar">
@@ -651,7 +645,7 @@
         Specialized in fast-paced remote environments, client onboarding and implementation, and delivering an exceptional customer experience.
       </p>
       <button class="btn-enter" onclick="enterPortfolio()" onmouseenter="playHoverSound()">
-        <i class="fa-solid fa-volume-high"></i> Enter Interactive Portfolio
+        <i class="fa-solid fa-arrow-right-to-bracket"></i> Enter Interactive Portfolio
       </button>
     </div>
   </div>
@@ -696,7 +690,7 @@
       </div>
     </header>
 
-    <!-- NUMBERS METRICS (8+ Years Placed First) -->
+    <!-- NUMBERS METRICS -->
     <section class="numbers-grid">
       <div class="number-card">
         <div class="number-value" data-target="8">0</div>
@@ -775,7 +769,6 @@
       <h2 class="section-title">Peer & Leadership Recommendations</h2>
       <div class="reviews-grid">
 
-        <!-- HECTOR DUQUE -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila is an outstanding Project Manager who brings order, clarity, and exceptional execution to complex technical workflows. Her ability to lead cross-functional teams while maintaining top-tier client trust is remarkable."</p>
@@ -791,7 +784,6 @@
           </div>
         </div>
 
-        <!-- JOEY VIOLA -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila is an incredible Project Manager and Client Success leader. Her ability to juggle multiple high-stakes client onboardings while keeping satisfaction exceptionally high is unmatched."</p>
@@ -807,7 +799,6 @@
           </div>
         </div>
 
-        <!-- SABRINA SULFARO -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Working with Leila is always seamless. She combines rigorous organizational skills with genuine empathy for clients, ensuring projects are delivered on time without friction."</p>
@@ -823,7 +814,6 @@
           </div>
         </div>
 
-        <!-- STEPHANIE MCDONALD -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila consistently goes above and beyond to ensure smooth account transitions and onboarding. She communicates clearly, anticipates risks early, and builds trust effortlessly."</p>
@@ -839,7 +829,6 @@
           </div>
         </div>
 
-        <!-- BRADLEY HUGHES -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila's dedication to client success and project execution makes her a huge asset. She manages technical complexity with ease and keeps U.S. stakeholders aligned."</p>
@@ -863,7 +852,6 @@
       <h2 class="section-title"><i class="fa-solid fa-handshake-angle" style="color: var(--pink-primary);"></i> Client Testimonials & Endorsements</h2>
       <div class="reviews-grid">
 
-        <!-- NICKITA SAVROV -->
         <div class="review-card client-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila managed our transition with extreme precision and care. She kept our team informed every step of the way, making what could have been a chaotic onboarding completely effortless."</p>
@@ -879,7 +867,6 @@
           </div>
         </div>
 
-        <!-- KIMBERLY HOLDEN-GONZALEZ -->
         <div class="review-card client-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila's proactive approach and responsiveness as a Client Success Manager were essential to our account's growth. She genuinely cares about client goals and delivers results every time."</p>
@@ -903,7 +890,6 @@
       <h2 class="section-title">Professional Experience (Click to expand)</h2>
       <div class="timeline">
 
-        <!-- INTERLACED -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card active" onclick="toggleAccordion(this); playAccordionSound();">
@@ -930,7 +916,6 @@
           </div>
         </div>
 
-        <!-- PUNTOROJO -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card" onclick="toggleAccordion(this); playAccordionSound();">
@@ -956,7 +941,6 @@
           </div>
         </div>
 
-        <!-- TIENDANUBE -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card" onclick="toggleAccordion(this); playAccordionSound();">
@@ -982,7 +966,6 @@
           </div>
         </div>
 
-        <!-- BIBAM GROUP -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card" onclick="toggleAccordion(this); playAccordionSound();">
@@ -1006,7 +989,6 @@
           </div>
         </div>
 
-        <!-- ALMUNDO -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card" onclick="toggleAccordion(this); playAccordionSound();">
@@ -1049,7 +1031,7 @@
 
   </div>
 
-  <!-- ENHANCED CHATBOT WIDGET ASSISTANT -->
+  <!-- CHATBOT WIDGET ASSISTANT -->
   <div id="chat-widget">
     <div class="chat-box" id="chatBox">
       <div class="chat-header">
@@ -1079,9 +1061,9 @@
     <p>© Leila Centeno • Project Manager & Client Success Manager</p>
   </footer>
 
-  <!-- INTERACTIVE JAVASCRIPT & AUDIO SYNTHESIZER ENGINE -->
+  <!-- JAVASCRIPT ENGINE -->
   <script>
-    /* --- WEB AUDIO SYNTHESIZER ENGINE --- */
+    /* --- WEB AUDIO SYNTHESIZER --- */
     let audioCtx = null;
 
     function initAudio() {
@@ -1094,7 +1076,7 @@
       initAudio();
       if (!audioCtx) return;
 
-      const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5 (Warm major chord)
+      const notes = [261.63, 329.63, 392.00, 523.25];
       notes.forEach((freq, idx) => {
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
@@ -1120,7 +1102,7 @@
         const gain = audioCtx.createGain();
 
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(440, audioCtx.currentTime); // A4
+        osc.frequency.setValueAtTime(440, audioCtx.currentTime);
         gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
 
@@ -1139,8 +1121,8 @@
         const gain = audioCtx.createGain();
 
         osc.type = 'sine';
-        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
-        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.08); // A5
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.08);
 
         gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
@@ -1195,12 +1177,21 @@
       } catch (e) {}
     }
 
+    /* Guaranteed Splash Dismissal Function */
     function enterPortfolio() {
       try {
         playWelcomeChime();
       } catch (e) {}
+      
       const splash = document.getElementById('splash-screen');
-      splash.classList.add('hidden');
+      if (splash) {
+        splash.style.opacity = '0';
+        splash.style.pointerEvents = 'none';
+        setTimeout(() => {
+          splash.style.display = 'none';
+        }, 500);
+      }
+      document.body.style.overflowY = 'auto';
     }
 
     /* --- TYPEWRITER EFFECT --- */
@@ -1291,7 +1282,7 @@
       element.classList.toggle('active');
     }
 
-    /* --- ENHANCED CHATBOT ASSISTANT --- */
+    /* --- CHATBOT ASSISTANT --- */
     function toggleChat() {
       const box = document.getElementById('chatBox');
       box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
