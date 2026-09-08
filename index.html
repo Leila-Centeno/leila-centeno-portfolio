@@ -52,7 +52,7 @@
       justify-content: center;
       text-align: center;
       padding: 24px;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
     }
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
@@ -63,6 +63,7 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
+      display: none !important;
     }
     .splash-card {
       background: rgba(255, 255, 255, 0.95);
@@ -647,7 +648,7 @@
       <h1 class="splash-title">Leila Centeno</h1>
       <p class="splash-subtitle">Project Manager & Client Success Manager</p>
       <p class="splash-desc">
-        Specialized in fast-paced remote environments, client onboarding, technical migrations, and sustaining high NPS.
+        Specialized in fast-paced remote environments, client onboarding and implementation, and delivering an exceptional customer experience.
       </p>
       <button class="btn-enter" onclick="enterPortfolio()" onmouseenter="playHoverSound()">
         <i class="fa-solid fa-volume-high"></i> Enter Interactive Portfolio
@@ -683,7 +684,7 @@
       </div>
 
       <p class="hero-summary">
-        Client-facing Project Manager and Client Success Manager with 8+ years of progressive experience across travel, e-commerce, marketing, and IT/SaaS. Proven ability to adapt and excel in high-velocity, fast-paced environments—managing 25-30 concurrent client engagements for U.S.-based companies, leading enterprise onboarding, offboarding, and technical migrations while maintaining a 10 NPS score.
+        Client-facing Project Manager and Client Success Manager with 8+ years of progressive experience across travel, e-commerce, marketing, and IT/SaaS. Specialized in fast-paced remote environments, client onboarding and implementation, and delivering an exceptional customer experience. Proven ability to manage 25-30 concurrent client engagements for U.S.-based companies while sustaining a 10 NPS score.
       </p>
 
       <div class="contact-bar">
@@ -695,8 +696,12 @@
       </div>
     </header>
 
-    <!-- METRICS AT A GLANCE -->
+    <!-- NUMBERS METRICS (8+ Years Placed First) -->
     <section class="numbers-grid">
+      <div class="number-card">
+        <div class="number-value" data-target="8">0</div>
+        <div class="number-label">Years of Experience (+8)</div>
+      </div>
       <div class="number-card">
         <div class="number-value" data-target="10">0</div>
         <div class="number-label">Client NPS Sustained</div>
@@ -708,10 +713,6 @@
       <div class="number-card">
         <div class="number-value" data-target="30">0</div>
         <div class="number-label">Concurrent Fast-Paced Projects</div>
-      </div>
-      <div class="number-card">
-        <div class="number-value" data-target="8">0</div>
-        <div class="number-label">Years of Experience (+8)</div>
       </div>
     </section>
 
@@ -730,11 +731,11 @@
     <section id="skills">
       <h2 class="section-title">Core Competencies & Fast-Paced Execution</h2>
       <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterSkills('all'); playClickSound();" onmouseenter="playHoverSound()">All</button>
-        <button class="filter-btn" onclick="filterSkills('pm'); playClickSound();" onmouseenter="playHoverSound()">Project Management</button>
-        <button class="filter-btn" onclick="filterSkills('cs'); playClickSound();" onmouseenter="playHoverSound()">Client Success</button>
-        <button class="filter-btn" onclick="filterSkills('fast'); playClickSound();" onmouseenter="playHoverSound()">Fast-Paced Agility</button>
-        <button class="filter-btn" onclick="filterSkills('tools'); playClickSound();" onmouseenter="playHoverSound()">Tools & Tech</button>
+        <button class="filter-btn active" onclick="filterSkills('all', event); playClickSound();" onmouseenter="playHoverSound()">All</button>
+        <button class="filter-btn" onclick="filterSkills('pm', event); playClickSound();" onmouseenter="playHoverSound()">Project Management</button>
+        <button class="filter-btn" onclick="filterSkills('cs', event); playClickSound();" onmouseenter="playHoverSound()">Client Success</button>
+        <button class="filter-btn" onclick="filterSkills('fast', event); playClickSound();" onmouseenter="playHoverSound()">Fast-Paced Agility</button>
+        <button class="filter-btn" onclick="filterSkills('tools', event); playClickSound();" onmouseenter="playHoverSound()">Tools & Tech</button>
       </div>
 
       <div class="skills-grid" id="skillsGrid">
@@ -747,12 +748,8 @@
           <p>Thrives under tight deadlines, rapid growth stages, and high client volume.</p>
         </div>
         <div class="skill-card" data-cat="cs">
-          <h4>Client Onboarding</h4>
-          <p>40+ implementations led with typical 30-45 day cycles.</p>
-        </div>
-        <div class="skill-card" data-cat="pm">
-          <h4>Technical Migrations</h4>
-          <p>Cross-platform coordination (email, SharePoint, licensing) with zero data loss.</p>
+          <h4>Client Onboarding & Implementation</h4>
+          <p>40+ implementations led with typical 30-45 day cycles delivering outstanding customer experience.</p>
         </div>
         <div class="skill-card" data-cat="cs">
           <h4>Retention & Renewals</h4>
@@ -922,13 +919,12 @@
             </div>
             <div class="job-details">
               <ul>
-                <li>Own end-to-end project management and implementation of technology solutions for U.S.-based clients in fast-paced startup and scale-up settings (7 to 200+ employees).</li>
+                <li>Own end-to-end project management and client onboarding implementation for U.S.-based clients in fast-paced startup and scale-up settings (7 to 200+ employees).</li>
                 <li>Coordinate a cross-functional delivery team of 7 while managing a portfolio of 25-30 concurrent client projects on average (peak of 50).</li>
                 <li>Led 40+ client onboarding implementations since 2025, with typical cycles of 30-45 days depending on account size and complexity.</li>
                 <li>Manage complex client transitions and offboarding, coordinating incoming and outgoing vendors to ensure continuity with zero service gaps.</li>
-                <li>Coordinate cross-platform technical migrations (email, SharePoint, licensing) with internal technicians and external vendors, achieving zero data loss across all projects.</li>
                 <li>Stepped in to cover the Client Success Manager function for 5 months during a hiring gap, managing client relationships and renewals alongside project management duties.</li>
-                <li>Sustained a client NPS of 10 across the portfolio over the past year, reflecting strong stakeholder trust and account health.</li>
+                <li>Sustained a client NPS of 10 across the portfolio over the past year, delivering superior customer experience.</li>
               </ul>
             </div>
           </div>
@@ -1062,7 +1058,7 @@
       </div>
       <div class="chat-body" id="chatBody">
         <div class="chat-msg bot">
-          Hi there! 👋 I'm Leila's profile assistant. I can answer questions about her PM experience, fast-paced environment background, or recommendations!
+          Hi there! 👋 I'm Leila's profile assistant. I can answer questions about her PM experience, fast-paced environment background, onboarding expertise, or recommendations!
           <span class="chat-followup">What would you like to know first?</span>
           <div class="chat-quick-btns">
             <button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience?</button>
@@ -1119,92 +1115,105 @@
 
     function playHoverSound() {
       if (!audioCtx) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
 
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(440, audioCtx.currentTime); // A4
-      gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(440, audioCtx.currentTime); // A4
+        gain.gain.setValueAtTime(0.015, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.04);
 
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
 
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.05);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+      } catch (e) {}
     }
 
     function playClickSound() {
       if (!audioCtx) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
 
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
-      osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.08); // A5
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+        osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 0.08); // A5
 
-      gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
 
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
 
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.09);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.09);
+      } catch (e) {}
     }
 
     function playAccordionSound() {
       if (!audioCtx) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
 
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(329.63, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(493.88, audioCtx.currentTime + 0.12);
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(329.63, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(493.88, audioCtx.currentTime + 0.12);
 
-      gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.12);
+        gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.12);
 
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
 
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.13);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.13);
+      } catch (e) {}
     }
 
     function playBotReplySound() {
       if (!audioCtx) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
 
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
-      osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.06);
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.06);
 
-      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15);
+        gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15);
 
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
 
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.16);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.16);
+      } catch (e) {}
     }
 
     function enterPortfolio() {
-      playWelcomeChime();
-      document.getElementById('splash-screen').classList.add('hidden');
+      try {
+        playWelcomeChime();
+      } catch (e) {}
+      const splash = document.getElementById('splash-screen');
+      splash.classList.add('hidden');
     }
 
     /* --- TYPEWRITER EFFECT --- */
-    const words = ["Project Manager", "Client Success Manager", "Implementation & Onboarding Expert"];
+    const words = ["Project Manager", "Client Success Manager", "Customer Experience Expert"];
     let i = 0, timer;
 
     function typingEffect() {
+      const el = document.getElementById('typewriter');
+      if (!el) return;
       let word = words[i].split("");
       var loopTyping = function() {
         if (word.length > 0) {
-          document.getElementById('typewriter').innerHTML += word.shift();
+          el.innerHTML += word.shift();
         } else {
           setTimeout(deletingEffect, 2000);
           return false;
@@ -1215,11 +1224,13 @@
     }
 
     function deletingEffect() {
+      const el = document.getElementById('typewriter');
+      if (!el) return;
       let word = words[i].split("");
       var loopDeleting = function() {
         if (word.length > 0) {
           word.pop();
-          document.getElementById('typewriter').innerHTML = word.join("");
+          el.innerHTML = word.join("");
         } else {
           if (words.length > (i + 1)) { i++; } else { i = 0; }
           setTimeout(typingEffect, 500);
@@ -1258,11 +1269,13 @@
     });
 
     /* --- SKILLS FILTER --- */
-    function filterSkills(category) {
+    function filterSkills(category, evt) {
       const cards = document.querySelectorAll('.skill-card');
       const btns = document.querySelectorAll('.filter-btn');
       btns.forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+      if (evt && evt.target) {
+        evt.target.classList.add('active');
+      }
 
       cards.forEach(card => {
         if (category === 'all' || card.getAttribute('data-cat') === category) {
@@ -1278,7 +1291,7 @@
       element.classList.toggle('active');
     }
 
-    /* --- ENHANCED CHATBOT ASSISTANT WITH CONTEXT & FOLLOW-UPS --- */
+    /* --- ENHANCED CHATBOT ASSISTANT --- */
     function toggleChat() {
       const box = document.getElementById('chatBox');
       box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
@@ -1318,7 +1331,7 @@
         let quickBtnsHTML = "";
 
         if (t.includes('fast') || t.includes('paced') || t.includes('speed') || t.includes('agil')) {
-          replyText = "Leila excels in fast-paced environments! At Interlaced and Tiendanube, she simultaneously managed up to 30-50 client projects and high-volume operations with zero drop in quality.";
+          replyText = "Leila excels in fast-paced environments! At Interlaced and Tiendanube, she simultaneously managed up to 30-50 client projects and high-volume operations with zero drop in customer experience.";
           followupText = "Would you like to review her client feedback or tools portfolio next?";
           quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Client Recommendations')">⭐ Recommendations</button>
                            <button class="quick-btn" onclick="sendQuickQuery('Tools used')">🛠️ Tools Used</button>`;
@@ -1346,7 +1359,7 @@
           replyText = "Leila is a results-driven Project Manager and Client Success Manager with 8+ years of experience leading U.S. client implementations.";
           followupText = "Where should we jump to next?";
           quickBtnsHTML = `<button class="quick-btn" onclick="sendQuickQuery('Fast paced experience')">⚡ Fast-paced experience</button>
-                           <button class="quick-btn" onclick="sendQuickQuery('Client Recommendations')">⭐ Recommendations</button>
+                           <button class="quick-btn" onclick="sendQuickQuery('Client Recommendations')">⭐ Recommendations</button>`;
         }
 
         botMsg.innerHTML = `${replyText}
