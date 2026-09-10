@@ -535,20 +535,23 @@
 </head>
 <body>
 
-  <!-- BACKGROUND MUSIC (Web Audio API Synthesizer - Lo-fi Chords) -->
+  <!-- BACKGROUND MUSIC & SOUND EFFECTS SYNTHESIZER (Web Audio API) -->
   <script>
     let audioCtx = null;
     let isPlaying = false;
     let synthInterval = null;
 
-    function toggleMusic() {
+    function initAudio() {
       if (!audioCtx) {
         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       }
       if (audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
+    }
 
+    function toggleMusic() {
+      initAudio();
       isPlaying = !isPlaying;
       const musicStatus = document.getElementById('musicStatus');
       const musicIcon = document.getElementById('musicIcon');
@@ -556,61 +559,71 @@
       if (isPlaying) {
         musicStatus.textContent = 'Music: Playing';
         musicIcon.className = 'fa-solid fa-volume-high';
-        startLofiSynth();
+        startBubblyMelody();
       } else {
         musicStatus.textContent = 'Music: Off';
         musicIcon.className = 'fa-solid fa-volume-xmark';
-        stopLofiSynth();
+        stopBubblyMelody();
       }
     }
 
-    function startLofiSynth() {
-      // Gentle chord progression frequencies (C Major 7 style ambient loop)
-      const chords = [
-        [261.63, 329.63, 392.00, 493.88], // Cmaj7
-        [220.00, 261.63, 329.63, 392.00], // Am7
-        [174.61, 220.00, 261.63, 329.63], // Fmaj7
-        [196.00, 246.94, 293.66, 349.23]  // G7
-      ];
-      let chordIndex = 0;
+    // New Background Music: Light, cheerful, playful arpeggio loop (glockenspiel / music box feel)
+    function startBubblyMelody() {
+      const melodyNotes = [523.25, 659.25, 783.99, 1046.50, 783.99, 659.25, 587.33, 659.25]; // C5, E5, G5, C6, G5, E5, D5, E5
+      let noteIndex = 0;
 
-      function playChord() {
+      function playStep() {
         if (!isPlaying) return;
-        const notes = chords[chordIndex];
-        chordIndex = (chordIndex + 1) % chords.length;
+        const freq = melodyNotes[noteIndex];
+        noteIndex = (noteIndex + 1) % melodyNotes.length;
 
-        notes.forEach((freq, i) => {
-          setTimeout(() => {
-            if (!isPlaying) return;
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
 
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.type = 'triangle'; // Soft and warm tone
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
 
-            // Soft lofi envelope
-            gain.gain.setValueAtTime(0, audioCtx.currentTime);
-            gain.gain.linearRampToValueAtTime(0.03, audioCtx.currentTime + 0.8);
-            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 3.5);
+        gain.gain.setValueAtTime(0, audioCtx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.04, audioCtx.currentTime + 0.05);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.6);
 
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
 
-            osc.start();
-            osc.stop(audioCtx.currentTime + 3.5);
-          }, i * 150);
-        });
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.6);
       }
 
-      playChord();
-      synthInterval = setInterval(playChord, 4000);
+      playStep();
+      synthInterval = setInterval(playStep, 300); // Upbeat rhythmic loop
     }
 
-    function stopLofiSynth() {
+    function stopBubblyMelody() {
       if (synthInterval) {
         clearInterval(synthInterval);
         synthInterval = null;
       }
+    }
+
+    // Click Sound Effect for Buttons
+    function playClickSound() {
+      initAudio();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine';
+      // Pleasant pop / bubble blip pitch upward
+      osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.08);
+
+      gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.08);
     }
   </script>
 
@@ -641,38 +654,38 @@
           <h2>Project Manager & Client Success Manager</h2>
         </div>
         <div class="badge-overlap">
-          <i class="fa-solid fa-bolt"></i> Remote Full U.S. Business Hours Overlap (GMT-3)[cite: 3]
+          <i class="fa-solid fa-bolt"></i> Remote Full U.S. Business Hours Overlap (GMT-3)
         </div>
       </div>
 
       <p class="hero-summary">
-        Client-facing Project Manager and Client Success professional with 8+ years of progressive experience across travel, e-commerce, marketing, and IT/SaaS[cite: 3]. The last 4+ years have focused on project management, client onboarding, implementation, and account management for U.S.-based companies, managing 25-30 concurrent client engagements[cite: 3].
+        Client-facing Project Manager and Client Success professional with 8+ years of progressive experience across travel, e-commerce, marketing, and IT/SaaS. The last 4+ years have focused on project management, client onboarding, implementation, and account management for U.S.-based companies, managing 25-30 concurrent client engagements.
       </p>
 
       <div class="numbers-grid">
         <div class="number-card">
           <div class="number-value">8+ Yrs</div>
-          <div class="number-label">Experience[cite: 3]</div>
+          <div class="number-label">Experience</div>
         </div>
         <div class="number-card">
           <div class="number-value">10</div>
-          <div class="number-label">Client NPS[cite: 3]</div>
+          <div class="number-label">Client NPS</div>
         </div>
         <div class="number-card">
           <div class="number-value">40+</div>
-          <div class="number-label">Client Onboardings Led[cite: 3]</div>
+          <div class="number-label">Client Onboardings Led</div>
         </div>
         <div class="number-card">
           <div class="number-value">25-30</div>
-          <div class="number-label">Concurrent Projects[cite: 3]</div>
+          <div class="number-label">Concurrent Projects</div>
         </div>
       </div>
 
       <div class="contact-bar">
-        <a href="mailto:leilacenteno@gmail.com" class="contact-item"><i class="fa-solid fa-envelope"></i> leilacenteno@gmail.com[cite: 3]</a>
-        <a href="tel:+5491168916607" class="contact-item"><i class="fa-solid fa-phone"></i> +54 9 11 6891-6607[cite: 3]</a>
-        <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="contact-item"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/leilagcenteno[cite: 3]</a>
-        <span class="contact-item" style="cursor: default;"><i class="fa-solid fa-location-dot"></i> Buenos Aires, Argentina (GMT-3)[cite: 3]</span>
+        <a href="mailto:leilacenteno@gmail.com" class="contact-item"><i class="fa-solid fa-envelope"></i> leilacenteno@gmail.com</a>
+        <a href="tel:+5491168916607" class="contact-item"><i class="fa-solid fa-phone"></i> +54 9 11 6891-6607</a>
+        <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="contact-item"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/leilagcenteno</a>
+        <span class="contact-item" style="cursor: default;"><i class="fa-solid fa-location-dot"></i> Buenos Aires, Argentina (GMT-3)</span>
       </div>
     </section>
 
@@ -689,35 +702,35 @@
       <div class="skills-grid" id="skillsGrid">
         <div class="skill-card" data-cat="pm">
           <h4>Project Management & Delivery</h4>
-          <p>End-to-end management from kickoff through go-live, offboarding, and vendor migrations[cite: 3].</p>
+          <p>End-to-end management from kickoff through go-live, offboarding, and vendor migrations.</p>
         </div>
         <div class="skill-card" data-cat="cs">
           <h4>Client Onboarding & Implementation</h4>
-          <p>Led 40+ implementations with typical 30-45 day cycles[cite: 3].</p>
+          <p>Led 40+ implementations with typical 30-45 day cycles.</p>
         </div>
         <div class="skill-card" data-cat="cs">
           <h4>Client Success & Retention</h4>
-          <p>Driving retention through proactive relationship management, renewals, and QBRs[cite: 3].</p>
+          <p>Driving retention through proactive relationship management, renewals, and QBRs.</p>
         </div>
         <div class="skill-card" data-cat="pm">
           <h4>Risk Mitigation & Reporting</h4>
-          <p>Executive reporting, cross-functional team coordination, and proactive risk mitigation[cite: 3].</p>
+          <p>Executive reporting, cross-functional team coordination, and proactive risk mitigation.</p>
         </div>
         <div class="skill-card" data-cat="tools">
           <h4>CRM & Support</h4>
-          <p>Intercom, Zendesk, HubSpot, ConnectWise[cite: 3].</p>
+          <p>Intercom, Zendesk, HubSpot, ConnectWise.</p>
         </div>
         <div class="skill-card" data-cat="tools">
           <h4>Project & Delivery</h4>
-          <p>Asana, Monday.com, Notion, Rocketlane[cite: 3].</p>
+          <p>Asana, Monday.com, Notion, Rocketlane.</p>
         </div>
         <div class="skill-card" data-cat="tools">
           <h4>Collaboration & Analytics</h4>
-          <p>Google Workspace, Slack, Google Analytics, Google Search Console[cite: 3].</p>
+          <p>Google Workspace, Slack, Google Analytics, Google Search Console.</p>
         </div>
         <div class="skill-card" data-cat="tools">
           <h4>Reservations</h4>
-          <p>Amadeus[cite: 3].</p>
+          <p>Amadeus.</p>
         </div>
       </div>
     </section>
@@ -782,7 +795,7 @@
       </div>
     </section>
 
-    <!-- SECTION 4: CLIENT TESTIMONIALS (Nikita Savrov and Kimberly Holden-Gonzalez) -->
+    <!-- SECTION 4: CLIENT TESTIMONIALS -->
     <section id="client-reviews">
       <h2 class="section-title"><i class="fa-solid fa-handshake-angle" style="color: var(--pink-primary);"></i> Client Testimonials & Endorsements</h2>
       <div class="reviews-grid">
@@ -820,7 +833,7 @@
       </div>
     </section>
 
-    <!-- SECTION 5: PEER & LEADERSHIP RECOMMENDATIONS (Hector Duque, Stephanie McDonald, Joey Viola, Sabrina Sulfaro, Bradley Hughes) -->
+    <!-- SECTION 5: PEER & LEADERSHIP RECOMMENDATIONS -->
     <section id="peer-reviews">
       <h2 class="section-title">Peer & Leadership Recommendations</h2>
       <div class="reviews-grid">
@@ -916,17 +929,17 @@
                 <div class="job-title">Project Manager</div>
                 <div class="job-company">Interlaced (IT Services - U.S.-based company)</div>
               </div>
-              <div class="job-date">March 2024 – Present (2 years, 6 months) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i>[cite: 3]</div>
+              <div class="job-date">March 2024 – Present (2 years, 6 months) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
             </div>
             <div class="job-details">
               <ul>
-                <li>Own end-to-end project management and implementation of technology solutions for U.S.-based clients ranging from 7 to 200+ employees, leading each engagement from kickoff through go-live[cite: 3].</li>
-                <li>Coordinate a cross-functional delivery team of 7 while managing a portfolio of 25-30 concurrent client projects on average (peak of 50)[cite: 3].</li>
-                <li>Led 40+ client onboarding implementations since 2025, with typical cycles of 30-45 days depending on account size and complexity[cite: 3].</li>
-                <li>Manage complex client transitions and offboarding, coordinating incoming and outgoing vendors to ensure continuity with zero service gaps[cite: 3].</li>
-                <li>Coordinate cross-platform technical migrations (email, SharePoint, licensing) with internal technicians and external vendors, achieving zero data loss across all projects[cite: 3].</li>
-                <li>Stepped in to cover the Client Success Manager function for 5 months during a hiring gap, managing client relationships and renewals alongside project management duties[cite: 3].</li>
-                <li>Sustained a client NPS of 10 across the portfolio over the past year, reflecting strong stakeholder trust and account health[cite: 3].</li>
+                <li>Own end-to-end project management and implementation of technology solutions for U.S.-based clients ranging from 7 to 200+ employees, leading each engagement from kickoff through go-live.</li>
+                <li>Coordinate a cross-functional delivery team of 7 while managing a portfolio of 25-30 concurrent client projects on average (peak of 50).</li>
+                <li>Led 40+ client onboarding implementations since 2025, with typical cycles of 30-45 days depending on account size and complexity.</li>
+                <li>Manage complex client transitions and offboarding, coordinating incoming and outgoing vendors to ensure continuity with zero service gaps.</li>
+                <li>Coordinate cross-platform technical migrations (email, SharePoint, licensing) with internal technicians and external vendors, achieving zero data loss across all projects.</li>
+                <li>Stepped in to cover the Client Success Manager function for 5 months during a hiring gap, managing client relationships and renewals alongside project management duties.</li>
+                <li>Sustained a client NPS of 10 across the portfolio over the past year, reflecting strong stakeholder trust and account health.</li>
               </ul>
             </div>
           </div>
@@ -940,15 +953,15 @@
                 <div class="job-title">Customer Success Manager</div>
                 <div class="job-company">Puntorojo (Marketing Agency)</div>
               </div>
-              <div class="job-date">July 2022 – February 2024 (1 year, 7 months) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i>[cite: 3]</div>
+              <div class="job-date">July 2022 – February 2024 (1 year, 7 months) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
             </div>
             <div class="job-details">
               <ul>
-                <li>Owned a portfolio of 15-20 client accounts across e-commerce, banking, and travel, managing the full account lifecycle from onboarding through renewal[cite: 3].</li>
-                <li>Served as primary point of contact, running weekly/bi-weekly check-ins to align on goals, performance, and next steps[cite: 3].</li>
-                <li>Built monthly performance reports using Google Analytics and Google Search Console; presented quarterly roadmaps outlining status, priorities, and strategic recommendations[cite: 3].</li>
-                <li>Proactively planned account strategy around key business moments (e.g., major e-commerce sales events) to keep clients prepared and aligned[cite: 3].</li>
-                <li>Strengthened client advocacy and retention, earning completed Clutch reviews from 7 of 15-20 active accounts[cite: 3].</li>
+                <li>Owned a portfolio of 15-20 client accounts across e-commerce, banking, and travel, managing the full account lifecycle from onboarding through renewal.</li>
+                <li>Served as primary point of contact, running weekly/bi-weekly check-ins to align on goals, performance, and next steps.</li>
+                <li>Built monthly performance reports using Google Analytics and Google Search Console; presented quarterly roadmaps outlining status, priorities, and strategic recommendations.</li>
+                <li>Proactively planned account strategy around key business moments (e.g., major e-commerce sales events) to keep clients prepared and aligned.</li>
+                <li>Strengthened client advocacy and retention, earning completed Clutch reviews from 7 of 15-20 active accounts.</li>
               </ul>
             </div>
           </div>
@@ -962,15 +975,15 @@
                 <div class="job-title">Customer Support Specialist</div>
                 <div class="job-company">Tiendanube (E-Commerce Platform)</div>
               </div>
-              <div class="job-date">October 2020 – July 2022 (1 year, 9 months) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i>[cite: 3]</div>
+              <div class="job-date">October 2020 – July 2022 (1 year, 9 months) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
             </div>
             <div class="job-details">
               <ul>
-                <li>Supported entrepreneurs launching and operating online stores via email, WhatsApp, and video calls during a high-growth, fully remote period[cite: 3].</li>
-                <li>Guided customers through platform onboarding, store setup, and payment accreditation, maintaining response times under 5 minutes on standard cases[cite: 3].</li>
-                <li>Sustained service quality through high-volume periods including Hot Sale, Black Friday, and Cyber Monday[cite: 3].</li>
-                <li>Trained and onboarded 4 new-hire cohorts (~28 employees total)[cite: 3].</li>
-                <li>Partnered with development teams to identify, document, and escalate product issues[cite: 3].</li>
+                <li>Supported entrepreneurs launching and operating online stores via email, WhatsApp, and video calls during a high-growth, fully remote period.</li>
+                <li>Guided customers through platform onboarding, store setup, and payment accreditation, maintaining response times under 5 minutes on standard cases.</li>
+                <li>Sustained service quality through high-volume periods including Hot Sale, Black Friday, and Cyber Monday.</li>
+                <li>Trained and onboarded 4 new-hire cohorts (~28 employees total).</li>
+                <li>Partnered with development teams to identify, document, and escalate product issues.</li>
               </ul>
             </div>
           </div>
@@ -984,13 +997,13 @@
                 <div class="job-title">Customer Support Specialist</div>
                 <div class="job-company">Bibam Group (Biblos Travel & Avantrip.com) (Travel & Hospitality)</div>
               </div>
-              <div class="job-date">June 2019 – October 2020 (1 year, 4 months) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i>[cite: 3]</div>
+              <div class="job-date">June 2019 – October 2020 (1 year, 4 months) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
             </div>
             <div class="job-details">
               <ul>
-                <li>Provided customer support across chat, email, and phone, handling 40+ daily interactions and resolving booking-related inquiries and complaints[cite: 3].</li>
-                <li>Managed flight changes, hotel reservations, car rentals, reschedules, and cancellations using Amadeus[cite: 3].</li>
-                <li>Participated in on-call rotations to ensure continuous customer support coverage[cite: 3].</li>
+                <li>Provided customer support across chat, email, and phone, handling 40+ daily interactions and resolving booking-related inquiries and complaints.</li>
+                <li>Managed flight changes, hotel reservations, car rentals, reschedules, and cancellations using Amadeus.</li>
+                <li>Participated in on-call rotations to ensure continuous customer support coverage.</li>
               </ul>
             </div>
           </div>
@@ -1004,13 +1017,13 @@
                 <div class="job-title">Travel Consultant</div>
                 <div class="job-company">Almundo - Freelance (Travel)</div>
               </div>
-              <div class="job-date">May 2018 – May 2019 (1 year) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i>[cite: 3]</div>
+              <div class="job-date">May 2018 – May 2019 (1 year) <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
             </div>
             <div class="job-details">
               <ul>
-                <li>Designed personalized travel itineraries covering flights, hotels, car rentals, cruises, and event tickets[cite: 3].</li>
-                <li>Managed end-to-end bookings for clients across Argentina, Colombia, and Mexico[cite: 3].</li>
-                <li>Specialized in high-demand destinations including Disney, New York, Miami, and the Caribbean[cite: 3].</li>
+                <li>Designed personalized travel itineraries covering flights, hotels, car rentals, cruises, and event tickets.</li>
+                <li>Managed end-to-end bookings for clients across Argentina, Colombia, and Mexico.</li>
+                <li>Specialized in high-demand destinations including Disney, New York, Miami, and the Caribbean.</li>
               </ul>
             </div>
           </div>
@@ -1023,13 +1036,13 @@
     <section class="info-grid">
       <div class="info-card">
         <h3><i class="fa-solid fa-graduation-cap"></i> Education & Certifications</h3>
-        <p><strong>Bachelor's Degree in Tourism & Hospitality Management</strong>[cite: 3]</p>
-        <p style="font-size: 0.88rem; color: var(--mauve-neutral);">UADE, Buenos Aires – 2021[cite: 3]</p>
+        <p><strong>Bachelor's Degree in Tourism & Hospitality Management</strong></p>
+        <p style="font-size: 0.88rem; color: var(--mauve-neutral);">UADE, Buenos Aires – 2021</p>
       </div>
       <div class="info-card">
         <h3><i class="fa-solid fa-language"></i> Languages</h3>
-        <p><strong>English:</strong> Fluent, used on a daily basis (not bilingual)[cite: 3]</p>
-        <p><strong>Spanish:</strong> Native[cite: 3]</p>
+        <p><strong>English:</strong> Fluent, used on a daily basis (not bilingual)</p>
+        <p><strong>Spanish:</strong> Native</p>
       </div>
     </section>
 
@@ -1059,10 +1072,13 @@
       });
     }
 
-    // Sparkle Note Effect on Click for any clickable element / button
+    // Sparkle Note Effect & Click Sound Trigger on Click for buttons/interactives
     document.addEventListener('click', (e) => {
       const target = e.target.closest('button, .filter-btn, .timeline-card, .contact-item, .music-widget');
       if (!target) return;
+
+      // Play click sound effect
+      playClickSound();
 
       const rect = target.getBoundingClientRect();
       const x = e.clientX || (rect.left + rect.width / 2);
