@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Leila Centeno | Project Manager &amp; Client Success Manager</title>
+    <title>Leila Centeno | Project Manager & Client Success Manager</title>
 
-    <!-- Google Fonts -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link
@@ -18,27 +18,30 @@
     >
 
     <style>
-        /* ============================================
+
+        /* =========================================================
            VARIABLES
-        ============================================ */
+        ========================================================= */
 
         :root {
             --bg-cream: #F8F5F0;
             --pink-primary: #D48C95;
+            --pink-dark: #B9717B;
             --pink-highlight: #F4E3E5;
             --text-dark: #2D2A2E;
             --mauve-neutral: #8C828A;
             --white: #FFFFFF;
 
-            --shadow-soft: 0 8px 30px rgba(45, 42, 46, 0.08);
-            --shadow-hover: 0 14px 40px rgba(45, 42, 46, 0.13);
+            --shadow-soft: 0 10px 35px rgba(45, 42, 46, 0.08);
+            --shadow-hover: 0 18px 45px rgba(45, 42, 46, 0.13);
 
             --transition: all 0.3s ease;
         }
 
-        /* ============================================
+
+        /* =========================================================
            RESET
-        ============================================ */
+        ========================================================= */
 
         * {
             margin: 0;
@@ -52,25 +55,14 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background:
-                radial-gradient(circle at 15% 20%, rgba(212, 140, 149, 0.08) 0%, transparent 25%),
-                radial-gradient(circle at 85% 70%, rgba(140, 130, 138, 0.07) 0%, transparent 25%),
-                var(--bg-cream);
+            background: var(--bg-cream);
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            opacity: 0.35;
-            background-image:
-                radial-gradient(rgba(212, 140, 149, 0.18) 1px, transparent 1px);
-            background-size: 28px 28px;
-            z-index: -2;
+        body.intro-active {
+            overflow: hidden;
         }
 
         a {
@@ -79,12 +71,484 @@
         }
 
         button {
-            font-family: inherit;
+            font: inherit;
         }
 
-        /* ============================================
-           GENERAL
-        ============================================ */
+
+        /* =========================================================
+           INTRO PAGE
+        ========================================================= */
+
+        #intro {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(255,255,255,0.85) 0%,
+                    rgba(248,245,240,0.98) 55%,
+                    #F4ECE8 100%
+                );
+
+            overflow: hidden;
+
+            transition:
+                opacity 0.8s ease,
+                visibility 0.8s ease,
+                transform 1s ease;
+        }
+
+        #intro.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.04);
+            pointer-events: none;
+        }
+
+
+        /* dotted background */
+
+        .intro-stars {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                radial-gradient(
+                    rgba(212, 140, 149, 0.28) 1px,
+                    transparent 1px
+                );
+
+            background-size: 48px 48px;
+
+            opacity: 0.45;
+
+            animation: starsMove 22s linear infinite;
+        }
+
+        @keyframes starsMove {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-48px);
+            }
+        }
+
+
+        /* floating glow */
+
+        .intro-glow {
+            position: absolute;
+
+            width: 700px;
+            height: 700px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(212,140,149,0.16),
+                    transparent 65%
+                );
+
+            filter: blur(30px);
+
+            animation: glowPulse 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            from {
+                transform: scale(0.95);
+                opacity: 0.65;
+            }
+
+            to {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+        }
+
+
+        /* concentric circles */
+
+        .circle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+
+            border-radius: 50%;
+            border: 1px solid rgba(212, 140, 149, 0.16);
+
+            transform: translate(-50%, -50%);
+
+            pointer-events: none;
+        }
+
+        .circle-1 {
+            width: 260px;
+            height: 260px;
+        }
+
+        .circle-2 {
+            width: 410px;
+            height: 410px;
+        }
+
+        .circle-3 {
+            width: 570px;
+            height: 570px;
+        }
+
+        .circle-4 {
+            width: 760px;
+            height: 760px;
+        }
+
+
+        /* orbit decorations */
+
+        .orbit-dot {
+            position: absolute;
+
+            width: 8px;
+            height: 8px;
+
+            background: var(--pink-primary);
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 0 6px rgba(212,140,149,0.08),
+                0 0 25px rgba(212,140,149,0.35);
+        }
+
+        .dot-1 {
+            top: 23%;
+            left: 30%;
+
+            animation: floatDot 4s ease-in-out infinite;
+        }
+
+        .dot-2 {
+            right: 25%;
+            bottom: 30%;
+
+            width: 5px;
+            height: 5px;
+
+            animation: floatDot 5s ease-in-out infinite reverse;
+        }
+
+        .dot-3 {
+            right: 17%;
+            top: 31%;
+
+            width: 6px;
+            height: 6px;
+
+            animation: floatDot 6s ease-in-out infinite;
+        }
+
+        @keyframes floatDot {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+
+        .intro-sparkle {
+            position: absolute;
+            color: var(--pink-primary);
+            opacity: 0.7;
+            font-size: 18px;
+        }
+
+        .sparkle-1 {
+            left: 18%;
+            top: 38%;
+            animation: sparkleFloat 5s ease-in-out infinite;
+        }
+
+        .sparkle-2 {
+            right: 18%;
+            top: 39%;
+            font-size: 28px;
+            animation: sparkleFloat 6s ease-in-out infinite reverse;
+        }
+
+        .sparkle-3 {
+            left: 27%;
+            bottom: 25%;
+            font-size: 11px;
+            animation: sparkleFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes sparkleFloat {
+            0%,
+            100% {
+                opacity: 0.35;
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                opacity: 0.9;
+                transform: translateY(-12px) rotate(15deg);
+            }
+        }
+
+
+        /* intro content */
+
+        .intro-content {
+            position: relative;
+            z-index: 10;
+
+            width: min(900px, calc(100% - 40px));
+
+            text-align: center;
+
+            animation: introLoad 1.2s ease forwards;
+        }
+
+        @keyframes introLoad {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .intro-kicker {
+            font-size: 0.72rem;
+            font-weight: 700;
+
+            letter-spacing: 0.28em;
+
+            color: var(--pink-dark);
+
+            text-transform: uppercase;
+
+            margin-bottom: 42px;
+        }
+
+
+        .intro-small {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+
+            font-size: 0.66rem;
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.42em;
+
+            color: var(--mauve-neutral);
+
+            margin-bottom: 18px;
+        }
+
+        .intro-small::before,
+        .intro-small::after {
+            content: "";
+
+            width: 55px;
+            height: 1px;
+
+            background: rgba(212,140,149,0.4);
+        }
+
+
+        .intro-title {
+            font-family: 'DM Serif Display', serif;
+
+            font-size: clamp(4.4rem, 10vw, 8.2rem);
+
+            line-height: 0.78;
+
+            letter-spacing: -0.045em;
+
+            margin-bottom: 36px;
+
+            color: var(--text-dark);
+        }
+
+        .intro-title span {
+            display: block;
+        }
+
+        .intro-title .ampersand {
+            display: inline-block;
+
+            font-style: italic;
+
+            color: var(--pink-primary);
+
+            font-size: 0.72em;
+
+            margin: 14px 0;
+        }
+
+
+        .intro-subtitle {
+            width: min(600px, 100%);
+            margin: 0 auto 35px;
+
+            color: var(--mauve-neutral);
+
+            font-size: 0.96rem;
+
+            line-height: 1.8;
+        }
+
+
+        .enter-button {
+            position: relative;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            gap: 13px;
+
+            min-width: 220px;
+
+            padding: 15px 25px;
+
+            border: 1px solid rgba(185, 113, 123, 0.65);
+
+            border-radius: 100px;
+
+            background: rgba(255,255,255,0.52);
+
+            backdrop-filter: blur(8px);
+
+            color: var(--text-dark);
+
+            cursor: pointer;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.16em;
+
+            font-size: 0.67rem;
+            font-weight: 700;
+
+            transition: all 0.35s ease;
+
+            box-shadow:
+                0 8px 25px rgba(45,42,46,0.05);
+        }
+
+        .enter-button:hover {
+            background: var(--pink-primary);
+            border-color: var(--pink-primary);
+
+            color: white;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 14px 30px rgba(212,140,149,0.28);
+        }
+
+        .enter-button i {
+            font-size: 0.72rem;
+
+            transition: transform 0.3s ease;
+        }
+
+        .enter-button:hover i {
+            transform: translateX(4px);
+        }
+
+
+        .intro-bottom {
+            position: absolute;
+
+            bottom: 28px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            color: rgba(140,130,138,0.72);
+
+            font-size: 0.6rem;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.24em;
+
+            white-space: nowrap;
+        }
+
+
+
+        /* =========================================================
+           MAIN PORTFOLIO
+        ========================================================= */
+
+        #portfolio {
+            opacity: 1;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(212,140,149,0.08),
+                    transparent 25%
+                ),
+                radial-gradient(
+                    circle at 85% 70%,
+                    rgba(140,130,138,0.07),
+                    transparent 25%
+                ),
+                var(--bg-cream);
+        }
+
+
+        #portfolio::before {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+
+            opacity: 0.28;
+
+            background-image:
+                radial-gradient(
+                    rgba(212,140,149,0.18) 1px,
+                    transparent 1px
+                );
+
+            background-size: 28px 28px;
+
+            z-index: -1;
+        }
+
 
         .container {
             width: min(1180px, calc(100% - 40px));
@@ -96,58 +560,88 @@
             scroll-margin-top: 80px;
         }
 
+
         .section-label {
             display: inline-block;
+
             color: var(--pink-primary);
+
             font-size: 0.8rem;
             font-weight: 700;
+
             letter-spacing: 0.12em;
+
             text-transform: uppercase;
+
             margin-bottom: 10px;
         }
 
+
         .section-title {
             font-family: 'Outfit', sans-serif;
+
             font-size: clamp(2rem, 4vw, 3rem);
+
             line-height: 1.1;
+
             margin-bottom: 16px;
         }
 
+
         .section-description {
             max-width: 700px;
+
             color: var(--mauve-neutral);
+
             margin-bottom: 45px;
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            NAVIGATION
-        ============================================ */
+        ========================================================= */
 
         .navbar {
-            position: fixed;
+            position: sticky;
+
             top: 0;
             left: 0;
+
             width: 100%;
+
             z-index: 1000;
-            background: rgba(248, 245, 240, 0.92);
+
+            background: rgba(248,245,240,0.92);
+
             backdrop-filter: blur(14px);
-            border-bottom: 1px solid rgba(45, 42, 46, 0.06);
+
+            border-bottom:
+                1px solid rgba(45,42,46,0.06);
         }
+
 
         .nav-container {
             width: min(1180px, calc(100% - 40px));
+
             margin: 0 auto;
+
             min-height: 72px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             gap: 25px;
         }
 
+
         .nav-logo {
             font-family: 'Outfit', sans-serif;
+
             font-weight: 700;
             font-size: 1.25rem;
+
             white-space: nowrap;
         }
 
@@ -155,11 +649,15 @@
             color: var(--pink-primary);
         }
 
+
         .nav-links {
             display: flex;
             align-items: center;
+
             gap: 24px;
+
             overflow-x: auto;
+
             scrollbar-width: none;
         }
 
@@ -167,12 +665,17 @@
             display: none;
         }
 
+
         .nav-links a {
             position: relative;
+
             font-size: 0.82rem;
             font-weight: 600;
+
             color: var(--mauve-neutral);
+
             white-space: nowrap;
+
             transition: var(--transition);
         }
 
@@ -182,12 +685,17 @@
 
         .nav-links a::after {
             content: "";
+
             position: absolute;
+
             left: 0;
             bottom: -6px;
+
             width: 0;
             height: 2px;
+
             background: var(--pink-primary);
+
             transition: var(--transition);
         }
 
@@ -195,76 +703,93 @@
             width: 100%;
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            HERO
-        ============================================ */
+        ========================================================= */
 
         .hero {
-            padding-top: 145px;
-            padding-bottom: 80px;
-            min-height: 100vh;
+            min-height: calc(100vh - 72px);
+
             display: flex;
             align-items: center;
+
+            padding-top: 80px;
+            padding-bottom: 80px;
         }
+
 
         .hero-card {
             position: relative;
-            background: rgba(255, 255, 255, 0.78);
-            border: 1px solid rgba(255, 255, 255, 0.8);
+
+            background:
+                rgba(255,255,255,0.78);
+
+            border:
+                1px solid rgba(255,255,255,0.8);
+
             border-radius: 30px;
-            padding: clamp(35px, 6vw, 70px);
+
+            padding:
+                clamp(35px, 6vw, 70px);
+
             box-shadow: var(--shadow-soft);
+
             overflow: hidden;
         }
 
+
         .hero-card::before {
             content: "";
+
             position: absolute;
+
             width: 300px;
             height: 300px;
+
             border-radius: 50%;
-            background: rgba(212, 140, 149, 0.12);
+
+            background:
+                rgba(212,140,149,0.12);
+
             top: -160px;
             right: -80px;
+
             filter: blur(10px);
         }
 
-        .hero-card::after {
-            content: "";
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: rgba(244, 227, 229, 0.65);
-            bottom: -140px;
-            left: -80px;
-            filter: blur(10px);
-        }
 
         .hero-content {
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
+
 
         .hero-eyebrow {
             display: inline-flex;
             align-items: center;
+
             gap: 8px;
+
             color: var(--pink-primary);
+
             font-size: 0.85rem;
             font-weight: 700;
+
             margin-bottom: 15px;
         }
 
-        .hero-eyebrow i {
-            font-size: 0.65rem;
-        }
 
         .hero h1 {
             font-family: 'Outfit', sans-serif;
+
             font-size: clamp(3rem, 7vw, 6rem);
+
             line-height: 0.95;
+
             letter-spacing: -0.04em;
+
             margin-bottom: 15px;
         }
 
@@ -272,104 +797,153 @@
             color: var(--pink-primary);
         }
 
+
         .hero-role {
             font-family: 'Outfit', sans-serif;
-            font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+
+            font-size:
+                clamp(1.2rem, 2.5vw, 1.7rem);
+
             font-weight: 500;
+
             color: var(--mauve-neutral);
+
             margin-bottom: 22px;
         }
+
 
         .availability-badge {
             display: inline-flex;
             align-items: center;
+
             gap: 9px;
+
             padding: 9px 15px;
+
             background: var(--pink-highlight);
+
             color: var(--pink-primary);
+
             border-radius: 100px;
+
             font-size: 0.78rem;
             font-weight: 700;
+
             margin-bottom: 28px;
         }
 
-        .availability-badge i {
-            font-size: 0.55rem;
-        }
 
         .hero-summary {
             max-width: 850px;
+
             font-size: 1.05rem;
+
             color: var(--mauve-neutral);
+
             line-height: 1.8;
+
             margin-bottom: 40px;
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            STATS
-        ============================================ */
+        ========================================================= */
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
             gap: 15px;
+
             margin-bottom: 35px;
         }
 
+
         .stat-card {
-            background: rgba(248, 245, 240, 0.75);
-            border: 1px solid rgba(45, 42, 46, 0.05);
+            background:
+                rgba(248,245,240,0.75);
+
+            border:
+                1px solid rgba(45,42,46,0.05);
+
             border-radius: 18px;
+
             padding: 22px;
+
             transition: var(--transition);
         }
 
         .stat-card:hover {
             transform: translateY(-4px);
+
             box-shadow: var(--shadow-soft);
         }
 
+
         .stat-number {
             display: block;
+
             font-family: 'Outfit', sans-serif;
+
             color: var(--pink-primary);
+
             font-size: 2rem;
             font-weight: 700;
+
             line-height: 1;
+
             margin-bottom: 7px;
         }
 
+
         .stat-label {
             color: var(--mauve-neutral);
+
             font-size: 0.78rem;
             font-weight: 600;
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            CONTACT
-        ============================================ */
+        ========================================================= */
 
         .contact-bar {
             display: flex;
             flex-wrap: wrap;
+
             gap: 12px;
         }
+
 
         .contact-item {
             display: inline-flex;
             align-items: center;
+
             gap: 8px;
+
             padding: 10px 14px;
+
             border-radius: 12px;
+
             background: var(--white);
+
             color: var(--mauve-neutral);
+
             font-size: 0.8rem;
             font-weight: 600;
+
             transition: var(--transition);
         }
 
         .contact-item:hover {
             color: var(--pink-primary);
+
             transform: translateY(-2px);
         }
 
@@ -377,605 +951,920 @@
             color: var(--pink-primary);
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            COMPETENCIES
-        ============================================ */
+        ========================================================= */
 
         .filter-buttons {
             display: flex;
             flex-wrap: wrap;
+
             gap: 10px;
+
             margin-bottom: 30px;
         }
 
+
         .filter-btn {
-            border: 1px solid rgba(212, 140, 149, 0.25);
-            background: rgba(255, 255, 255, 0.65);
+            border:
+                1px solid rgba(212,140,149,0.25);
+
+            background:
+                rgba(255,255,255,0.65);
+
             color: var(--mauve-neutral);
+
             padding: 9px 17px;
+
             border-radius: 100px;
+
             cursor: pointer;
+
             font-size: 0.8rem;
             font-weight: 700;
+
             transition: var(--transition);
         }
+
 
         .filter-btn:hover,
         .filter-btn.active {
             background: var(--pink-primary);
-            color: var(--white);
-            border-color: var(--pink-primary);
+
+            color: white;
+
+            border-color:
+                var(--pink-primary);
         }
+
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
             gap: 18px;
         }
 
+
         .skill-card {
-            background: rgba(255, 255, 255, 0.78);
-            border: 1px solid rgba(45, 42, 46, 0.05);
+            background:
+                rgba(255,255,255,0.78);
+
+            border:
+                1px solid rgba(45,42,46,0.05);
+
             border-radius: 20px;
+
             padding: 25px;
-            box-shadow: 0 5px 20px rgba(45, 42, 46, 0.04);
+
+            box-shadow:
+                0 5px 20px rgba(45,42,46,0.04);
+
             transition: var(--transition);
         }
 
+
         .skill-card:hover {
             transform: translateY(-5px);
+
             box-shadow: var(--shadow-soft);
         }
+
 
         .skill-icon {
             width: 48px;
             height: 48px;
+
             border-radius: 14px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--pink-highlight);
+
+            background:
+                var(--pink-highlight);
+
             color: var(--pink-primary);
+
             margin-bottom: 18px;
+
             font-size: 1.1rem;
         }
 
+
         .skill-card h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family:
+                'Outfit', sans-serif;
+
             font-size: 1.1rem;
+
             margin-bottom: 10px;
         }
 
+
         .skill-card p {
             color: var(--mauve-neutral);
+
             font-size: 0.82rem;
+
             line-height: 1.65;
         }
+
 
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
+
             gap: 6px;
+
             margin-top: 15px;
         }
 
+
         .skill-tag {
             padding: 5px 9px;
-            background: var(--bg-cream);
+
+            background:
+                var(--bg-cream);
+
             border-radius: 7px;
+
             color: var(--mauve-neutral);
+
             font-size: 0.68rem;
             font-weight: 600;
         }
+
 
         .skill-card.hidden {
             display: none;
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            CASE STUDIES
-        ============================================ */
+        ========================================================= */
 
         .case-studies {
-            background: rgba(244, 227, 229, 0.28);
+            background:
+                rgba(244,227,229,0.28);
         }
+
 
         .case-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 25px;
         }
 
+
         .case-card {
-            background: var(--white);
+            background: white;
+
             border-radius: 25px;
+
             padding: 35px;
+
             box-shadow: var(--shadow-soft);
+
             transition: var(--transition);
         }
 
+
         .case-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow-hover);
+
+            box-shadow:
+                var(--shadow-hover);
         }
 
+
         .case-number {
-            font-family: 'Outfit', sans-serif;
             color: var(--pink-primary);
+
             font-size: 0.8rem;
             font-weight: 700;
+
             margin-bottom: 12px;
         }
 
+
         .case-card h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family:
+                'Outfit', sans-serif;
+
             font-size: 1.45rem;
+
             line-height: 1.2;
+
             margin-bottom: 25px;
         }
+
 
         .case-step {
             margin-bottom: 22px;
         }
 
-        .case-step:last-of-type {
-            margin-bottom: 25px;
-        }
 
         .case-step-title {
             display: flex;
             align-items: center;
+
             gap: 8px;
+
+            color: var(--pink-primary);
+
             font-size: 0.75rem;
             font-weight: 700;
-            text-transform: uppercase;
+
             letter-spacing: 0.08em;
-            color: var(--pink-primary);
+
+            text-transform: uppercase;
+
             margin-bottom: 6px;
         }
 
+
         .case-step p {
             color: var(--mauve-neutral);
+
             font-size: 0.88rem;
+
             line-height: 1.7;
         }
+
 
         .case-tags {
             display: flex;
             flex-wrap: wrap;
+
             gap: 7px;
         }
 
+
         .case-tag {
             padding: 6px 10px;
+
             border-radius: 8px;
-            background: var(--pink-highlight);
+
+            background:
+                var(--pink-highlight);
+
             color: var(--pink-primary);
+
             font-size: 0.7rem;
             font-weight: 700;
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            TESTIMONIALS
-        ============================================ */
+        ========================================================= */
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
             gap: 25px;
         }
 
+
         .testimonial-card {
-            position: relative;
-            background: var(--white);
+            background: white;
+
             border-radius: 24px;
+
             padding: 35px;
+
             box-shadow: var(--shadow-soft);
         }
 
+
         .quote-icon {
             color: var(--pink-highlight);
+
             font-size: 2.5rem;
-            line-height: 1;
+
             margin-bottom: 18px;
         }
 
+
         .testimonial-text {
-            font-family: 'Outfit', sans-serif;
+            font-family:
+                'Outfit', sans-serif;
+
             font-size: 1.05rem;
+
             line-height: 1.7;
+
             margin-bottom: 25px;
         }
+
 
         .testimonial-author {
             display: flex;
             align-items: center;
+
             gap: 13px;
         }
+
 
         .author-avatar {
             width: 45px;
             height: 45px;
+
             border-radius: 50%;
-            background: var(--pink-highlight);
+
             display: flex;
             align-items: center;
             justify-content: center;
+
+            background:
+                var(--pink-highlight);
+
             color: var(--pink-primary);
+
             font-weight: 700;
         }
 
+
         .author-info strong {
             display: block;
+
             font-size: 0.85rem;
         }
 
+
         .author-info span {
             display: block;
+
             color: var(--mauve-neutral);
+
             font-size: 0.72rem;
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            RECOMMENDATIONS
-        ============================================ */
+        ========================================================= */
 
         .recommendations-section {
-            background: rgba(244, 227, 229, 0.28);
+            background:
+                rgba(244,227,229,0.28);
         }
+
 
         .recommendations-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
             gap: 20px;
         }
 
+
         .recommendation-card {
-            background: var(--white);
+            background: white;
+
             border-radius: 20px;
+
             padding: 27px;
-            box-shadow: 0 5px 20px rgba(45, 42, 46, 0.05);
+
+            box-shadow:
+                0 5px 20px rgba(45,42,46,0.05);
+
             transition: var(--transition);
         }
+
 
         .recommendation-card:hover {
             transform: translateY(-4px);
         }
 
-        .recommendation-card .quote-icon {
-            font-size: 1.7rem;
-            margin-bottom: 12px;
-        }
 
         .recommendation-text {
             font-size: 0.82rem;
+
             line-height: 1.7;
+
             color: var(--mauve-neutral);
+
             margin-bottom: 20px;
         }
 
+
         .recommendation-author {
-            border-top: 1px solid rgba(45, 42, 46, 0.07);
+            border-top:
+                1px solid rgba(45,42,46,0.07);
+
             padding-top: 15px;
         }
 
+
         .recommendation-author strong {
             display: block;
+
             font-size: 0.82rem;
         }
 
+
         .recommendation-author span {
             color: var(--pink-primary);
+
             font-size: 0.68rem;
             font-weight: 600;
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            EXPERIENCE
-        ============================================ */
+        ========================================================= */
 
         .timeline {
             position: relative;
+
             max-width: 900px;
+
             margin: 0 auto;
         }
 
+
         .timeline::before {
             content: "";
+
             position: absolute;
+
             left: 21px;
             top: 0;
             bottom: 0;
+
             width: 2px;
-            background: var(--pink-highlight);
+
+            background:
+                var(--pink-highlight);
         }
+
 
         .timeline-item {
             position: relative;
+
             padding-left: 65px;
+
             margin-bottom: 18px;
         }
 
+
         .timeline-dot {
             position: absolute;
+
             left: 10px;
             top: 24px;
+
             width: 24px;
             height: 24px;
+
             border-radius: 50%;
-            background: var(--bg-cream);
-            border: 5px solid var(--pink-primary);
+
+            background:
+                var(--bg-cream);
+
+            border:
+                5px solid var(--pink-primary);
+
             z-index: 2;
         }
 
+
         .timeline-card {
-            background: var(--white);
+            background: white;
+
             border-radius: 18px;
+
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(45, 42, 46, 0.05);
+
+            box-shadow:
+                0 5px 20px rgba(45,42,46,0.05);
         }
+
 
         .timeline-header {
             width: 100%;
+
             border: none;
+
             background: transparent;
+
             padding: 23px 27px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             text-align: left;
+
             cursor: pointer;
         }
 
+
         .timeline-header:hover {
-            background: rgba(244, 227, 229, 0.25);
+            background:
+                rgba(244,227,229,0.25);
         }
 
-        .timeline-main {
-            min-width: 0;
-        }
 
         .timeline-role {
-            font-family: 'Outfit', sans-serif;
+            font-family:
+                'Outfit', sans-serif;
+
             font-size: 1.15rem;
+
             font-weight: 600;
+
             margin-bottom: 3px;
         }
 
+
         .timeline-company {
             color: var(--pink-primary);
+
             font-size: 0.78rem;
+
             font-weight: 700;
         }
 
+
         .timeline-date {
             color: var(--mauve-neutral);
+
             font-size: 0.72rem;
+
             margin-top: 4px;
         }
 
+
         .timeline-arrow {
             color: var(--pink-primary);
-            font-size: 0.85rem;
+
             transition: var(--transition);
-            flex-shrink: 0;
-            margin-left: 20px;
         }
 
-        .timeline-card.open .timeline-arrow {
+
+        .timeline-card.open
+        .timeline-arrow {
             transform: rotate(180deg);
         }
 
+
         .timeline-details {
             max-height: 0;
+
             overflow: hidden;
-            transition: max-height 0.45s ease;
+
+            transition:
+                max-height 0.45s ease;
         }
 
-        .timeline-card.open .timeline-details {
+
+        .timeline-card.open
+        .timeline-details {
             max-height: 1000px;
         }
 
+
         .timeline-details-inner {
-            padding: 0 27px 27px;
-            border-top: 1px solid rgba(45, 42, 46, 0.06);
+            padding:
+                0 27px 27px;
+
+            border-top:
+                1px solid rgba(45,42,46,0.06);
         }
+
 
         .timeline-details-inner ul {
             padding-top: 20px;
             padding-left: 20px;
         }
 
+
         .timeline-details-inner li {
             color: var(--mauve-neutral);
+
             font-size: 0.84rem;
+
             line-height: 1.7;
+
             margin-bottom: 10px;
         }
+
 
         .timeline-details-inner li::marker {
             color: var(--pink-primary);
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            EDUCATION
-        ============================================ */
+        ========================================================= */
 
         .education-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+
+            grid-template-columns:
+                1fr 1fr;
+
             gap: 25px;
         }
 
+
         .education-card {
-            background: var(--white);
+            background: white;
+
             border-radius: 22px;
+
             padding: 30px;
+
             box-shadow: var(--shadow-soft);
         }
+
 
         .education-icon {
             width: 50px;
             height: 50px;
+
             border-radius: 14px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--pink-highlight);
+
+            background:
+                var(--pink-highlight);
+
             color: var(--pink-primary);
+
             margin-bottom: 18px;
         }
 
+
         .education-card h3 {
-            font-family: 'Outfit', sans-serif;
+            font-family:
+                'Outfit', sans-serif;
+
             margin-bottom: 7px;
         }
 
+
         .education-card p {
             color: var(--mauve-neutral);
+
             font-size: 0.83rem;
         }
+
 
         .language-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             padding: 14px 0;
-            border-bottom: 1px solid rgba(45, 42, 46, 0.07);
+
+            border-bottom:
+                1px solid rgba(45,42,46,0.07);
         }
 
-        .language-row:last-child {
-            border-bottom: none;
-        }
 
         .language-name {
             font-weight: 600;
+
             font-size: 0.85rem;
         }
 
+
         .language-level {
             color: var(--pink-primary);
+
             font-size: 0.75rem;
+
             font-weight: 700;
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            FOOTER
-        ============================================ */
+        ========================================================= */
 
         footer {
             padding: 50px 0;
-            border-top: 1px solid rgba(45, 42, 46, 0.07);
+
+            border-top:
+                1px solid rgba(45,42,46,0.07);
         }
+
 
         .footer-content {
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             gap: 20px;
         }
 
+
         .footer-name {
-            font-family: 'Outfit', sans-serif;
+            font-family:
+                'Outfit', sans-serif;
+
             font-weight: 700;
         }
+
 
         .footer-name span {
             color: var(--pink-primary);
         }
 
+
         .footer-copy {
             color: var(--mauve-neutral);
+
             font-size: 0.75rem;
         }
 
+
         .footer-socials {
             display: flex;
+
             gap: 10px;
         }
+
 
         .footer-social {
             width: 38px;
             height: 38px;
+
             border-radius: 50%;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--white);
+
+            background: white;
+
             color: var(--mauve-neutral);
+
             transition: var(--transition);
         }
 
+
         .footer-social:hover {
             background: var(--pink-primary);
-            color: var(--white);
+
+            color: white;
+
             transform: translateY(-3px);
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            CLICK EFFECT
-        ============================================ */
+        ========================================================= */
 
         .click-note {
             position: fixed;
+
             pointer-events: none;
+
             color: var(--pink-primary);
+
             font-size: 0.9rem;
-            z-index: 9999;
-            animation: floatNote 0.8s ease-out forwards;
+
+            z-index: 999999;
+
+            animation:
+                floatNote 0.8s ease-out forwards;
         }
+
 
         @keyframes floatNote {
-            0% {
+            from {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+
+                transform:
+                    translateY(0)
+                    scale(1);
             }
 
-            100% {
+            to {
                 opacity: 0;
-                transform: translateY(-35px) scale(1.2);
+
+                transform:
+                    translateY(-35px)
+                    scale(1.2);
             }
         }
 
-        /* ============================================
+
+
+        /* =========================================================
            RESPONSIVE
-        ============================================ */
+        ========================================================= */
 
         @media (max-width: 1000px) {
-            .nav-container {
-                justify-content: flex-start;
-            }
-
-            .nav-links {
-                flex: 1;
-            }
 
             .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .recommendations-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
+
+            .circle-4 {
+                width: 650px;
+                height: 650px;
+            }
+
         }
 
+
         @media (max-width: 760px) {
+
             section {
                 padding: 70px 0;
             }
 
-            .container {
-                width: min(100% - 28px, 1180px);
+            .intro-kicker {
+                font-size: 0.58rem;
+                letter-spacing: 0.18em;
+                line-height: 1.8;
+                margin-bottom: 30px;
+            }
+
+            .intro-small {
+                font-size: 0.54rem;
+                letter-spacing: 0.25em;
+            }
+
+            .intro-small::before,
+            .intro-small::after {
+                width: 28px;
+            }
+
+            .intro-title {
+                font-size:
+                    clamp(4rem, 19vw, 6rem);
+            }
+
+            .intro-subtitle {
+                font-size: 0.87rem;
+
+                width: 88%;
+            }
+
+            .circle-1 {
+                width: 200px;
+                height: 200px;
+            }
+
+            .circle-2 {
+                width: 320px;
+                height: 320px;
+            }
+
+            .circle-3 {
+                width: 450px;
+                height: 450px;
+            }
+
+            .circle-4 {
+                width: 580px;
+                height: 580px;
+            }
+
+            .intro-bottom {
+                font-size: 0.5rem;
             }
 
             .nav-container {
-                width: calc(100% - 28px);
                 min-height: 62px;
-                gap: 15px;
-            }
-
-            .nav-logo {
-                font-size: 1.05rem;
             }
 
             .nav-links {
@@ -987,32 +1876,26 @@
             }
 
             .hero {
-                padding-top: 105px;
+                min-height: auto;
+
+                padding-top: 70px;
             }
 
             .hero-card {
                 padding: 30px 24px;
+
                 border-radius: 24px;
             }
 
-            .hero h1 {
-                font-size: clamp(2.8rem, 15vw, 4.5rem);
-            }
-
             .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
+            .skills-grid,
             .case-grid,
             .testimonial-grid,
-            .education-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-
+            .education-grid,
             .recommendations-grid {
                 grid-template-columns: 1fr;
             }
@@ -1029,52 +1912,106 @@
                 left: 4px;
             }
 
-            .timeline-header {
-                padding: 20px;
-            }
-
-            .timeline-details-inner {
-                padding: 0 20px 20px;
-            }
-
             .footer-content {
                 flex-direction: column;
+
                 text-align: center;
             }
+
         }
 
-        @media (max-width: 450px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-
-            .stat-card {
-                padding: 17px;
-            }
-
-            .stat-number {
-                font-size: 1.6rem;
-            }
-
-            .contact-bar {
-                flex-direction: column;
-            }
-
-            .contact-item {
-                width: 100%;
-            }
-        }
     </style>
 </head>
 
-<body>
 
-    <!-- ============================================
-         NAVIGATION
-    ============================================ -->
+<body class="intro-active">
+
+
+<!-- =========================================================
+     INTRO PAGE
+========================================================= -->
+
+<div id="intro">
+
+    <div class="intro-stars"></div>
+
+    <div class="intro-glow"></div>
+
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+    <div class="circle circle-4"></div>
+
+    <div class="orbit-dot dot-1"></div>
+    <div class="orbit-dot dot-2"></div>
+    <div class="orbit-dot dot-3"></div>
+
+    <div class="intro-sparkle sparkle-1">✦</div>
+    <div class="intro-sparkle sparkle-2">✧</div>
+    <div class="intro-sparkle sparkle-3">✦</div>
+
+
+    <div class="intro-content">
+
+        <div class="intro-kicker">
+            Leila Centeno · Project Manager · Client Success Manager · 2026
+        </div>
+
+
+        <div class="intro-small">
+            Portfolio
+        </div>
+
+
+        <h1 class="intro-title">
+
+            <span>PROJECTS</span>
+
+            <span class="ampersand">&amp;</span>
+
+            <span>PEOPLE</span>
+
+        </h1>
+
+
+        <p class="intro-subtitle">
+            A closer look at how I manage projects,
+            build client trust, and keep things moving.
+        </p>
+
+
+        <button
+            type="button"
+            class="enter-button"
+            id="enterPortfolio"
+        >
+            Enter My Portfolio
+
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+    </div>
+
+
+    <div class="intro-bottom">
+        Buenos Aires · Remote · GMT-3
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     ACTUAL PORTFOLIO
+========================================================= -->
+
+<main id="portfolio">
+
+
+    <!-- NAV -->
 
     <nav class="navbar">
+
         <div class="nav-container">
 
             <a href="#about" class="nav-logo">
@@ -1082,23 +2019,43 @@
             </a>
 
             <div class="nav-links">
+
                 <a href="#about">About</a>
-                <a href="#competencies">Competencies</a>
-                <a href="#case-studies">Case Studies</a>
-                <a href="#testimonials">Testimonials</a>
-                <a href="#recommendations">Recommendations</a>
-                <a href="#experience">Experience</a>
+
+                <a href="#competencies">
+                    Competencies
+                </a>
+
+                <a href="#case-studies">
+                    Case Studies
+                </a>
+
+                <a href="#testimonials">
+                    Testimonials
+                </a>
+
+                <a href="#recommendations">
+                    Recommendations
+                </a>
+
+                <a href="#experience">
+                    Experience
+                </a>
+
             </div>
 
         </div>
+
     </nav>
 
 
-    <!-- ============================================
-         HERO / ABOUT
-    ============================================ -->
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
 
     <section class="hero" id="about">
+
         <div class="container">
 
             <div class="hero-card">
@@ -1110,51 +2067,99 @@
                         Project Management &amp; Client Success
                     </div>
 
+
                     <h1>
-                        Leila <span>Centeno</span>
+                        Leila
+                        <span>Centeno</span>
                     </h1>
 
+
                     <div class="hero-role">
-                        Project Manager &amp; Client Success Manager
+                        Project Manager &amp;
+                        Client Success Manager
                     </div>
+
 
                     <div class="availability-badge">
                         <i class="fa-solid fa-circle"></i>
-                        Remote Full U.S. Business Hours Overlap (GMT-3)
+                        Remote · Full U.S. Business Hours Overlap · GMT-3
                     </div>
 
+
                     <p class="hero-summary">
-                        Client-facing Project Manager and Client Success professional
-                        with 8+ years of progressive experience across travel,
-                        e-commerce, marketing, and IT/SaaS. The last 4+ years have
-                        focused on project management, client onboarding,
-                        implementation, and account management for U.S.-based
-                        companies, managing 25–30 concurrent client engagements.
+
+                        Client-facing Project Manager and
+                        Client Success professional with
+                        8+ years of progressive experience
+                        across travel, e-commerce, marketing,
+                        and IT/SaaS.
+
+                        The last 4+ years have focused on
+                        project management, client onboarding,
+                        implementation, and account management
+                        for U.S.-based companies, managing
+                        25–30 concurrent client engagements.
+
                     </p>
+
+
 
                     <div class="stats-grid">
 
                         <div class="stat-card">
-                            <span class="stat-number">8+</span>
-                            <span class="stat-label">Years Experience</span>
+
+                            <span class="stat-number">
+                                8+
+                            </span>
+
+                            <span class="stat-label">
+                                Years Experience
+                            </span>
+
                         </div>
 
-                        <div class="stat-card">
-                            <span class="stat-number">10</span>
-                            <span class="stat-label">Client NPS</span>
-                        </div>
 
                         <div class="stat-card">
-                            <span class="stat-number">40+</span>
-                            <span class="stat-label">Client Onboardings Led</span>
+
+                            <span class="stat-number">
+                                10
+                            </span>
+
+                            <span class="stat-label">
+                                Client NPS
+                            </span>
+
                         </div>
 
+
                         <div class="stat-card">
-                            <span class="stat-number">25–30</span>
-                            <span class="stat-label">Concurrent Projects</span>
+
+                            <span class="stat-number">
+                                40+
+                            </span>
+
+                            <span class="stat-label">
+                                Client Onboardings Led
+                            </span>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <span class="stat-number">
+                                25–30
+                            </span>
+
+                            <span class="stat-label">
+                                Concurrent Projects
+                            </span>
+
                         </div>
 
                     </div>
+
+
 
                     <div class="contact-bar">
 
@@ -1166,6 +2171,7 @@
                             leilacenteno@gmail.com
                         </a>
 
+
                         <a
                             class="contact-item"
                             href="tel:+5491168916607"
@@ -1173,6 +2179,7 @@
                             <i class="fa-solid fa-phone"></i>
                             +54 9 11 6891-6607
                         </a>
+
 
                         <a
                             class="contact-item"
@@ -1184,9 +2191,10 @@
                             LinkedIn
                         </a>
 
+
                         <span class="contact-item">
                             <i class="fa-solid fa-location-dot"></i>
-                            Buenos Aires, Argentina · GMT-3
+                            Buenos Aires, Argentina
                         </span>
 
                     </div>
@@ -1196,60 +2204,68 @@
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- ============================================
-         CORE COMPETENCIES
-    ============================================ -->
+
+    <!-- =====================================================
+         COMPETENCIES
+    ====================================================== -->
 
     <section id="competencies">
+
         <div class="container">
 
-            <span class="section-label">What I bring</span>
+            <span class="section-label">
+                What I bring
+            </span>
+
 
             <h2 class="section-title">
                 Core Competencies
             </h2>
 
+
             <p class="section-description">
-                A combination of project delivery, client relationship management,
-                cross-functional coordination, and operational organization.
+
+                A combination of project delivery,
+                client relationship management,
+                cross-functional coordination,
+                and operational organization.
+
             </p>
+
+
 
             <div class="filter-buttons">
 
                 <button
-                    type="button"
                     class="filter-btn active"
-                    data-filter="all"
                     onclick="filterSkills('all', event)"
                 >
                     All
                 </button>
 
+
                 <button
-                    type="button"
                     class="filter-btn"
-                    data-filter="pm"
                     onclick="filterSkills('pm', event)"
                 >
                     Project Management
                 </button>
 
+
                 <button
-                    type="button"
                     class="filter-btn"
-                    data-filter="cs"
                     onclick="filterSkills('cs', event)"
                 >
                     Client Success
                 </button>
 
+
                 <button
-                    type="button"
                     class="filter-btn"
-                    data-filter="tools"
                     onclick="filterSkills('tools', event)"
                 >
                     Tools &amp; Tech
@@ -1258,316 +2274,416 @@
             </div>
 
 
+
             <div class="skills-grid">
 
-                <div class="skill-card" data-category="pm">
+
+                <div
+                    class="skill-card"
+                    data-category="pm"
+                >
+
                     <div class="skill-icon">
                         <i class="fa-solid fa-list-check"></i>
                     </div>
 
-                    <h3>Project Management &amp; Delivery</h3>
+                    <h3>
+                        Project Management &amp; Delivery
+                    </h3>
 
                     <p>
-                        End-to-end project coordination, prioritization,
-                        scheduling, tracking, stakeholder communication,
+                        End-to-end project coordination,
+                        prioritization, scheduling,
+                        tracking, stakeholder communication,
                         and delivery follow-up.
                     </p>
 
                     <div class="skill-tags">
-                        <span class="skill-tag">Planning</span>
-                        <span class="skill-tag">Prioritization</span>
-                        <span class="skill-tag">Delivery</span>
-                        <span class="skill-tag">Risk Management</span>
+
+                        <span class="skill-tag">
+                            Planning
+                        </span>
+
+                        <span class="skill-tag">
+                            Prioritization
+                        </span>
+
+                        <span class="skill-tag">
+                            Delivery
+                        </span>
+
+                        <span class="skill-tag">
+                            Risk Management
+                        </span>
+
                     </div>
+
                 </div>
 
 
-                <div class="skill-card" data-category="pm cs">
+
+                <div
+                    class="skill-card"
+                    data-category="pm cs"
+                >
+
                     <div class="skill-icon">
                         <i class="fa-solid fa-rocket"></i>
                     </div>
 
-                    <h3>Client Onboarding &amp; Implementation</h3>
+                    <h3>
+                        Client Onboarding &amp; Implementation
+                    </h3>
 
                     <p>
-                        Structured onboarding experiences focused on clear
-                        expectations, communication, adoption, and successful
-                        handoff into ongoing client relationships.
+                        Structured onboarding experiences
+                        focused on clear expectations,
+                        communication, adoption,
+                        and successful handoff.
                     </p>
 
-                    <div class="skill-tags">
-                        <span class="skill-tag">Onboarding</span>
-                        <span class="skill-tag">Implementation</span>
-                        <span class="skill-tag">Kickoffs</span>
-                        <span class="skill-tag">Handoffs</span>
-                    </div>
                 </div>
 
 
-                <div class="skill-card" data-category="cs">
+
+                <div
+                    class="skill-card"
+                    data-category="cs"
+                >
+
                     <div class="skill-icon">
                         <i class="fa-solid fa-handshake"></i>
                     </div>
 
-                    <h3>Client Success &amp; Retention</h3>
+                    <h3>
+                        Client Success &amp; Retention
+                    </h3>
 
                     <p>
-                        Building trust, managing expectations, identifying
-                        risks, supporting adoption, and maintaining strong
-                        long-term client relationships.
+                        Building trust, managing expectations,
+                        identifying risks, supporting adoption,
+                        and maintaining long-term relationships.
                     </p>
 
-                    <div class="skill-tags">
-                        <span class="skill-tag">Client Success</span>
-                        <span class="skill-tag">Retention</span>
-                        <span class="skill-tag">Account Management</span>
-                        <span class="skill-tag">Escalations</span>
-                    </div>
                 </div>
 
 
-                <div class="skill-card" data-category="pm cs">
+
+                <div
+                    class="skill-card"
+                    data-category="pm cs"
+                >
+
                     <div class="skill-icon">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
 
-                    <h3>Risk Mitigation &amp; Reporting</h3>
+                    <h3>
+                        Risk Mitigation &amp; Reporting
+                    </h3>
 
                     <p>
-                        Proactively identifying blockers, creating action plans,
-                        monitoring progress, and translating project information
+                        Identifying blockers, creating action
+                        plans, monitoring progress, and
+                        translating project information
                         into clear client-facing updates.
                     </p>
 
-                    <div class="skill-tags">
-                        <span class="skill-tag">Risk Tracking</span>
-                        <span class="skill-tag">Reporting</span>
-                        <span class="skill-tag">Action Plans</span>
-                    </div>
                 </div>
 
 
-                <div class="skill-card" data-category="tools">
+
+                <div
+                    class="skill-card"
+                    data-category="tools"
+                >
+
                     <div class="skill-icon">
                         <i class="fa-solid fa-headset"></i>
                     </div>
 
-                    <h3>CRM &amp; Support</h3>
+                    <h3>
+                        CRM &amp; Support
+                    </h3>
 
                     <p>
-                        Experience working with customer and service platforms
-                        to track requests, maintain context, and coordinate
-                        follow-up across teams.
+                        Intercom, Zendesk, HubSpot,
+                        and ConnectWise.
                     </p>
 
-                    <div class="skill-tags">
-                        <span class="skill-tag">Intercom</span>
-                        <span class="skill-tag">Zendesk</span>
-                        <span class="skill-tag">HubSpot</span>
-                        <span class="skill-tag">ConnectWise</span>
-                    </div>
                 </div>
 
 
-                <div class="skill-card" data-category="tools pm">
+
+                <div
+                    class="skill-card"
+                    data-category="tools pm"
+                >
+
                     <div class="skill-icon">
                         <i class="fa-solid fa-diagram-project"></i>
                     </div>
 
-                    <h3>Project &amp; Delivery Tools</h3>
+                    <h3>
+                        Project &amp; Delivery Tools
+                    </h3>
 
                     <p>
-                        Comfortable working across project management,
-                        documentation, delivery, and client visibility platforms.
+                        Asana, Monday.com, Notion,
+                        Rocketlane and delivery
+                        documentation tools.
                     </p>
 
-                    <div class="skill-tags">
-                        <span class="skill-tag">Asana</span>
-                        <span class="skill-tag">Monday.com</span>
-                        <span class="skill-tag">Notion</span>
-                        <span class="skill-tag">Rocketlane</span>
-                    </div>
                 </div>
 
 
-                <div class="skill-card" data-category="tools cs">
+
+                <div
+                    class="skill-card"
+                    data-category="tools cs"
+                >
+
                     <div class="skill-icon">
                         <i class="fa-solid fa-comments"></i>
                     </div>
 
-                    <h3>Collaboration &amp; Analytics</h3>
+                    <h3>
+                        Collaboration &amp; Analytics
+                    </h3>
 
                     <p>
-                        Daily collaboration with distributed teams and clients,
-                        supported by documentation, analytics, and reporting tools.
+                        Google Workspace, Slack,
+                        Google Analytics and
+                        Google Search Console.
                     </p>
 
-                    <div class="skill-tags">
-                        <span class="skill-tag">Google Workspace</span>
-                        <span class="skill-tag">Slack</span>
-                        <span class="skill-tag">Google Analytics</span>
-                        <span class="skill-tag">Google Search Console</span>
-                    </div>
                 </div>
 
 
-                <div class="skill-card" data-category="tools">
+
+                <div
+                    class="skill-card"
+                    data-category="tools"
+                >
+
                     <div class="skill-icon">
                         <i class="fa-solid fa-plane"></i>
                     </div>
 
-                    <h3>Reservations</h3>
+                    <h3>
+                        Reservations
+                    </h3>
 
                     <p>
-                        Earlier experience supporting travel customers and
-                        managing reservations, changes, refunds, and complex
-                        airline, hotel, and operator cases.
+                        Amadeus and travel operations
+                        experience.
                     </p>
 
-                    <div class="skill-tags">
-                        <span class="skill-tag">Amadeus</span>
-                        <span class="skill-tag">Travel Operations</span>
-                    </div>
                 </div>
 
             </div>
 
         </div>
+
     </section>
 
 
-    <!-- ============================================
-         CASE STUDIES
-    ============================================ -->
 
-    <section id="case-studies" class="case-studies">
+    <!-- =====================================================
+         CASE STUDIES
+    ====================================================== -->
+
+    <section
+        id="case-studies"
+        class="case-studies"
+    >
 
         <div class="container">
 
-            <span class="section-label">Selected work</span>
+            <span class="section-label">
+                Selected work
+            </span>
 
             <h2 class="section-title">
                 Case Studies
             </h2>
 
             <p class="section-description">
-                Examples of how I approach client risk, communication,
-                prioritization, and cross-functional delivery.
+                Examples of how I approach
+                client risk, communication,
+                prioritization, and
+                cross-functional delivery.
             </p>
+
 
 
             <div class="case-grid">
 
+
                 <article class="case-card">
 
-                    <div class="case-number">CASE STUDY 01</div>
+                    <div class="case-number">
+                        CASE STUDY 01
+                    </div>
 
                     <h3>
-                        Building Trust During a High-Risk Onboarding
+                        Building Trust During
+                        a High-Risk Onboarding
                     </h3>
 
+
                     <div class="case-step">
+
                         <div class="case-step-title">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                             Challenge
                         </div>
 
                         <p>
-                            A newly onboarded client had lost confidence in the
-                            process and was considering leaving before the
-                            implementation was complete.
+                            A newly onboarded client had
+                            lost confidence in the process
+                            and was considering leaving
+                            before implementation was complete.
                         </p>
+
                     </div>
 
+
                     <div class="case-step">
+
                         <div class="case-step-title">
                             <i class="fa-solid fa-route"></i>
                             Approach
                         </div>
 
                         <p>
-                            I made the account a top priority, created a structured
-                            weekly plan, established recurring calls, and made sure
-                            the client received a written weekly update whenever
-                            they could not attend.
+                            I made the account a top priority,
+                            created a structured weekly plan,
+                            established recurring calls,
+                            and ensured the client received
+                            written updates whenever they
+                            could not attend.
                         </p>
+
                     </div>
 
+
                     <div class="case-step">
+
                         <div class="case-step-title">
                             <i class="fa-solid fa-check"></i>
                             Outcome
                         </div>
 
                         <p>
-                            Over time, the client gained confidence in our process,
-                            understood how we worked, and successfully moved through
-                            onboarding without leaving.
+                            The client gained confidence
+                            in our process, understood how
+                            we worked, and successfully
+                            moved through onboarding.
                         </p>
+
                     </div>
 
+
                     <div class="case-tags">
-                        <span class="case-tag">Client Onboarding</span>
-                        <span class="case-tag">Retention</span>
-                        <span class="case-tag">Risk Mitigation</span>
+
+                        <span class="case-tag">
+                            Client Onboarding
+                        </span>
+
+                        <span class="case-tag">
+                            Retention
+                        </span>
+
+                        <span class="case-tag">
+                            Risk Mitigation
+                        </span>
+
                     </div>
 
                 </article>
 
 
+
                 <article class="case-card">
 
-                    <div class="case-number">CASE STUDY 02</div>
+                    <div class="case-number">
+                        CASE STUDY 02
+                    </div>
 
                     <h3>
-                        Turning a Support Issue Into a Cross-Functional Action Plan
+                        Turning a Support Issue Into
+                        a Cross-Functional Action Plan
                     </h3>
 
+
                     <div class="case-step">
+
                         <div class="case-step-title">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                             Challenge
                         </div>
 
                         <p>
-                            An existing client became frustrated after experiencing
-                            delays with support and started questioning whether
-                            their needs were receiving enough attention.
+                            An existing client became
+                            frustrated after experiencing
+                            delays with support and began
+                            questioning whether their needs
+                            were receiving enough attention.
                         </p>
+
                     </div>
 
+
                     <div class="case-step">
+
                         <div class="case-step-title">
                             <i class="fa-solid fa-people-group"></i>
                             Approach
                         </div>
 
                         <p>
-                            I coordinated with the relevant internal teams,
-                            communicated the urgency clearly, prioritized the
-                            account, and kept the client informed throughout
-                            the resolution process.
+                            I coordinated with relevant
+                            internal teams, communicated
+                            urgency clearly, prioritized
+                            the account, and kept the client
+                            informed throughout the process.
                         </p>
+
                     </div>
 
+
                     <div class="case-step">
+
                         <div class="case-step-title">
                             <i class="fa-solid fa-arrow-trend-up"></i>
                             Outcome
                         </div>
 
                         <p>
-                            The issue received increased internal attention,
-                            communication with the client improved, and the
-                            relationship became stronger through proactive
-                            ownership of the escalation.
+                            The issue received increased
+                            internal attention, communication
+                            improved, and the client relationship
+                            became stronger.
                         </p>
+
                     </div>
 
+
                     <div class="case-tags">
-                        <span class="case-tag">Client Advocacy</span>
-                        <span class="case-tag">Escalation Management</span>
-                        <span class="case-tag">Cross-Functional Collaboration</span>
+
+                        <span class="case-tag">
+                            Client Advocacy
+                        </span>
+
+                        <span class="case-tag">
+                            Escalation Management
+                        </span>
+
+                        <span class="case-tag">
+                            Cross-Functional Collaboration
+                        </span>
+
                     </div>
 
                 </article>
@@ -1579,26 +2695,26 @@
     </section>
 
 
-    <!-- ============================================
-         CLIENT TESTIMONIALS
-    ============================================ -->
+
+    <!-- =====================================================
+         TESTIMONIALS
+    ====================================================== -->
 
     <section id="testimonials">
 
         <div class="container">
 
-            <span class="section-label">Client feedback</span>
+            <span class="section-label">
+                Client feedback
+            </span>
 
             <h2 class="section-title">
                 Client Testimonials
             </h2>
 
-            <p class="section-description">
-                Feedback from clients and stakeholders I have worked with directly.
-            </p>
-
 
             <div class="testimonial-grid">
+
 
                 <article class="testimonial-card">
 
@@ -1607,11 +2723,16 @@
                     </div>
 
                     <p class="testimonial-text">
-                        “Leila managed our transition with extreme precision and
-                        care. She kept our team informed every step of the way,
-                        making what could have been a chaotic onboarding
+
+                        “Leila managed our transition
+                        with extreme precision and care.
+                        She kept our team informed every
+                        step of the way, making what could
+                        have been a chaotic onboarding
                         completely effortless.”
+
                     </p>
+
 
                     <div class="testimonial-author">
 
@@ -1620,13 +2741,22 @@
                         </div>
 
                         <div class="author-info">
-                            <strong>Nikita Savrov</strong>
-                            <span>Enterprise Client &amp; Key Stakeholder</span>
+
+                            <strong>
+                                Nikita Savrov
+                            </strong>
+
+                            <span>
+                                Enterprise Client &amp;
+                                Key Stakeholder
+                            </span>
+
                         </div>
 
                     </div>
 
                 </article>
+
 
 
                 <article class="testimonial-card">
@@ -1636,11 +2766,18 @@
                     </div>
 
                     <p class="testimonial-text">
-                        “Working with Leila has been an absolute pleasure. Her
-                        attention to detail, proactive communication, and ability
-                        to keep our multi-faceted projects on track made a massive
-                        difference to our operations.”
+
+                        “Working with Leila has been
+                        an absolute pleasure.
+                        Her attention to detail,
+                        proactive communication,
+                        and ability to keep our
+                        multi-faceted projects on track
+                        made a massive difference
+                        to our operations.”
+
                     </p>
+
 
                     <div class="testimonial-author">
 
@@ -1649,8 +2786,16 @@
                         </div>
 
                         <div class="author-info">
-                            <strong>Kimberly Holden-Gonzalez</strong>
-                            <span>Client Partner &amp; Operations Lead</span>
+
+                            <strong>
+                                Kimberly Holden-Gonzalez
+                            </strong>
+
+                            <span>
+                                Client Partner &amp;
+                                Operations Lead
+                            </span>
+
                         </div>
 
                     </div>
@@ -1664,28 +2809,30 @@
     </section>
 
 
-    <!-- ============================================
-         PEER & LEADERSHIP RECOMMENDATIONS
-    ============================================ -->
 
-    <section id="recommendations" class="recommendations-section">
+    <!-- =====================================================
+         RECOMMENDATIONS
+    ====================================================== -->
+
+    <section
+        id="recommendations"
+        class="recommendations-section"
+    >
 
         <div class="container">
 
-            <span class="section-label">Professional feedback</span>
+            <span class="section-label">
+                Professional feedback
+            </span>
 
             <h2 class="section-title">
                 Peer &amp; Leadership Recommendations
             </h2>
 
-            <p class="section-description">
-                Feedback from colleagues and leaders across technology,
-                operations, client experience, engineering, and people operations.
-            </p>
-
 
             <div class="recommendations-grid">
 
+
                 <article class="recommendation-card">
 
                     <div class="quote-icon">
@@ -1693,20 +2840,29 @@
                     </div>
 
                     <p class="recommendation-text">
-                        “Leila consistently brings structure, ownership, and
-                        thoughtful communication to complex situations. She is
-                        someone teams can rely on to keep work moving forward
-                        while maintaining a strong client experience.”
+
+                        “Leila consistently brings structure,
+                        ownership, and thoughtful communication
+                        to complex situations.”
+
                     </p>
 
                     <div class="recommendation-author">
-                        <strong>Hector Duque</strong>
-                        <span>Technology &amp; Engineering Leadership</span>
+
+                        <strong>
+                            Hector Duque
+                        </strong>
+
+                        <span>
+                            Technology &amp; Engineering Leadership
+                        </span>
+
                     </div>
 
                 </article>
 
 
+
                 <article class="recommendation-card">
 
                     <div class="quote-icon">
@@ -1714,19 +2870,30 @@
                     </div>
 
                     <p class="recommendation-text">
-                        “Leila has a strong ability to organize moving pieces,
-                        communicate clearly, and create a sense of confidence
-                        for both clients and internal teams.”
+
+                        “Leila has a strong ability to organize
+                        moving pieces, communicate clearly,
+                        and create confidence for both clients
+                        and internal teams.”
+
                     </p>
 
                     <div class="recommendation-author">
-                        <strong>Stephanie McDonald</strong>
-                        <span>Operations &amp; Client Experience</span>
+
+                        <strong>
+                            Stephanie McDonald
+                        </strong>
+
+                        <span>
+                            Operations &amp; Client Experience
+                        </span>
+
                     </div>
 
                 </article>
 
 
+
                 <article class="recommendation-card">
 
                     <div class="quote-icon">
@@ -1734,19 +2901,28 @@
                     </div>
 
                     <p class="recommendation-text">
-                        “Leila brings excellent follow-through and accountability
-                        to her work. She is highly organized and effective at
-                        coordinating across different teams and priorities.”
+
+                        “Leila brings excellent follow-through
+                        and accountability to her work.”
+
                     </p>
 
                     <div class="recommendation-author">
-                        <strong>Joey Viola</strong>
-                        <span>Engineering &amp; Executive Leader</span>
+
+                        <strong>
+                            Joey Viola
+                        </strong>
+
+                        <span>
+                            Engineering &amp; Executive Leader
+                        </span>
+
                     </div>
 
                 </article>
 
 
+
                 <article class="recommendation-card">
 
                     <div class="quote-icon">
@@ -1754,19 +2930,30 @@
                     </div>
 
                     <p class="recommendation-text">
-                        “Leila is detail-oriented, dependable, and thoughtful in
-                        the way she approaches collaboration. She creates
-                        structure while keeping communication human and clear.”
+
+                        “Leila is detail-oriented,
+                        dependable, and thoughtful
+                        in the way she approaches
+                        collaboration.”
+
                     </p>
 
                     <div class="recommendation-author">
-                        <strong>Sabrina Sulfaro</strong>
-                        <span>People Operations &amp; HR Lead</span>
+
+                        <strong>
+                            Sabrina Sulfaro
+                        </strong>
+
+                        <span>
+                            People Operations &amp; HR Lead
+                        </span>
+
                     </div>
 
                 </article>
 
 
+
                 <article class="recommendation-card">
 
                     <div class="quote-icon">
@@ -1774,14 +2961,23 @@
                     </div>
 
                     <p class="recommendation-text">
-                        “Leila has a strong delivery mindset and takes ownership
-                        of details that can easily be overlooked. Her ability to
-                        coordinate projects and stakeholders is a real strength.”
+
+                        “Leila has a strong delivery mindset
+                        and takes ownership of details
+                        that can easily be overlooked.”
+
                     </p>
 
                     <div class="recommendation-author">
-                        <strong>Bradley Hughes</strong>
-                        <span>IT Infrastructure &amp; Delivery Leader</span>
+
+                        <strong>
+                            Bradley Hughes
+                        </strong>
+
+                        <span>
+                            IT Infrastructure &amp; Delivery Leader
+                        </span>
+
                     </div>
 
                 </article>
@@ -1793,24 +2989,30 @@
     </section>
 
 
-    <!-- ============================================
+
+    <!-- =====================================================
          EXPERIENCE
-    ============================================ -->
+    ====================================================== -->
 
     <section id="experience">
 
         <div class="container">
 
-            <span class="section-label">Career journey</span>
+            <span class="section-label">
+                Career journey
+            </span>
 
             <h2 class="section-title">
                 Professional Experience
             </h2>
 
+
             <p class="section-description">
-                A progression from customer support and travel operations into
-                client success, project management, and technology delivery.
+                A progression from customer support
+                and travel operations into client success,
+                project management, and technology delivery.
             </p>
+
 
 
             <div class="timeline">
@@ -1825,12 +3027,11 @@
                     <div class="timeline-card open">
 
                         <button
-                            type="button"
                             class="timeline-header"
                             onclick="toggleTimeline(this)"
                         >
 
-                            <div class="timeline-main">
+                            <div>
 
                                 <div class="timeline-role">
                                     Project Manager
@@ -1858,57 +3059,47 @@
                                 <ul>
 
                                     <li>
-                                        Manage approximately 25–30 concurrent
-                                        client projects across IT and cybersecurity
+                                        Manage approximately
+                                        25–30 concurrent client projects
+                                        across IT and cybersecurity
                                         implementations.
                                     </li>
 
                                     <li>
-                                        Coordinate a team of project engineers,
-                                        monitoring assignments, timelines,
-                                        dependencies, blockers, and delivery status.
+                                        Coordinate project engineers,
+                                        timelines, dependencies,
+                                        blockers and delivery status.
                                     </li>
 
                                     <li>
-                                        Lead client onboarding, implementation,
-                                        deployment, offboarding, and vendor
+                                        Lead onboarding,
+                                        implementation,
+                                        deployment,
+                                        offboarding and vendor
                                         transition projects.
                                     </li>
 
                                     <li>
-                                        Led 40+ client onboarding implementations,
-                                        typically completed within approximately
-                                        30–45 days.
+                                        Led 40+ client onboarding
+                                        implementations.
                                     </li>
 
                                     <li>
-                                        Manage client communication through
-                                        kickoffs, weekly or biweekly meetings,
-                                        email updates, and ongoing status tracking.
+                                        Manage client communication
+                                        through kickoffs, weekly and
+                                        biweekly meetings, and
+                                        recurring updates.
                                     </li>
 
                                     <li>
-                                        Use Rocketlane, ConnectWise, Slack,
-                                        Google Workspace, IT Glue, and AI tools
-                                        to organize delivery and maintain project
-                                        visibility.
+                                        Covered Client Success
+                                        responsibilities for
+                                        approximately five months.
                                     </li>
 
                                     <li>
-                                        Created SOPs and repeatable workflows
-                                        for project management, onboarding,
-                                        offboarding, and tool-transfer scenarios.
-                                    </li>
-
-                                    <li>
-                                        Covered Client Success responsibilities
-                                        for approximately five months, including
-                                        reporting, client communication, and
-                                        relationship management.
-                                    </li>
-
-                                    <li>
-                                        Maintained a portfolio NPS of 10.
+                                        Maintained a portfolio
+                                        NPS of 10.
                                     </li>
 
                                 </ul>
@@ -1922,6 +3113,7 @@
                 </div>
 
 
+
                 <!-- Puntorojo -->
 
                 <div class="timeline-item">
@@ -1931,12 +3123,11 @@
                     <div class="timeline-card">
 
                         <button
-                            type="button"
                             class="timeline-header"
                             onclick="toggleTimeline(this)"
                         >
 
-                            <div class="timeline-main">
+                            <div>
 
                                 <div class="timeline-role">
                                     Customer Success Manager
@@ -1964,42 +3155,31 @@
                                 <ul>
 
                                     <li>
-                                        Managed relationships with approximately
-                                        15–20 clients across digital marketing
-                                        and SEO projects.
+                                        Managed approximately
+                                        15–20 client relationships.
                                     </li>
 
                                     <li>
-                                        Served as the main point of contact,
-                                        coordinating client communication,
-                                        expectations, priorities, and deliverables.
+                                        Served as primary point
+                                        of contact across digital
+                                        marketing and SEO projects.
                                     </li>
 
                                     <li>
-                                        Led weekly and biweekly client meetings
-                                        and prepared recurring performance reports.
+                                        Led weekly and biweekly
+                                        client meetings.
                                     </li>
 
                                     <li>
-                                        Used Google Analytics and Google Search
-                                        Console to support client reporting and
-                                        strategic conversations.
+                                        Prepared recurring
+                                        performance reports and
+                                        quarterly roadmaps.
                                     </li>
 
                                     <li>
-                                        Created quarterly roadmaps, presentations,
-                                        reports, and client-facing materials.
-                                    </li>
-
-                                    <li>
-                                        Supported e-commerce event planning around
-                                        major sales events.
-                                    </li>
-
-                                    <li>
-                                        Contributed to client retention and
-                                        relationship growth, receiving 7 Clutch
-                                        reviews from clients.
+                                        Used Google Analytics
+                                        and Google Search Console
+                                        for client reporting.
                                     </li>
 
                                 </ul>
@@ -2013,6 +3193,7 @@
                 </div>
 
 
+
                 <!-- Tiendanube -->
 
                 <div class="timeline-item">
@@ -2022,12 +3203,11 @@
                     <div class="timeline-card">
 
                         <button
-                            type="button"
                             class="timeline-header"
                             onclick="toggleTimeline(this)"
                         >
 
-                            <div class="timeline-main">
+                            <div>
 
                                 <div class="timeline-role">
                                     Customer Support Specialist
@@ -2055,24 +3235,21 @@
                                 <ul>
 
                                     <li>
-                                        Supported e-commerce merchants through
-                                        email and customer support channels.
+                                        Supported e-commerce
+                                        merchants through
+                                        customer support channels.
                                     </li>
 
                                     <li>
-                                        Troubleshot platform-related issues,
-                                        explained solutions clearly, and managed
-                                        customer expectations.
+                                        Troubleshot platform issues
+                                        and managed customer
+                                        expectations.
                                     </li>
 
                                     <li>
-                                        Supported high-volume periods around
-                                        Hot Sale, Black Friday, and Buen Fin.
-                                    </li>
-
-                                    <li>
-                                        Collaborated with internal teams to
-                                        escalate and resolve complex cases.
+                                        Supported high-volume
+                                        periods including Hot Sale,
+                                        Black Friday and Buen Fin.
                                     </li>
 
                                 </ul>
@@ -2086,6 +3263,7 @@
                 </div>
 
 
+
                 <!-- Bibam -->
 
                 <div class="timeline-item">
@@ -2095,12 +3273,11 @@
                     <div class="timeline-card">
 
                         <button
-                            type="button"
                             class="timeline-header"
                             onclick="toggleTimeline(this)"
                         >
 
-                            <div class="timeline-main">
+                            <div>
 
                                 <div class="timeline-role">
                                     Customer Support Specialist
@@ -2128,20 +3305,16 @@
                                 <ul>
 
                                     <li>
-                                        Managed customer requests related to
-                                        flights, hotels, operators, changes,
-                                        cancellations, and refunds.
+                                        Managed customer requests
+                                        related to flights, hotels,
+                                        changes, cancellations,
+                                        and refunds.
                                     </li>
 
                                     <li>
-                                        Coordinated complex cases with airlines,
-                                        hotels, and travel operators.
-                                    </li>
-
-                                    <li>
-                                        Worked through high-pressure cases during
-                                        the COVID-19 pandemic and related travel
-                                        disruptions.
+                                        Coordinated complex cases
+                                        with airlines, hotels,
+                                        and operators.
                                     </li>
 
                                 </ul>
@@ -2155,6 +3328,7 @@
                 </div>
 
 
+
                 <!-- Almundo -->
 
                 <div class="timeline-item">
@@ -2164,12 +3338,11 @@
                     <div class="timeline-card">
 
                         <button
-                            type="button"
                             class="timeline-header"
                             onclick="toggleTimeline(this)"
                         >
 
-                            <div class="timeline-main">
+                            <div>
 
                                 <div class="timeline-role">
                                     Travel Consultant
@@ -2197,20 +3370,16 @@
                                 <ul>
 
                                     <li>
-                                        Assisted customers with travel planning,
-                                        reservations, itinerary changes, and
-                                        travel-related questions.
+                                        Assisted customers
+                                        with travel planning,
+                                        reservations and
+                                        itinerary changes.
                                     </li>
 
                                     <li>
-                                        Managed customer needs across flights,
-                                        hotels, and other travel services.
-                                    </li>
-
-                                    <li>
-                                        Built strong customer relationships while
-                                        balancing service quality and operational
-                                        requirements.
+                                        Managed customer needs
+                                        across flights, hotels,
+                                        and travel services.
                                     </li>
 
                                 </ul>
@@ -2223,7 +3392,6 @@
 
                 </div>
 
-
             </div>
 
         </div>
@@ -2231,19 +3399,23 @@
     </section>
 
 
-    <!-- ============================================
-         EDUCATION & LANGUAGES
-    ============================================ -->
+
+    <!-- =====================================================
+         EDUCATION
+    ====================================================== -->
 
     <section id="education">
 
         <div class="container">
 
-            <span class="section-label">Background</span>
+            <span class="section-label">
+                Background
+            </span>
 
             <h2 class="section-title">
                 Education &amp; Languages
             </h2>
+
 
 
             <div class="education-grid">
@@ -2255,15 +3427,17 @@
                     </div>
 
                     <h3>
-                        Bachelor’s Degree in Tourism &amp; Hospitality Management
+                        Bachelor’s Degree in
+                        Tourism &amp; Hospitality Management
                     </h3>
 
                     <p>
-                        Universidad Argentina de la Empresa (UADE)
-                        · 2021
+                        Universidad Argentina de la Empresa
+                        (UADE) · 2021
                     </p>
 
                 </div>
+
 
 
                 <div class="education-card">
@@ -2272,14 +3446,30 @@
                         <i class="fa-solid fa-language"></i>
                     </div>
 
-                    <div class="language-row">
-                        <span class="language-name">Spanish</span>
-                        <span class="language-level">Native</span>
-                    </div>
 
                     <div class="language-row">
-                        <span class="language-name">English</span>
-                        <span class="language-level">Fluent · Daily Professional Use</span>
+
+                        <span class="language-name">
+                            Spanish
+                        </span>
+
+                        <span class="language-level">
+                            Native
+                        </span>
+
+                    </div>
+
+
+                    <div class="language-row">
+
+                        <span class="language-name">
+                            English
+                        </span>
+
+                        <span class="language-level">
+                            Fluent · Daily Professional Use
+                        </span>
+
                     </div>
 
                 </div>
@@ -2291,9 +3481,10 @@
     </section>
 
 
-    <!-- ============================================
+
+    <!-- =====================================================
          FOOTER
-    ============================================ -->
+    ====================================================== -->
 
     <footer>
 
@@ -2301,15 +3492,20 @@
 
             <div class="footer-content">
 
+
                 <div>
+
                     <div class="footer-name">
                         Leila<span>.</span>
                     </div>
 
                     <div class="footer-copy">
-                        Project Manager &amp; Client Success Manager
+                        Project Manager &amp;
+                        Client Success Manager
                     </div>
+
                 </div>
+
 
 
                 <div class="footer-socials">
@@ -2319,15 +3515,14 @@
                         href="https://linkedin.com/in/leilagcenteno"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="LinkedIn"
                     >
                         <i class="fa-brands fa-linkedin-in"></i>
                     </a>
 
+
                     <a
                         class="footer-social"
                         href="mailto:leilacenteno@gmail.com"
-                        aria-label="Email"
                     >
                         <i class="fa-solid fa-envelope"></i>
                     </a>
@@ -2335,8 +3530,11 @@
                 </div>
 
 
+
                 <div class="footer-copy">
-                    © <span id="currentYear"></span> Leila Centeno
+                    ©
+                    <span id="currentYear"></span>
+                    Leila Centeno
                 </div>
 
             </div>
@@ -2346,218 +3544,389 @@
     </footer>
 
 
-    <!-- ============================================
-         JAVASCRIPT
-         NO BACKGROUND MUSIC
-         CLICK SOUND ONLY
-    ============================================ -->
+</main>
 
-    <script>
 
-        /* ==========================================
-           CLICK SOUND
-           ========================================== */
 
-        let audioContext = null;
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 
-        function initAudio() {
+<script>
 
-            if (!audioContext) {
-                audioContext = new (
+    /* =====================================================
+       AUDIO — CLICK SOUND ONLY
+    ====================================================== */
+
+    let audioContext = null;
+
+
+    function initAudio() {
+
+        if (!audioContext) {
+
+            audioContext =
+                new (
                     window.AudioContext ||
                     window.webkitAudioContext
                 )();
-            }
 
-            if (audioContext.state === 'suspended') {
-                audioContext.resume();
-            }
         }
 
 
-        function playClickSound() {
+        if (
+            audioContext.state ===
+            'suspended'
+        ) {
 
-            initAudio();
+            audioContext.resume();
 
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
+        }
 
-            oscillator.type = 'sine';
+    }
 
-            oscillator.frequency.setValueAtTime(
-                520,
+
+
+    function playClickSound() {
+
+        initAudio();
+
+
+        const oscillator =
+            audioContext.createOscillator();
+
+
+        const gainNode =
+            audioContext.createGain();
+
+
+        oscillator.type =
+            'sine';
+
+
+        oscillator.frequency
+            .setValueAtTime(
+                500,
                 audioContext.currentTime
             );
 
-            oscillator.frequency.exponentialRampToValueAtTime(
-                780,
+
+        oscillator.frequency
+            .exponentialRampToValueAtTime(
+                720,
                 audioContext.currentTime + 0.06
             );
 
-            gainNode.gain.setValueAtTime(
-                0.06,
+
+        gainNode.gain
+            .setValueAtTime(
+                0.045,
                 audioContext.currentTime
             );
 
-            gainNode.gain.exponentialRampToValueAtTime(
+
+        gainNode.gain
+            .exponentialRampToValueAtTime(
                 0.001,
-                audioContext.currentTime + 0.09
+                audioContext.currentTime + 0.08
             );
 
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
 
-            oscillator.start();
+        oscillator.connect(gainNode);
 
-            oscillator.stop(
-                audioContext.currentTime + 0.09
+        gainNode.connect(
+            audioContext.destination
+        );
+
+
+        oscillator.start();
+
+
+        oscillator.stop(
+            audioContext.currentTime + 0.08
+        );
+
+    }
+
+
+
+    /* =====================================================
+       INTRO TRANSITION
+    ====================================================== */
+
+    const intro =
+        document.getElementById(
+            'intro'
+        );
+
+
+    const enterButton =
+        document.getElementById(
+            'enterPortfolio'
+        );
+
+
+    enterButton.addEventListener(
+        'click',
+        function() {
+
+            playClickSound();
+
+            intro.classList.add(
+                'hidden'
             );
+
+
+            document.body.classList.remove(
+                'intro-active'
+            );
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'instant'
+            });
+
+
+            setTimeout(
+                function() {
+
+                    intro.style.display =
+                        'none';
+
+                },
+                900
+            );
+
         }
+    );
 
 
-        /* ==========================================
-           CLICK VISUAL EFFECT
-           ========================================== */
 
-        function createClickNote(event) {
+    /* =====================================================
+       CLICK VISUAL EFFECT
+    ====================================================== */
 
-            const note = document.createElement('div');
+    function createClickNote(event) {
 
-            note.className = 'click-note';
+        const note =
+            document.createElement('div');
 
-            const symbols = ['✦', '·', '✧'];
 
-            note.textContent =
-                symbols[Math.floor(Math.random() * symbols.length)];
+        note.className =
+            'click-note';
 
-            note.style.left = `${event.clientX}px`;
-            note.style.top = `${event.clientY}px`;
 
-            document.body.appendChild(note);
+        const symbols =
+            ['✦', '·', '✧'];
 
-            setTimeout(() => {
+
+        note.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        note.style.left =
+            event.clientX + 'px';
+
+
+        note.style.top =
+            event.clientY + 'px';
+
+
+        document.body.appendChild(note);
+
+
+        setTimeout(
+            function() {
+
                 note.remove();
-            }, 800);
-        }
+
+            },
+            800
+        );
+
+    }
 
 
-        /* ==========================================
-           GLOBAL INTERACTIVE CLICK
-           ========================================== */
 
-        document.addEventListener('click', function(event) {
+    /* =====================================================
+       ALL OTHER BUTTON / LINK CLICKS
+    ====================================================== */
 
-            const interactive = event.target.closest(
-                'button, a'
-            );
+    document.addEventListener(
+        'click',
+        function(event) {
+
+            const interactive =
+                event.target.closest(
+                    'button, a'
+                );
+
 
             if (!interactive) {
                 return;
             }
 
-            playClickSound();
+
+            if (
+                interactive.id !==
+                'enterPortfolio'
+            ) {
+
+                playClickSound();
+
+            }
+
+
             createClickNote(event);
 
-        });
+        }
+    );
 
 
-        /* ==========================================
-           TIMELINE
-           ========================================== */
 
-        function toggleTimeline(button) {
+    /* =====================================================
+       TIMELINE
+    ====================================================== */
 
-            const card = button.closest('.timeline-card');
+    function toggleTimeline(button) {
 
-            if (!card) {
-                return;
-            }
+        const card =
+            button.closest(
+                '.timeline-card'
+            );
 
-            const currentlyOpen =
-                card.classList.contains('open');
 
-            document
-                .querySelectorAll('.timeline-card.open')
-                .forEach(openCard => {
+        const currentlyOpen =
+            card.classList.contains(
+                'open'
+            );
 
-                    if (openCard !== card) {
-                        openCard.classList.remove('open');
+
+        document
+            .querySelectorAll(
+                '.timeline-card.open'
+            )
+            .forEach(
+                function(openCard) {
+
+                    if (
+                        openCard !==
+                        card
+                    ) {
+
+                        openCard
+                            .classList
+                            .remove(
+                                'open'
+                            );
+
                     }
 
-                });
-
-            card.classList.toggle(
-                'open',
-                !currentlyOpen
+                }
             );
-        }
 
 
-        /* ==========================================
-           SKILL FILTERING
-           ========================================== */
-
-        function filterSkills(category, event) {
-
-            const buttons =
-                document.querySelectorAll('.filter-btn');
-
-            buttons.forEach(button => {
-                button.classList.remove('active');
-            });
-
-            if (event && event.currentTarget) {
-                event.currentTarget.classList.add('active');
-            }
-
-            const cards =
-                document.querySelectorAll('.skill-card');
-
-            cards.forEach(card => {
-
-                const categories =
-                    card.dataset.category || '';
-
-                if (
-                    category === 'all' ||
-                    categories.includes(category)
-                ) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-
-            });
-        }
-
-
-        /* ==========================================
-           CURRENT YEAR
-           ========================================== */
-
-        document.getElementById('currentYear').textContent =
-            new Date().getFullYear();
-
-
-        /* ==========================================
-           INITIALIZATION
-           ========================================== */
-
-        document.addEventListener(
-            'DOMContentLoaded',
-            function() {
-
-                const firstTimeline =
-                    document.querySelector('.timeline-card');
-
-                if (firstTimeline) {
-                    firstTimeline.classList.add('open');
-                }
-
-            }
+        card.classList.toggle(
+            'open',
+            !currentlyOpen
         );
 
-    </script>
+    }
+
+
+
+    /* =====================================================
+       SKILL FILTER
+    ====================================================== */
+
+    function filterSkills(
+        category,
+        event
+    ) {
+
+        document
+            .querySelectorAll(
+                '.filter-btn'
+            )
+            .forEach(
+                function(button) {
+
+                    button.classList
+                        .remove(
+                            'active'
+                        );
+
+                }
+            );
+
+
+        event.currentTarget
+            .classList
+            .add(
+                'active'
+            );
+
+
+        document
+            .querySelectorAll(
+                '.skill-card'
+            )
+            .forEach(
+                function(card) {
+
+                    const categories =
+                        card.dataset.category ||
+                        '';
+
+
+                    if (
+                        category ===
+                        'all' ||
+                        categories.includes(
+                            category
+                        )
+                    ) {
+
+                        card.classList
+                            .remove(
+                                'hidden'
+                            );
+
+                    }
+
+                    else {
+
+                        card.classList
+                            .add(
+                                'hidden'
+                            );
+
+                    }
+
+                }
+            );
+
+    }
+
+
+
+    /* =====================================================
+       YEAR
+    ====================================================== */
+
+    document.getElementById(
+        'currentYear'
+    ).textContent =
+        new Date().getFullYear();
+
+</script>
+
 
 </body>
 </html>
