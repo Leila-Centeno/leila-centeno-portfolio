@@ -3,416 +3,587 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leila Centeno | monday.com Style Career Board</title>
+  <title>Leila Centeno | Professional Portfolio</title>
   
-  <!-- FontAwesome & Fonts -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* --- MONDAY.COM UI THEME VARIABLES --- */
+    /* --- DISNEY-THEMED ELEGANT PALETTE --- */
     :root {
-      --board-bg: #F4F5F7;
-      --sidebar-bg: #2C2F33;
-      --card-bg: #FFFFFF;
-      --text-main: #323338;
-      --text-muted: #676879;
-      --border-color: #E6E9EF;
-      --primary-purple: #0073EA;
-      --badge-green: #00C875;
-      --badge-orange: #FDAB3D;
-      --badge-purple: #CAB6F4;
-      --badge-blue: #579BFC;
-      --badge-pink: #E2445C;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      --transition: all 0.25s ease;
+      --bg-cream: #FAF7F2;
+      --card-white: #FFFFFF;
+      --soft-pink: #F7EBEA;
+      --accent-blush: #E8C8C4;
+      --text-main: #3C3635;
+      --text-muted: #7A706E;
+      --gold-primary: #D4AF37;
+      --gold-light: #F4E8B1;
+      --border-color: #EFE6E1;
+      --shadow: 0 10px 30px rgba(60, 54, 53, 0.05);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background-color: var(--board-bg);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-cream);
       color: var(--text-main);
-      line-height: 1.5;
-      padding: 24px;
+      line-height: 1.6;
+      padding: 30px 20px;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    .monday-board-container {
-      max-width: 1200px;
+    /* Magical Sparkle Animation Background Effect */
+    body::before {
+      content: '✨';
+      position: fixed;
+      top: 5%;
+      left: 3%;
+      font-size: 24px;
+      opacity: 0.3;
+      animation: floatSparkle 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    body::after {
+      content: '🪄';
+      position: fixed;
+      bottom: 10%;
+      right: 4%;
+      font-size: 28px;
+      opacity: 0.3;
+      animation: floatSparkle 8s ease-in-out infinite reverse;
+      pointer-events: none;
+    }
+    @keyframes floatSparkle {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(10deg); }
+    }
+
+    .portfolio-container {
+      max-width: 1100px;
       margin: 0 auto;
-      background: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      overflow: hidden;
+      background: var(--card-white);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
       border: 1px solid var(--border-color);
+      overflow: hidden;
+      position: relative;
     }
 
-    /* --- BOARD HEADER --- */
-    .board-header {
-      background: var(--sidebar-bg);
-      color: white;
-      padding: 28px 32px;
+    /* --- AUDIO PLAYER BAR --- */
+    .magic-audio-bar {
+      background: var(--soft-pink);
+      padding: 12px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      color: var(--text-main);
     }
-    .board-title-area h1 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.8rem;
-      margin-bottom: 4px;
+    .audio-controls {
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-    .board-title-area p {
-      font-size: 0.9rem;
-      color: #A0A0A5;
-    }
-    .board-actions {
-      display: flex;
       gap: 12px;
     }
-    .monday-btn {
-      background: var(--primary-purple);
+    .magic-play-btn {
+      background: var(--card-white);
+      border: 1px solid var(--accent-blush);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .magic-play-btn:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-primary);
+    }
+
+    /* --- HEADER --- */
+    .portfolio-header {
+      padding: 40px;
+      text-align: center;
+      background: linear-gradient(to bottom, #FFFFFF, var(--soft-pink));
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+    }
+    .portfolio-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .portfolio-header h1 span {
+      color: #C5A059;
+    }
+    .portfolio-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 700px;
+      margin: 0 auto 20px auto;
+    }
+    .header-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .magical-btn {
+      background: var(--text-main);
       color: white;
       border: none;
       padding: 10px 20px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.88rem;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 0.85rem;
       cursor: pointer;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      text-decoration: none;
       transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(60,54,53,0.1);
     }
-    .monday-btn:hover { background: #005DCF; }
+    .magical-btn:hover {
+      background: #5A504E;
+      transform: translateY(-2px);
+    }
+    .magical-btn.secondary {
+      background: white;
+      color: var(--text-main);
+      border: 1px solid var(--accent-blush);
+    }
+    .magical-btn.secondary:hover {
+      background: var(--soft-pink);
+    }
 
-    /* --- METRICS BAR --- */
-    .metrics-bar {
+    /* --- METRICS GRID --- */
+    .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1px;
       background: var(--border-color);
       border-bottom: 1px solid var(--border-color);
     }
-    .metric-item {
-      background: white;
-      padding: 18px 24px;
+    .metric-card {
+      background: var(--card-white);
+      padding: 24px;
+      text-align: center;
+      transition: var(--transition);
     }
-    .metric-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
+    .metric-card:hover {
+      background: var(--bg-cream);
     }
-    .metric-val {
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.4rem;
+    .metric-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
       font-weight: 700;
       color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .metric-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
-    /* --- MAIN BOARD CONTENT --- */
-    .board-content {
-      padding: 32px;
+    /* --- CONTENT SECTIONS (Interactive Accordions / Cards) --- */
+    .content-body {
+      padding: 40px;
     }
 
-    .group-container {
-      margin-bottom: 40px;
+    .chapter-section {
+      margin-bottom: 30px;
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
+      background: white;
+      transition: var(--transition);
     }
-    .group-header {
-      padding: 14px 20px;
-      font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
+    .chapter-section:hover {
+      box-shadow: var(--shadow);
+    }
+
+    .chapter-header {
+      padding: 20px 24px;
+      background: var(--bg-cream);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .chapter-title-area h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .group-header.interlaced { background: #E6F4FE; color: #0066CC; border-left: 6px solid #579BFC; }
-    .group-header.puntorojo { background: #EAF8F2; color: #00875A; border-left: 6px solid #00C875; }
-    .group-header.tiendanube { background: #FDF2F4; color: #C93B4E; border-left: 6px solid #E2445C; }
-    .group-header.additional { background: #FDF6EC; color: #A45B00; border-left: 6px solid #FDAB3D; }
-    .group-header.reviews { background: #F2EEFB; color: #5E35B1; border-left: 6px solid #9C27B0; }
-
-    /* TABLE ITEM STYLING */
-    .item-row {
-      display: grid;
-      grid-template-columns: 280px 180px 1fr;
-      border-top: 1px solid var(--border-color);
-      padding: 16px 20px;
-      align-items: center;
-      background: white;
-      transition: var(--transition);
-    }
-    .item-row:hover { background: #FAFBFC; }
-    
-    .item-name {
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text-main);
-    }
-    .item-sub {
-      font-size: 0.8rem;
+    .chapter-subtitle {
+      font-size: 0.85rem;
       color: var(--text-muted);
       margin-top: 2px;
     }
+    .chapter-toggle-icon {
+      font-size: 1rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
 
-    .status-badge {
+    .chapter-body {
+      padding: 24px;
+      border-top: 1px solid var(--border-color);
+      display: none;
+      animation: fadeIn 0.4s ease forwards;
+    }
+    .chapter-section.active .chapter-body {
+      display: block;
+    }
+    .chapter-section.active .chapter-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* LISTS & DETAILS */
+    .experience-list {
+      list-style: none;
+    }
+    .experience-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 12px;
+      font-size: 0.93rem;
+      color: var(--text-main);
+    }
+    .experience-list li::before {
+      content: '✨';
+      position: absolute;
+      left: 0;
+      font-size: 0.7rem;
+      top: 4px;
+    }
+
+    /* BADGES */
+    .badge-status {
       display: inline-block;
-      padding: 5px 12px;
+      padding: 4px 12px;
       border-radius: 20px;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      text-align: center;
-    }
-    .status-active { background: #E6F4FE; color: #0066CC; }
-    .status-done { background: #EAF8F2; color: #00875A; }
-    .status-history { background: #FDF6EC; color: #A45B00; }
-
-    .item-details ul {
-      padding-left: 18px;
-    }
-    .item-details li {
-      font-size: 0.88rem;
-      margin-bottom: 6px;
+      background: var(--soft-pink);
       color: var(--text-main);
+      border: 1px solid var(--accent-blush);
+      margin-bottom: 12px;
     }
 
-    /* REVIEWS GRID LAYOUT */
-    .reviews-grid {
+    /* REVIEWS CAROUSEL / GRID */
+    .reviews-grid-magical {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
-      padding: 20px;
-      background: white;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
-    .review-card {
-      background: #FAFBFC;
+    .review-bubble {
+      background: var(--bg-cream);
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      position: relative;
+      transition: var(--transition);
     }
-    .review-text {
-      font-size: 0.88rem;
+    .review-bubble:hover {
+      transform: translateY(-3px);
+      background: var(--soft-pink);
+    }
+    .review-bubble p {
       font-style: italic;
+      font-size: 0.9rem;
       color: var(--text-main);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
-    .reviewer-meta {
+    .reviewer-tag {
+      font-size: 0.8rem;
       font-weight: 700;
-      font-size: 0.85rem;
-      color: var(--primary-purple);
-      border-top: 1px dashed var(--border-color);
-      padding-top: 10px;
+      color: #9D7B38;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* INTERACTIVE WISH BUTTON */
+    .wish-section {
+      text-align: center;
+      padding: 30px;
+      background: var(--soft-pink);
+      border-radius: 12px;
+      margin-top: 30px;
+      border: 1px dashed var(--accent-blush);
+    }
+    .wish-section h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+    .wish-section p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
     }
 
     footer {
       text-align: center;
-      padding: 20px;
-      font-size: 0.82rem;
+      padding: 24px;
+      font-size: 0.8rem;
       color: var(--text-muted);
-      background: #FAFBFC;
+      background: var(--card-white);
       border-top: 1px solid var(--border-color);
     }
 
-    @media (max-width: 900px) {
-      .item-row {
-        grid-template-columns: 1fr;
-        gap: 12px;
-      }
+    @media (max-width: 768px) {
       body { padding: 10px; }
+      .portfolio-header { padding: 24px 16px; }
+      .content-body { padding: 20px 16px; }
     }
   </style>
 </head>
 <body>
 
-  <div class="monday-board-container">
-    
-    <!-- BOARD HEADER -->
-    <header class="board-header">
-      <div class="board-title-area">
-        <h1><i class="fa-solid fa-square-poll-horizontal" style="color: #579BFC;"></i> Leila Centeno — Master Career & Professional Portfolio</h1>
-        <p>Workspace: Client Success, Implementation & Project Management | Remote Full U.S. Business Hours Overlap (GMT-3)</p>
+  <!-- BACKGROUND AUDIO (Lullaby / Magical Instrumental Stream) -->
+  <audio id="magicalAudio" loop>
+    <source src="https://actions.google.com/sounds/v1/ambiences/daytime_forest_bonfire.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="portfolio-container">
+
+    <!-- MAGICAL AUDIO CONTROL BAR -->
+    <div class="magic-audio-bar">
+      <span>🎵 <strong>Magical Ambience:</strong> Let the background melody inspire your review</span>
+      <div class="audio-controls">
+        <button class="magic-play-btn" id="audioToggleBtn" onclick="toggleAudio()">
+          <i class="fa-solid fa-wand-magic-sparkles" id="audioIcon"></i> <span id="audioText">Play Music</span>
+        </button>
       </div>
-      <div class="board-actions">
-        <a href="mailto:leilacenteno@gmail.com" class="monday-btn"><i class="fa-solid fa-envelope"></i> Contact Me</a>
-        <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="monday-btn" style="background: #0A66C2;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    </div>
+
+    <!-- HEADER -->
+    <header class="portfolio-header">
+      <h1>Leila Centeno <span>✨</span></h1>
+      <p>Client Success, Implementation & Project Management Portfolio • Crafted with elegance, precision, and a touch of magic. Remote based in Buenos Aires with full U.S. Business Hours overlap[cite: 2].</p>
+      <div class="header-actions">
+        <a href="mailto:leilacenteno@gmail.com" class="magical-btn"><i class="fa-regular fa-envelope"></i> Send a Message</a>
+        <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="magical-btn secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn Profile</a>
       </div>
     </header>
 
     <!-- METRICS BAR -->
-    <div class="metrics-bar">
-      <div class="metric-item">
-        <div class="metric-label">Total Experience</div>
-        <div class="metric-val">8+ Years</div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">8+</div>
+        <div class="metric-title">Years Experience[cite: 2]</div>
       </div>
-      <div class="metric-item">
-        <div class="metric-label">Client NPS Score</div>
-        <div class="metric-val">10 🌟</div>
+      <div class="metric-card">
+        <div class="metric-value">10</div>
+        <div class="metric-title">Client NPS Score[cite: 2]</div>
       </div>
-      <div class="metric-item">
-        <div class="metric-label">Client Onboardings Led</div>
-        <div class="metric-val">40+ Implementations</div>
+      <div class="metric-card">
+        <div class="metric-value">40+</div>
+        <div class="metric-title">Onboardings Led[cite: 2]</div>
       </div>
-      <div class="metric-item">
-        <div class="metric-label">Concurrent Workload</div>
-        <div class="metric-val">25-30 Projects (Peak 50)</div>
+      <div class="metric-card">
+        <div class="metric-value">25-30</div>
+        <div class="metric-title">Concurrent Projects[cite: 2]</div>
       </div>
     </div>
 
-    <!-- MAIN BOARD CONTENT -->
-    <div class="board-content">
+    <!-- MAIN INTERACTIVE CONTENT -->
+    <div class="content-body">
 
-      <!-- GROUP 1: INTERLACED -->
-      <div class="group-container">
-        <div class="group-header interlaced">
-          <i class="fa-solid fa-folder-open"></i> Phase 1: Current Role — Project Manager @ Interlaced (U.S.-Based IT Services)
+      <!-- CHAPTER 1: INTERLACED -->
+      <div class="chapter-section active" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-title-area">
+            <h3>🏰 Chapter I: Project Manager @ Interlaced</h3>
+            <div class="chapter-subtitle">March 2024 – Present | U.S.-Based IT Services[cite: 2]</div>
+          </div>
+          <i class="fa-solid fa-chevron-down chapter-toggle-icon"></i>
         </div>
-        <div class="item-row">
-          <div>
-            <div class="item-name">IT Solutions & Implementation</div>
-            <div class="item-sub">March 2024 – Present[cite: 2]</div>
+        <div class="chapter-body" onclick="event.stopPropagation()">
+          <span class="badge-status">Active Project Kingdom</span>
+          <ul class="experience-list">
+            <li>Own end-to-end project management and implementation of technology solutions for U.S.-based clients ranging from 7 to 200+ employees, leading each engagement from kickoff through go-live[cite: 2].</li>
+            <li>Coordinate a cross-functional delivery team of 7 while managing a portfolio of 25-30 concurrent client projects on average (peak of 50)[cite: 2].</li>
+            <li>Led 40+ client onboarding implementations since 2025, with typical cycles of 30-45 days depending on account size and complexity[cite: 2].</li>
+            <li>Manage complex client transitions and offboarding, coordinating incoming and outgoing vendors to ensure continuity with zero service gaps[cite: 2].</li>
+            <li>Coordinate cross-platform technical migrations (email, SharePoint, licensing) with internal technicians and external vendors, achieving zero data loss across all projects[cite: 2].</li>
+            <li>Stepped in to cover the Client Success Manager function for 5 months during a hiring gap, managing client relationships and renewals alongside project management duties[cite: 2].</li>
+            <li>Sustained a client NPS of 10 across the portfolio over the past year, reflecting strong stakeholder trust and account health[cite: 2].</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CHAPTER 2: PUNTOROJO -->
+      <div class="chapter-section" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-title-area">
+            <h3>🎠 Chapter II: Customer Success Manager @ Puntorojo</h3>
+            <div class="chapter-subtitle">July 2022 – February 2024 | Marketing Agency[cite: 2]</div>
           </div>
-          <div>
-            <span class="status-badge status-active">In Progress / Core</span>
+          <i class="fa-solid fa-chevron-down chapter-toggle-icon"></i>
+        </div>
+        <div class="chapter-body" onclick="event.stopPropagation()">
+          <span class="badge-status">Completed Milestone</span>
+          <ul class="experience-list">
+            <li>Owned a portfolio of 15-20 client accounts across e-commerce, banking, and travel, managing the full account lifecycle from onboarding through renewal[cite: 2].</li>
+            <li>Served as primary point of contact, running weekly/bi-weekly check-ins to align on goals, performance, and next steps[cite: 2].</li>
+            <li>Built monthly performance reports using Google Analytics and Google Search Console; presented quarterly roadmaps outlining status, priorities, and strategic recommendations[cite: 2].</li>
+            <li>Proactively planned account strategy around key business moments (e.g., major e-commerce sales events) to keep clients prepared and aligned[cite: 2].</li>
+            <li>Strengthened client advocacy and retention, earning completed Clutch reviews from 7 of 15-20 active accounts[cite: 2].</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CHAPTER 3: TIENDANUBE -->
+      <div class="chapter-section" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-title-area">
+            <h3>🎠 Chapter III: Customer Support Specialist @ Tiendanube</h3>
+            <div class="chapter-subtitle">October 2020 – July 2022 | E-Commerce Platform[cite: 2]</div>
           </div>
-          <div class="item-details">
-            <ul>
-              <li>Own end-to-end project management and implementation of technology solutions for U.S.-based clients ranging from 7 to 200+ employees, leading each engagement from kickoff through go-live[cite: 2].</li>
-              <li>Coordinate a cross-functional delivery team of 7 while managing a portfolio of 25-30 concurrent client projects on average (peak of 50)[cite: 2].</li>
-              <li>Led 40+ client onboarding implementations since 2025, with typical cycles of 30-45 days depending on account size and complexity[cite: 2].</li>
-              <li>Manage complex client transitions and offboarding, coordinating incoming and outgoing vendors to ensure continuity with zero service gaps[cite: 2].</li>
-              <li>Coordinate cross-platform technical migrations (email, SharePoint, licensing) with internal technicians and external vendors, achieving zero data loss across all projects[cite: 2].</li>
-              <li>Stepped in to cover the Client Success Manager function for 5 months during a hiring gap, managing client relationships and renewals alongside project management duties[cite: 2].</li>
-              <li>Sustained a client NPS of 10 across the portfolio over the past year, reflecting strong stakeholder trust and account health[cite: 2].</li>
-            </ul>
+          <i class="fa-solid fa-chevron-down chapter-toggle-icon"></i>
+        </div>
+        <div class="chapter-body" onclick="event.stopPropagation()">
+          <span class="badge-status">High-Growth Era</span>
+          <ul class="experience-list">
+            <li>Supported entrepreneurs launching and operating online stores via email, WhatsApp, and video calls during a high-growth, fully remote period[cite: 2].</li>
+            <li>Guided customers through platform onboarding, store setup, and payment accreditation, maintaining response times under 5 minutes on standard cases[cite: 2].</li>
+            <li>Sustained service quality through high-volume periods including Hot Sale, Black Friday, and Cyber Monday[cite: 2].</li>
+            <li>Trained and onboarded 4 new-hire cohorts (~28 employees total)[cite: 2].</li>
+            <li>Partnered with development teams to identify, document, and escalate product issues[cite: 2].</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CHAPTER 4: FOUNDATION -->
+      <div class="chapter-section" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-title-area">
+            <h3>🏰 Chapter IV: Foundation & Travel Experience</h3>
+            <div class="chapter-subtitle">May 2018 – October 2020 | Bibam Group & Almundo[cite: 2]</div>
+          </div>
+          <i class="fa-solid fa-chevron-down chapter-toggle-icon"></i>
+        </div>
+        <div class="chapter-body" onclick="event.stopPropagation()">
+          <span class="badge-status">Foundational Roots</span>
+          <ul class="experience-list">
+            <li><strong>Customer Support Specialist @ Bibam Group (Biblos Travel & Avantrip.com)</strong> (June 2019 – October 2020)[cite: 2]: Provided customer support across chat, email, and phone, handling 40+ daily interactions and managing flight changes, hotel reservations, car rentals, and cancellations using Amadeus[cite: 2].</li>
+            <li><strong>Travel Consultant @ Almundo - Freelance</strong> (May 2018 – May 2019)[cite: 2]: Designed personalized travel itineraries covering flights, hotels, car rentals, cruises, and event tickets, managing end-to-end bookings for clients across Argentina, Colombia, and Mexico[cite: 2].</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CHAPTER 5: PEER REVIEWS -->
+      <div class="chapter-section" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-title-area">
+            <h3>👑 Royal Scroll: Peer Reviews & Endorsements</h3>
+            <div class="chapter-subtitle">Reflections from teammates, managers, and partners</div>
+          </div>
+          <i class="fa-solid fa-chevron-down chapter-toggle-icon"></i>
+        </div>
+        <div class="chapter-body" onclick="event.stopPropagation()">
+          <div class="reviews-grid-magical">
+            <div class="review-bubble">
+              <p>"Leila is an absolute powerhouse when it comes to managing complex client implementations. Her ability to juggle dozens of concurrent projects with total calm keeps teams completely aligned."</p>
+              <div class="reviewer-tag">✨ Stephanie McDonald</div>
+            </div>
+            <div class="review-bubble">
+              <p>"Working with Leila during our technical migrations was seamless. She coordinates cross-functional tech teams and external vendors effortlessly, ensuring zero data loss and absolute continuity."</p>
+              <div class="reviewer-tag">✨ Bradley Hughes</div>
+            </div>
+            <div class="review-bubble">
+              <p>"Leila stepped into our CSM coverage gap without missing a beat. She seamlessly balanced high-volume project management duties with retention strategies and deep relationship management."</p>
+              <div class="reviewer-tag">✨ Joey Viola</div>
+            </div>
+            <div class="review-bubble">
+              <p>"When it comes to stakeholder management, Leila sets the gold standard. Her proactive communication and calm demeanor during high-stakes sales events earned complete trust."</p>
+              <div class="reviewer-tag">✨ Hector Duque</div>
+            </div>
+            <div class="review-bubble">
+              <p>"Leila's dedication to quality and team enablement is fantastic. Whether she's onboarding new-hire cohorts or driving an NPS of 10, she brings infectious energy and organization."</p>
+              <div class="reviewer-tag">✨ Sabrina Sulfaro</div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- GROUP 2: PUNTOROJO -->
-      <div class="group-container">
-        <div class="group-header puntorojo">
-          <i class="fa-solid fa-folder-open"></i> Phase 2: Customer Success Manager @ Puntorojo (Marketing Agency)
-        </div>
-        <div class="item-row">
-          <div>
-            <div class="item-name">Account Lifecycle & Strategy</div>
-            <div class="item-sub">July 2022 – February 2024[cite: 2]</div>
-          </div>
-          <div>
-            <span class="status-badge status-done">Completed / Historical</span>
-          </div>
-          <div class="item-details">
-            <ul>
-              <li>Owned a portfolio of 15-20 client accounts across e-commerce, banking, and travel, managing the full account lifecycle from onboarding through renewal[cite: 2].</li>
-              <li>Served as primary point of contact, running weekly/bi-weekly check-ins to align on goals, performance, and next steps[cite: 2].</li>
-              <li>Built monthly performance reports using Google Analytics and Google Search Console; presented quarterly roadmaps outlining status, priorities, and strategic recommendations[cite: 2].</li>
-              <li>Proactively planned account strategy around key business moments (e.g., major e-commerce sales events) to keep clients prepared and aligned[cite: 2].</li>
-              <li>Strengthened client advocacy and retention, earning completed Clutch reviews from 7 of 15-20 active accounts[cite: 2].</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- GROUP 3: TIENDANUBE -->
-      <div class="group-container">
-        <div class="group-header tiendanube">
-          <i class="fa-solid fa-folder-open"></i> Phase 3: Customer Support Specialist @ Tiendanube (E-Commerce Platform)
-        </div>
-        <div class="item-row">
-          <div>
-            <div class="item-name">High-Growth Onboarding & Support</div>
-            <div class="item-sub">October 2020 – July 2022[cite: 2]</div>
-          </div>
-          <div>
-            <span class="status-badge status-done">Completed / Historical</span>
-          </div>
-          <div class="item-details">
-            <ul>
-              <li>Supported entrepreneurs launching and operating online stores via email, WhatsApp, and video calls during a high-growth, fully remote period[cite: 2].</li>
-              <li>Guided customers through platform onboarding, store setup, and payment accreditation, maintaining response times under 5 minutes on standard cases[cite: 2].</li>
-              <li>Sustained service quality through high-volume periods including Hot Sale, Black Friday, and Cyber Monday[cite: 2].</li>
-              <li>Trained and onboarded 4 new-hire cohorts (~28 employees total)[cite: 2].</li>
-              <li>Partnered with development teams to identify, document, and escalate product issues[cite: 2].</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- GROUP 4: ADDITIONAL EXPERIENCE -->
-      <div class="group-container">
-        <div class="group-header additional">
-          <i class="fa-solid fa-folder-open"></i> Phase 4: Foundation & Early Career Experience
-        </div>
-        <div class="item-row">
-          <div>
-            <div class="item-name">Travel & Hospitality Specialist</div>
-            <div class="item-sub">May 2018 – October 2020[cite: 2]</div>
-          </div>
-          <div>
-            <span class="status-badge status-history">Archived</span>
-          </div>
-          <div class="item-details">
-            <ul>
-              <li><strong>Customer Support Specialist @ Bibam Group (Biblos Travel & Avantrip.com)</strong> (June 2019 – October 2020)[cite: 2]: Provided customer support across chat, email, and phone, handling 40+ daily interactions and managing complex flight changes, hotel reservations, car rentals, and cancellations using Amadeus[cite: 2].</li>
-              <li><strong>Travel Consultant @ Almundo - Freelance</strong> (May 2018 – May 2019)[cite: 2]: Designed personalized travel itineraries covering flights, hotels, car rentals, cruises, and event tickets, managing end-to-end bookings for clients across Argentina, Colombia, and Mexico[cite: 2].</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- GROUP 5: PEER REVIEWS -->
-      <div class="group-container">
-        <div class="group-header reviews">
-          <i class="fa-solid fa-comments"></i> Peer Updates & Stakeholder Endorsements
-        </div>
-        <div class="reviews-grid">
-          <div class="review-card">
-            <p class="review-text">"Leila is an absolute powerhouse when it comes to managing complex client implementations. Her ability to juggle dozens of concurrent projects with total calm and precision keeps both internal teams and clients completely aligned."</p>
-            <div class="reviewer-meta">— Stephanie McDonald</div>
-          </div>
-          <div class="review-card">
-            <p class="review-text">"Working with Leila during our technical migrations was seamless. She coordinates cross-functional tech teams and external vendors effortlessly, ensuring zero data loss and maintaining absolute continuity for our clients."</p>
-            <div class="reviewer-meta">— Bradley Hughes</div>
-          </div>
-          <div class="review-card">
-            <p class="review-text">"Leila stepped into our CSM coverage gap without missing a beat. She seamlessly balanced high-volume project management duties with retention strategies, renewals, and deep relationship management."</p>
-            <div class="reviewer-meta">— Joey Viola</div>
-          </div>
-          <div class="review-card">
-            <p class="review-text">"When it comes to stakeholder management, Leila sets the gold standard. Her proactive communication, structured quarterly roadmaps, and calm demeanor during high-stakes sales events earned complete trust."</p>
-            <div class="reviewer-meta">— Hector Duque</div>
-          </div>
-          <div class="review-card">
-            <p class="review-text">"Leila's dedication to quality and team enablement is fantastic. Whether she's onboarding new-hire cohorts or driving an NPS of 10 across a massive portfolio, she brings infectious energy and structured organization."</p>
-            <div class="reviewer-meta">— Sabrina Sulfaro</div>
-          </div>
-        </div>
+      <!-- INTERACTIVE WISH BOX -->
+      <div class="wish-section">
+        <h4>🌟 Make a Professional Wish</h4>
+        <p>Click the wand below to send a burst of magic to Leila's inbox!</p>
+        <button class="magical-btn" onclick="triggerMagicWish()">
+          <i class="fa-solid fa-wand-sparkles"></i> Cast a Magic Wish ✨
+        </button>
       </div>
 
     </div>
 
     <footer>
-      <p>© Leila Centeno • Designed as an interactive professional project board in GitHub HTML format.</p>
+      <p>© Leila Centeno • Designed with a professional fairytale aesthetic in white cream and soft pink.</p>
     </footer>
 
   </div>
+
+  <!-- INTERACTIVE JAVASCRIPT -->
+  <script>
+    // Chapter Accordion Toggle
+    function toggleChapter(element) {
+      element.classList.toggle('active');
+    }
+
+    // Audio Player Toggle
+    let isPlaying = false;
+    function toggleAudio() {
+      const audio = document.getElementById('magicalAudio');
+      const icon = document.getElementById('audioIcon');
+      const text = document.getElementById('audioText');
+      
+      if (!isPlaying) {
+        audio.play().catch(e => console.log("Audio autoplay restricted:", e));
+        isPlaying = true;
+        icon.className = "fa-solid fa-volume-high";
+        text.innerText = "Pause Music";
+      } else {
+        audio.pause();
+        isPlaying = false;
+        icon.className = "fa-solid fa-wand-magic-sparkles";
+        text.innerText = "Play Music";
+      }
+    }
+
+    // Magic Wish Action
+    function triggerMagicWish() {
+      alert("✨ Bibbidi-Bobbidi-Boo! Your magic wish has been cast. Leila's next great professional adventure awaits!");
+    }
+  </script>
 
 </body>
 </html>
