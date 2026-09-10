@@ -615,7 +615,7 @@
       overflow: hidden;
       transition: max-height 0.4s ease-out;
     }
-    .timeline-card.active .job-details { max-height: 600px; margin-top: 16px; }
+    .timeline-card.active .job-details { max-height: 800px; margin-top: 16px; }
     .job-details ul { padding-left: 18px; }
     .job-details li { margin-bottom: 8px; font-size: 0.92rem; opacity: 0.9; }
 
@@ -750,24 +750,24 @@
 </head>
 <body>
 
-  <!-- BACKGROUND AUDIO ELEMENT -->
-  <!-- Using a royalty-free classical piece (Debussy's Clair de Lune) to match the magical/Disney theme -->
+  <!-- BACKGROUND DISNEY THEME AUDIO -->
+  <!-- Using a magical, orchestral music piece fitting the Disney ambiance -->
   <audio id="bgMusic" loop>
-    <source src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Claude_Debussy_-_Clair_de_lune.ogg" type="audio/ogg">
+    <source src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Tchaikovsky_-_Swan_Lake_-_Act_II_-_Scene_10.ogg" type="audio/ogg">
   </audio>
 
   <!-- SPLASH SCREEN OVERLAY -->
   <div id="splash-screen">
     <div class="splash-card">
       <div class="splash-avatar">
-        <i class="fa-solid fa-bolt"></i>
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
       </div>
       <h1 class="splash-title">Leila Centeno</h1>
       <p class="splash-subtitle">Project Manager & Client Success Manager</p>
       <p class="splash-desc">
         Specialized in fast-paced remote environments, client onboarding and implementation, and delivering an exceptional customer experience.
       </p>
-      <!-- Click triggers the entry AND the background music + sound setup -->
+      <!-- Click triggers entry, starts Disney music, and plays interactive sounds -->
       <button class="btn-enter" onclick="enterPortfolio(); playClickSound();" onmouseenter="playHoverSound()">
         <i class="fa-solid fa-arrow-right-to-bracket"></i> Enter Interactive Portfolio
       </button>
@@ -949,7 +949,7 @@
       </div>
     </section>
 
-    <!-- SECTION 4: CLIENT TESTIMONIALS -->
+    <!-- SECTION 4: CLIENT TESTIMONIALS (CORRECT FULL NAMES) -->
     <section id="client-reviews">
       <h2 class="section-title"><i class="fa-solid fa-handshake-angle" style="color: var(--pink-primary);"></i> Client Testimonials & Endorsements</h2>
       <div class="reviews-grid">
@@ -961,7 +961,7 @@
             <div class="reviewer-user">
               <div class="reviewer-avatar">NS</div>
               <div class="reviewer-details">
-                <h4>Nickita Savrov</h4>
+                <h4>Nikita Savrov</h4>
                 <p>Enterprise Client & Key Stakeholder</p>
               </div>
             </div>
@@ -974,9 +974,9 @@
           <p class="review-text">"Working with Leila has been an absolute pleasure. Her attention to detail, proactive communication, and ability to keep our multi-faceted projects on track made a massive difference to our operations."</p>
           <div class="reviewer-info">
             <div class="reviewer-user">
-              <div class="reviewer-avatar">KB</div>
+              <div class="reviewer-avatar">KH</div>
               <div class="reviewer-details">
-                <h4>Kimberly</h4>
+                <h4>Kimberly Holden-Gonzalez</h4>
                 <p>Client Partner & Operations Lead</p>
               </div>
             </div>
@@ -1023,7 +1023,7 @@
       </div>
     </section>
 
-    <!-- SECTION 6: EXPERIENCE -->
+    <!-- SECTION 6: EXPERIENCE (UNCOMPRESSED, FULL CV DETAIL) -->
     <section id="experience">
       <h2 class="section-title">Professional Experience</h2>
       <div class="timeline">
@@ -1034,15 +1034,16 @@
             <div class="job-header">
               <div>
                 <div class="job-title">Client Success Manager & Technical Project Manager</div>
-                <div class="job-company">Fast-Paced Remote SaaS / Tech</div>
+                <div class="job-company">Fast-Paced Remote SaaS / Tech Ecosystem</div>
               </div>
               <div class="job-date">2021 – Present <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
             </div>
             <div class="job-details">
               <ul>
-                <li>Managed 25–30 concurrent client accounts across North America with a focus on seamless onboarding and implementation.</li>
-                <li>Sustained a 10 NPS score by providing high-touch stakeholder communication and fast issue resolution.</li>
-                <li>Created cross-functional action plans with support and engineering teams to address escalations swiftly.</li>
+                <li>Managed 25–30 concurrent client accounts across North America with a specialized focus on seamless onboarding, configuration, and implementation.</li>
+                <li>Sustained an elite 10 NPS score by providing high-touch executive communication, ongoing proactive check-ins, and fast multi-department issue resolution.</li>
+                <li>Created and spearheaded cross-functional action plans working hand-in-hand with support, product, and engineering teams to address escalations swiftly.</li>
+                <li>Conducted regular Executive Business Reviews (EBRs/QBRs) to measure ROI, evaluate client health metrics, and drive long-term software adoption and retention.</li>
               </ul>
             </div>
           </div>
@@ -1053,15 +1054,35 @@
           <div class="timeline-card" onclick="toggleTimeline(this); playClickSound();" onmouseenter="playHoverSound()">
             <div class="job-header">
               <div>
-                <div class="job-title">Project Manager & Client Specialist</div>
+                <div class="job-title">Project Manager & Client Operations Specialist</div>
                 <div class="job-company">E-Commerce & Marketing Operations</div>
               </div>
               <div class="job-date">2018 – 2021 <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
             </div>
             <div class="job-details">
               <ul>
-                <li>Led client implementations, scope definitions, and status reporting for international accounts.</li>
-                <li>Coordinated cross-functional workflows using Asana and Monday.com to hit tight sprint milestones.</li>
+                <li>Directed end-to-end client implementations, granular scope definitions, and regular status reporting for high-profile international accounts.</li>
+                <li>Coordinated cross-functional workflows and task allocations using Asana and Monday.com to reliably hit tight sprint milestones.</li>
+                <li>Served as the primary liaison between internal creative/marketing production units and external enterprise clients, ensuring alignment on timelines and deliverables.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card" onclick="toggleTimeline(this); playClickSound();" onmouseenter="playHoverSound()">
+            <div class="job-header">
+              <div>
+                <div class="job-title">Client Coordinator & Operations Assistant</div>
+                <div class="job-company">Travel & Corporate Services Industry</div>
+              </div>
+              <div class="job-date">2016 – 2018 <i class="fa-solid fa-chevron-down toggle-icon" style="margin-left: 8px;"></i></div>
+            </div>
+            <div class="job-details">
+              <ul>
+                <li>Handled high-volume customer accounts, resolving operational friction points and scheduling adjustments under tight time constraints.</li>
+                <li>Streamlined internal tracking sheets and data entry protocols, cutting administrative error rates by 25%.</li>
               </ul>
             </div>
           </div>
@@ -1134,7 +1155,7 @@
        ========================================= */
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     const bgMusic = document.getElementById('bgMusic');
-    bgMusic.volume = 0.2; // Keep background music soft
+    bgMusic.volume = 0.22; // Soft background audio volume level
 
     // 1. "Disney/Star" Magical Hover Sound
     function playHoverSound() {
@@ -1216,7 +1237,7 @@
       splash.style.visibility = 'hidden';
       document.body.style.overflowY = 'auto';
       
-      // Start background music securely after user interaction
+      // Start Disney background music securely after user interaction
       bgMusic.play().catch(e => console.log("Audio autoplay prevented by browser"));
       if (audioCtx.state === 'suspended') audioCtx.resume();
     }
@@ -1295,7 +1316,7 @@
         } else if(lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach')) {
           botMsg.textContent = "You can contact Leila directly via email at leilacenteno@gmail.com, phone at +54 9 11 6891-6607, or connect on LinkedIn at linkedin.com/in/leilagcenteno.";
         } else if(lower.includes('experience') || lower.includes('years') || lower.includes('background')) {
-          botMsg.textContent = "Leila brings 8+ years of experience in Project Management and Client Success, having successfully led 40+ client implementations and managed up to 30 concurrent fast-paced engagements with a sustained 10 NPS score.";
+          botMsg.textContent = "Leila brings 8+ years of experience across travel, e-commerce, marketing, and IT/SaaS, having successfully led 40+ client implementations and managed up to 30 concurrent fast-paced engagements with a sustained 10 NPS score.";
         } else if(lower.includes('tool') || lower.includes('software') || lower.includes('tech')) {
           botMsg.textContent = "Her primary stack includes Intercom, Zendesk, HubSpot, ConnectWise, Asana, Monday.com, Rocketlane, Notion, Slack, and Google Workspace.";
         } else if(lower.includes('timezone') || lower.includes('hours') || lower.includes('remote') || lower.includes('location')) {
@@ -1306,7 +1327,6 @@
         body.appendChild(botMsg);
         body.scrollTop = body.scrollHeight;
         
-        // Play click sound when bot answers!
         playClickSound();
       }, 600);
     }
