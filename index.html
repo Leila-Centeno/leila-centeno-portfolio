@@ -27,7 +27,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     
-    /* --- MAIN PAGE BACKGROUND & DECORATIVE MESH --- */
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-cream);
@@ -39,11 +38,9 @@
       color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
-      overflow-y: hidden; /* Controlled by splash overlay until clicked */
       position: relative;
     }
 
-    /* Ambient Background Geometric Glows */
     body::before, body::after {
       content: '';
       position: fixed;
@@ -74,83 +71,6 @@
 
     h1, h2, h3, h4, .logo {
       font-family: 'Outfit', sans-serif;
-    }
-
-    /* --- SPLASH SCREEN OVERLAY --- */
-    #splash-screen {
-      position: fixed;
-      top: 0; left: 0; width: 100vw; height: 100vh;
-      background: linear-gradient(-45deg, #FAF7F2, #F4E3E5, #EFE6EA, #FAF7F2);
-      background-size: 400% 400%;
-      animation: gradientBG 12s ease infinite;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 24px;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    .splash-card {
-      background: rgba(255, 255, 255, 0.96);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--pink-highlight);
-      border-radius: 28px;
-      padding: 50px 40px;
-      box-shadow: 0 20px 50px rgba(45, 42, 46, 0.12);
-      max-width: 540px;
-      width: 100%;
-      position: relative;
-    }
-    .splash-avatar {
-      width: 70px; height: 70px;
-      border-radius: 50%;
-      background: var(--pink-highlight);
-      color: var(--pink-primary);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem;
-      margin: 0 auto 20px;
-    }
-    .splash-title {
-      font-size: 2.2rem;
-      color: var(--text-dark);
-      margin-bottom: 8px;
-    }
-    .splash-subtitle {
-      font-size: 1rem;
-      color: var(--pink-primary);
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-    .splash-desc {
-      font-size: 0.92rem;
-      color: var(--mauve-neutral);
-      margin-bottom: 28px;
-    }
-    .btn-enter {
-      background: var(--pink-primary);
-      color: var(--white);
-      border: none;
-      padding: 16px 36px;
-      border-radius: 30px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(212, 140, 149, 0.4);
-      transition: var(--transition);
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .btn-enter:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 12px 30px rgba(212, 140, 149, 0.5);
     }
 
     /* --- NAVIGATION --- */
@@ -255,7 +175,6 @@
       opacity: 0.92;
     }
 
-    /* --- NUMBERS METRICS (INTEGRATED IN HERO) --- */
     .numbers-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -312,7 +231,6 @@
       color: var(--white);
     }
 
-    /* --- SECTION TITLES --- */
     .section-title {
       font-size: 1.9rem;
       color: var(--text-dark);
@@ -329,7 +247,6 @@
       background: var(--pink-highlight);
     }
 
-    /* --- DOWNLOAD CV BANNER --- */
     .download-section {
       background: linear-gradient(135deg, var(--white) 0%, var(--pink-highlight) 100%);
       border: 1px solid var(--pink-primary);
@@ -371,7 +288,6 @@
       box-shadow: 0 8px 25px rgba(212, 140, 149, 0.45);
     }
 
-    /* --- COMPETENCIES & TOOLS FILTER --- */
     .filter-bar {
       display: flex;
       gap: 10px;
@@ -419,7 +335,6 @@
       opacity: 0.85;
     }
 
-    /* --- CASE STUDIES SECTION --- */
     .case-studies-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -489,7 +404,6 @@
       border-radius: 12px;
     }
 
-    /* --- RECOMMENDATIONS & REVIEWS --- */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -570,7 +484,6 @@
       transform: scale(1.15);
     }
 
-    /* --- ACCORDION TIMELINE --- */
     .timeline { position: relative; margin-bottom: 50px; }
     .timeline::before {
       content: '';
@@ -620,7 +533,6 @@
     .job-details ul { padding-left: 18px; }
     .job-details li { margin-bottom: 8px; font-size: 0.92rem; opacity: 0.9; }
 
-    /* --- EDUCATION & LANGUAGES --- */
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -635,115 +547,6 @@
       box-shadow: var(--shadow);
     }
     .info-card h3 { font-size: 1.05rem; color: var(--pink-primary); margin-bottom: 10px; }
-
-    /* --- HIGHLY VISIBLE RECRUITER CHATBOT ASSISTANT --- */
-    #chat-widget {
-      position: fixed;
-      bottom: 25px; right: 25px;
-      z-index: 999;
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-    }
-    .chat-recruiter-prompt {
-      background: var(--text-dark);
-      color: var(--white);
-      padding: 12px 18px;
-      border-radius: 18px 18px 4px 18px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-      border: 1px solid var(--pink-primary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      animation: pulsePrompt 3s infinite alternate;
-      max-width: 260px;
-    }
-    @keyframes pulsePrompt {
-      0% { transform: translateY(0); box-shadow: 0 8px 25px rgba(0,0,0,0.18); }
-      100% { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(212, 140, 149, 0.4); }
-    }
-    .chat-recruiter-prompt i {
-      color: var(--pink-primary);
-      font-size: 1.1rem;
-    }
-    .chat-toggle {
-      width: 65px; height: 65px;
-      border-radius: 50%;
-      background: var(--pink-primary);
-      color: white;
-      border: 3px solid var(--white);
-      font-size: 1.6rem;
-      box-shadow: 0 8px 25px rgba(212, 140, 149, 0.5);
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-    }
-    .chat-toggle::after {
-      content: '';
-      position: absolute;
-      top: 0; right: 0;
-      width: 14px; height: 14px;
-      background-color: #22c55e;
-      border: 2px solid white;
-      border-radius: 50%;
-    }
-    .chat-toggle:hover { transform: scale(1.1); }
-    
-    .chat-box {
-      position: absolute;
-      bottom: 80px; right: 0;
-      width: 360px; height: 500px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.18);
-      border: 1px solid var(--pink-highlight);
-      display: none;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .chat-header {
-      background: var(--pink-primary);
-      color: white;
-      padding: 16px;
-      font-weight: 600;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .chat-header p { font-size: 0.8rem; opacity: 0.9; font-weight: 400; }
-    .chat-body {
-      flex: 1; padding: 16px; overflow-y: auto; font-size: 0.88rem; display: flex; flex-direction: column; gap: 12px;
-    }
-    .chat-msg { padding: 10px 14px; border-radius: 12px; max-width: 88%; line-height: 1.45; }
-    .chat-msg.bot { background: var(--pink-highlight); color: var(--text-dark); align-self: flex-start; }
-    .chat-msg.user { background: var(--pink-primary); color: white; align-self: flex-end; }
-    
-    .chat-quick-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-    .quick-btn {
-      background: var(--white);
-      border: 1px solid var(--pink-primary);
-      color: var(--pink-primary);
-      padding: 6px 12px;
-      border-radius: 14px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .quick-btn:hover {
-      background: var(--pink-primary);
-      color: white;
-    }
-    .chat-input { display: flex; border-top: 1px solid var(--pink-highlight); }
-    .chat-input input { flex: 1; border: none; padding: 14px; outline: none; font-family: inherit; font-size: 0.9rem; }
-    .chat-input button { background: var(--pink-primary); color: white; border: none; padding: 0 18px; cursor: pointer; font-size: 1.1rem; }
 
     footer {
       text-align: center;
@@ -762,46 +565,27 @@
       .timeline::before { left: 10px; }
       .timeline-item { padding-left: 36px; }
       .timeline-dot { left: 2px; }
-      .chat-recruiter-prompt { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- SPLASH SCREEN OVERLAY -->
-  <div id="splash-screen">
-    <div class="splash-card">
-      <div class="splash-avatar">
-        <i class="fa-solid fa-bolt"></i>
-      </div>
-      <h1 class="splash-title">Leila Centeno</h1>
-      <p class="splash-subtitle">Project Manager & Client Success Manager</p>
-      <p class="splash-desc">
-        Specialized in fast-paced remote environments, client onboarding and implementation, and delivering an exceptional customer experience.
-      </p>
-      <button class="btn-enter" onclick="enterPortfolio()" onmouseenter="playHoverSound()">
-        <i class="fa-solid fa-arrow-right-to-bracket"></i> Enter Interactive Portfolio
-      </button>
-    </div>
-  </div>
-
   <!-- NAVBAR -->
   <nav>
     <a href="#" class="logo">Leila Centeno</a>
     <ul class="nav-links">
-      <li><a href="#about" onmouseenter="playHoverSound()">About</a></li>
-      <li><a href="#skills" onmouseenter="playHoverSound()">Competencies</a></li>
-      <li><a href="#case-studies" onmouseenter="playHoverSound()">Case Studies</a></li>
-      <li><a href="#client-reviews" onmouseenter="playHoverSound()">Client Testimonials</a></li>
-      <li><a href="#peer-reviews" onmouseenter="playHoverSound()">Recommendations</a></li>
-      <li><a href="#experience" onmouseenter="playHoverSound()">Experience</a></li>
-      <li><a href="Leila_Centeno_Resume.pdf" download class="nav-btn" onmouseenter="playHoverSound()"><i class="fa-solid fa-download"></i> Download CV</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Competencies</a></li>
+      <li><a href="#case-studies">Case Studies</a></li>
+      <li><a href="#client-reviews">Client Testimonials</a></li>
+      <li><a href="#peer-reviews">Recommendations</a></li>
+      <li><a href="#experience">Experience</a></li>
     </ul>
   </nav>
 
   <div class="container">
     
-    <!-- SECTION 1: ABOUT (HERO + METRICS SHOWN IMMEDIATELY AT TOP) -->
+    <!-- SECTION 1: ABOUT -->
     <section id="about" class="hero">
       <div class="hero-top">
         <div class="hero-title">
@@ -817,7 +601,6 @@
         Client-facing Project Manager and Client Success Manager with 8+ years of progressive experience across travel, e-commerce, marketing, and IT/SaaS. Specialized in fast-paced remote environments, client onboarding and implementation, and delivering an exceptional customer experience. Proven ability to manage 25-30 concurrent client engagements for U.S.-based companies while sustaining a 10 NPS score.
       </p>
 
-      <!-- NUMBERS METRICS MOVED UP HERE -->
       <div class="numbers-grid">
         <div class="number-card">
           <div class="number-value">8+ Yrs</div>
@@ -835,41 +618,25 @@
           <div class="number-value">30</div>
           <div class="number-label">Concurrent Fast-Paced Projects</div>
         </div>
-        <div class="number-card">
-          <div class="number-value">3.5 Yrs</div>
-          <div class="number-label">Avg. Tenure per Company</div>
-        </div>
       </div>
 
       <div class="contact-bar">
-        <a href="Leila_Centeno_Resume.pdf" download class="contact-item highlight" onclick="playClickSound()" onmouseenter="playHoverSound()"><i class="fa-solid fa-file-arrow-down"></i> Download Resume (PDF)</a>
-        <a href="mailto:leilacenteno@gmail.com" class="contact-item" onclick="playClickSound()" onmouseenter="playHoverSound()"><i class="fa-solid fa-envelope"></i> leilacenteno@gmail.com</a>
-        <a href="tel:+5491168916607" class="contact-item" onclick="playClickSound()" onmouseenter="playHoverSound()"><i class="fa-solid fa-phone"></i> +54 9 11 6891-6607</a>
-        <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="contact-item" onclick="playClickSound()" onmouseenter="playHoverSound()"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/leilagcenteno</a>
+        <a href="mailto:leilacenteno@gmail.com" class="contact-item"><i class="fa-solid fa-envelope"></i> leilacenteno@gmail.com</a>
+        <a href="tel:+5491168916607" class="contact-item"><i class="fa-solid fa-phone"></i> +54 9 11 6891-6607</a>
+        <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="contact-item"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/leilagcenteno</a>
         <span class="contact-item" style="cursor: default;"><i class="fa-solid fa-location-dot"></i> Buenos Aires, Argentina</span>
       </div>
-    </section>
-
-    <!-- DOWNLOAD CV CALL TO ACTION BANNER -->
-    <section class="download-section">
-      <div class="download-text">
-        <h3><i class="fa-solid fa-file-pdf" style="color: var(--pink-primary); margin-right: 8px;"></i> Looking for the official resume?</h3>
-        <p>Get a concise 1-page PDF version of Leila's complete career history and credentials.</p>
-      </div>
-      <a href="Leila_Centeno_Resume.pdf" download class="btn-download" onclick="playClickSound()" onmouseenter="playHoverSound()">
-        <i class="fa-solid fa-download"></i> Download Full Resume
-      </a>
     </section>
 
     <!-- SECTION 2: CORE COMPETENCIES -->
     <section id="skills">
       <h2 class="section-title">Core Competencies & Fast-Paced Execution</h2>
       <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterSkills('all', event); playClickSound();" onmouseenter="playHoverSound()">All</button>
-        <button class="filter-btn" onclick="filterSkills('pm', event); playClickSound();" onmouseenter="playHoverSound()">Project Management</button>
-        <button class="filter-btn" onclick="filterSkills('cs', event); playClickSound();" onmouseenter="playHoverSound()">Client Success</button>
-        <button class="filter-btn" onclick="filterSkills('fast', event); playClickSound();" onmouseenter="playHoverSound()">Fast-Paced Agility</button>
-        <button class="filter-btn" onclick="filterSkills('tools', event); playClickSound();" onmouseenter="playHoverSound()">Tools & Tech</button>
+        <button class="filter-btn active" onclick="filterSkills('all', event)">All</button>
+        <button class="filter-btn" onclick="filterSkills('pm', event)">Project Management</button>
+        <button class="filter-btn" onclick="filterSkills('cs', event)">Client Success</button>
+        <button class="filter-btn" onclick="filterSkills('fast', event)">Fast-Paced Agility</button>
+        <button class="filter-btn" onclick="filterSkills('tools', event)">Tools & Tech</button>
       </div>
 
       <div class="skills-grid" id="skillsGrid">
@@ -887,7 +654,7 @@
         </div>
         <div class="skill-card" data-cat="cs">
           <h4>Retention & Renewals</h4>
-          <p>Sustaining long-term client health, driving churn reduction, conducting high-value Executive Business Reviews (EBRs/QBRs), and maintaining an exceptional 10 NPS score.</p>
+          <p>Sustaining long-term client health, driving churn reduction, conducting high-value Executive Business Reviews, and maintaining an exceptional 10 NPS score.</p>
         </div>
         <div class="skill-card" data-cat="tools">
           <h4>CRM & Support</h4>
@@ -909,7 +676,6 @@
       <h2 class="section-title"><i class="fa-solid fa-briefcase" style="color: var(--pink-primary);"></i> Client Success Case Studies</h2>
       <div class="case-studies-grid">
         
-        <!-- Case Study 01 -->
         <article class="case-card">
           <span class="case-badge">Client Success Case Study 01</span>
           <h3 class="case-title">Building Trust During a High-Risk Onboarding</h3>
@@ -921,63 +687,55 @@
 
           <div class="case-block">
             <h4><i class="fa-solid fa-chess"></i> My Approach</h4>
-            <p>I made the account a top priority and created a structured weekly plan covering key actions and milestones. I established a weekly call to maintain alignment, review progress, and give the client a consistent point of contact. When they couldn't attend, I sent clear weekly updates so they always knew what was completed, what was next, and where things stood—focusing on consistency and predictability over time.</p>
+            <p>I made the account a top priority and created a structured weekly plan covering key actions and milestones. I established a weekly call to maintain alignment, review progress, and give the client a consistent point of contact.</p>
           </div>
 
           <div class="case-block">
             <h4><i class="fa-solid fa-trophy"></i> Outcome</h4>
-            <p>Over the following weeks, the client became more comfortable with our processes and developed a better understanding of how we worked. The relationship stabilized as we continued progressing toward a successful onboarding.</p>
+            <p>Over the following weeks, the client became more comfortable with our processes and developed a better understanding of how we worked, leading to a successful onboarding.</p>
           </div>
 
           <div class="case-tags">
             <span class="case-tag">Client Onboarding</span>
             <span class="case-tag">Retention</span>
-            <span class="case-tag">Relationship Management</span>
             <span class="case-tag">Risk Mitigation</span>
-            <span class="case-tag">Stakeholder Communication</span>
-            <span class="case-tag">Prioritization</span>
           </div>
         </article>
 
-        <!-- Case Study 02 -->
         <article class="case-card">
           <span class="case-badge">Client Success Case Study 02</span>
           <h3 class="case-title">Turning a Support Issue Into a Cross-Functional Action Plan</h3>
           
           <div class="case-block">
             <h4><i class="fa-solid fa-circle-exclamation"></i> Context & Challenge</h4>
-            <p>An existing client was becoming frustrated because their support requests were not being addressed within the expected timeframe. The delays were affecting the client's experience and creating a potential retention risk. I needed to understand internal issues while ensuring the client felt heard and supported.</p>
+            <p>An existing client was becoming frustrated because their support requests were not being addressed within the expected timeframe, creating a retention risk.</p>
           </div>
 
           <div class="case-block">
             <h4><i class="fa-solid fa-chess"></i> My Approach</h4>
-            <p>I raised the issue during a retention-focused conversation with the client to understand the exact business impact. I then worked directly with internal teams involved, communicated the urgency, and made the account a priority. I also joined calls with the client when additional coordination was needed, keeping both sides aligned and keeping the client informed about progress.</p>
+            <p>I worked directly with internal teams to communicate urgency, prioritize the account, and keep the client fully informed of progress.</p>
           </div>
 
           <div class="case-block">
             <h4><i class="fa-solid fa-trophy"></i> Outcome</h4>
-            <p>The issue received increased internal attention and the client had a dedicated point of contact to help move outstanding requests forward. This helped rebuild confidence and strengthen the client relationship.</p>
+            <p>The issue received increased internal attention, helping rebuild confidence and strengthen the long-term client relationship.</p>
           </div>
 
           <div class="case-tags">
             <span class="case-tag">Client Advocacy</span>
-            <span class="case-tag">Problem Solving</span>
             <span class="case-tag">Escalation Management</span>
             <span class="case-tag">Cross-Functional Collaboration</span>
-            <span class="case-tag">Stakeholder Management</span>
-            <span class="case-tag">Retention</span>
           </div>
         </article>
 
       </div>
     </section>
 
-    <!-- SECTION 4: CLIENT TESTIMONIALS -->
+    <!-- SECTION 4: CLIENT TESTIMONIALS (Nikita Savrov and Kimberly Holden-Gonzalez) -->
     <section id="client-reviews">
       <h2 class="section-title"><i class="fa-solid fa-handshake-angle" style="color: var(--pink-primary);"></i> Client Testimonials & Endorsements</h2>
       <div class="reviews-grid">
 
-        <!-- Requirement 1: Nikita Savrov -->
         <div class="review-card client-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila managed our transition with extreme precision and care. She kept our team informed every step of the way, making what could have been a chaotic onboarding completely effortless."</p>
@@ -989,11 +747,10 @@
                 <p>Enterprise Client & Key Stakeholder</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
-        <!-- Requirement 1: Kimberly Holden-Gonzalez -->
         <div class="review-card client-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Working with Leila has been an absolute pleasure. Her attention to detail, proactive communication, and ability to keep our multi-faceted projects on track made a massive difference to our operations."</p>
@@ -1005,19 +762,18 @@
                 <p>Client Partner & Operations Lead</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- SECTION 5: PEER & LEADERSHIP RECOMMENDATIONS -->
+    <!-- SECTION 5: PEER & LEADERSHIP RECOMMENDATIONS (Hector Duque, Stephanie McDonald, Joey Viola, Sabrina Sulfaro, Bradley Hughes) -->
     <section id="peer-reviews">
       <h2 class="section-title">Peer & Leadership Recommendations</h2>
       <div class="reviews-grid">
 
-        <!-- Requirement 2: Hector Duque -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila is an outstanding Project Manager who brings order, clarity, and exceptional execution to complex technical workflows. Her ability to lead cross-functional teams while maintaining top-tier client trust is remarkable."</p>
@@ -1029,11 +785,10 @@
                 <p>Technology & Engineering Leadership</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
-        <!-- Requirement 2: Stephanie McDonald -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila consistently goes above and beyond to ensure smooth account transitions and onboarding. She communicates clearly, anticipates risks early, and builds trust effortlessly."</p>
@@ -1045,11 +800,10 @@
                 <p>Operations & Client Experience</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
-        <!-- Requirement 2: Joey Viola -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila is an incredible Project Manager and Client Success leader. Her ability to juggle multiple high-stakes client onboardings while keeping satisfaction exceptionally high is unmatched."</p>
@@ -1061,11 +815,10 @@
                 <p>Engineering & Executive Leader</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
-        <!-- Requirement 2: Sabrina Sulfaro -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Working with Leila is always seamless. She combines rigorous organizational skills with genuine empathy for clients, ensuring projects are delivered on time without friction."</p>
@@ -1077,11 +830,10 @@
                 <p>People Operations & HR Lead</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
-        <!-- Requirement 2: Bradley Hughes -->
         <div class="review-card">
           <i class="fa-solid fa-quote-left quote-icon"></i>
           <p class="review-text">"Leila's dedication to client success and project execution makes her a huge asset. She manages technical complexity with ease and keeps U.S. stakeholders aligned."</p>
@@ -1093,19 +845,18 @@
                 <p>IT Infrastructure & Delivery Leader</p>
               </div>
             </div>
-            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link" title="View on LinkedIn" onclick="playClickSound()"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://linkedin.com/in/leilagcenteno" target="_blank" class="linkedin-link"><i class="fa-brands fa-linkedin"></i></a>
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- SECTION 6: EXPERIENCE (Requirement 3: Exact companies, start-end dates, and computed durations) -->
+    <!-- SECTION 6: PROFESSIONAL EXPERIENCE -->
     <section id="experience">
       <h2 class="section-title">Professional Experience</h2>
       <div class="timeline">
         
-        <!-- Interlaced: March 2024 - Present (~2 years, 6 months) -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card" onclick="toggleTimeline(this)">
@@ -1126,7 +877,6 @@
           </div>
         </div>
 
-        <!-- Puntorojo: July 2022 - February 2024 (1 year, 7 months) -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card" onclick="toggleTimeline(this)">
@@ -1147,7 +897,6 @@
           </div>
         </div>
 
-        <!-- Tiendanube: October 2020 - July 2022 (1 year, 9 months) -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card" onclick="toggleTimeline(this)">
@@ -1167,7 +916,6 @@
           </div>
         </div>
 
-        <!-- Bibam Group: June 2019 - October 2020 (1 year, 4 months) -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card" onclick="toggleTimeline(this)">
@@ -1187,7 +935,6 @@
           </div>
         </div>
 
-        <!-- Almundo - Freelance: May 2018 - May 2019 (1 year) -->
         <div class="timeline-item">
           <div class="timeline-dot"></div>
           <div class="timeline-card" onclick="toggleTimeline(this)">
@@ -1210,15 +957,13 @@
       </div>
     </section>
 
-    <!-- EDUCATION & LANGUAGES (Requirement 4 & 5 applied) -->
+    <!-- SECTION 7: EDUCATION & LANGUAGES -->
     <section class="info-grid">
-      <!-- Requirement 4: ONLY Bachelor's degree in tourism & hospitality management at UADE -->
       <div class="info-card">
-        <h3><i class="fa-solid fa-graduation-cap"></i> Education</h3>
+        <h3><i class="fa-solid fa-graduation-cap"></i> Education & Certifications</h3>
         <p><strong>Bachelor's Degree in Tourism & Hospitality Management</strong></p>
         <p style="font-size: 0.88rem; color: var(--mauve-neutral);">UADE, Buenos Aires (2017 – 2021)</p>
       </div>
-      <!-- Requirement 5: English fluent, used on a daily basis but not bilingual -->
       <div class="info-card">
         <h3><i class="fa-solid fa-language"></i> Languages</h3>
         <p><strong>English:</strong> Fluent, used on a daily basis (not bilingual)</p>
@@ -1228,83 +973,15 @@
 
   </div>
 
-  <!-- HIGHLY VISIBLE RECRUITER CHATBOT ASSISTANT -->
-  <div id="chat-widget">
-    <div class="chat-recruiter-prompt" onclick="toggleChat()">
-      <i class="fa-solid fa-circle-question"></i>
-      <span><strong>Recruiters & Hiring Managers:</strong> Ask me anything about Leila's experience here!</span>
-    </div>
-    
-    <button class="chat-toggle" onclick="toggleChat()" title="Ask AI Recruiter Assistant">
-      <i class="fa-solid fa-comments"></i>
-    </button>
-
-    <div class="chat-box" id="chatBox">
-      <div class="chat-header">
-        <div>
-          <span>Leila's AI Assistant</span>
-          <p>Instant answers for Recruiters & Hiring Leads</p>
-        </div>
-        <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 1.2rem;" onclick="toggleChat()"></i>
-      </div>
-      <div class="chat-body" id="chatBody">
-        <div class="chat-msg bot">
-          👋 Hi! Welcome! I'm Leila's interactive AI assistant built specifically for recruiters and hiring managers. 
-          <br><br>
-          Feel free to ask me <strong>anything</strong> about her skills, onboarding processes, timezone alignment, or past case studies!
-          <div class="chat-quick-btns">
-            <button class="quick-btn" onclick="sendQuickPrompt('What is her onboarding experience?')">Onboarding Stats</button>
-            <button class="quick-btn" onclick="sendQuickPrompt('How does she handle high risk clients?')">Case Studies</button>
-            <button class="quick-btn" onclick="sendQuickPrompt('What are her preferred tools?')">Tools & Stack</button>
-          </div>
-        </div>
-      </div>
-      <div class="chat-input">
-        <input type="text" id="chatInput" placeholder="Ask anything about Leila's background..." onkeypress="handleKeyPress(event)">
-        <button onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
-      </div>
-    </div>
-  </div>
-
   <footer>
     <p>© Leila Centeno. All rights reserved.</p>
   </footer>
 
   <script>
-    // Splash screen controller
-    function enterPortfolio() {
-      const splash = document.getElementById('splash-screen');
-      splash.style.opacity = '0';
-      splash.style.visibility = 'hidden';
-      document.body.style.overflowY = 'auto';
-    }
-
-    // Typewriter effect
-    const phrases = ["Project Manager", "Client Success Manager", "Onboarding Specialist", "Remote Operations Lead"];
-    let i = 0, j = 0, isDeleting = false;
-    function type() {
-      const target = document.getElementById("typewriter");
-      if(!target) return;
-      const current = phrases[i];
-      if (isDeleting) {
-        target.textContent = current.substring(0, j - 1);
-        j--;
-        if (j === 0) { isDeleting = false; i = (i + 1) % phrases.length; }
-      } else {
-        target.textContent = current.substring(0, j + 1);
-        j++;
-        if (j === current.length) { isDeleting = true; setTimeout(type, 1800); return; }
-      }
-      setTimeout(type, isDeleting ? 40 : 90);
-    }
-    document.addEventListener("DOMContentLoaded", type);
-
-    // Accordion Toggle
     function toggleTimeline(card) {
       card.classList.toggle('active');
     }
 
-    // Filter Skills
     function filterSkills(category, event) {
       const buttons = document.querySelectorAll('.filter-btn');
       buttons.forEach(btn => btn.classList.remove('active'));
@@ -1320,63 +997,11 @@
       });
     }
 
-    // Chatbot Toggle
-    function toggleChat() {
-      const box = document.getElementById('chatBox');
-      box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    function sendQuickPrompt(promptText) {
-      document.getElementById('chatInput').value = promptText;
-      sendChatMessage();
-    }
-
-    // Chatbot response engine
-    function sendChatMessage() {
-      const input = document.getElementById('chatInput');
-      const body = document.getElementById('chatBody');
-      const text = input.value.trim();
-      if(!text) return;
-
-      // User msg
-      const userMsg = document.createElement('div');
-      userMsg.className = 'chat-msg user';
-      userMsg.textContent = text;
-      body.appendChild(userMsg);
-
-      input.value = '';
-
-      // Bot response logic
-      setTimeout(() => {
-        const botMsg = document.createElement('div');
-        botMsg.className = 'chat-msg bot';
-        
-        const lower = text.toLowerCase();
-        if(lower.includes('case study') || lower.includes('risk') || lower.includes('escalation')) {
-          botMsg.textContent = "Leila features two detailed Case Studies on her portfolio: 1) Rebuilding trust and stabilizing a high-risk onboarding client, and 2) Converting complex support delays into cross-functional resolutions.";
-        } else if(lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach')) {
-          botMsg.textContent = "You can contact Leila directly via email at leilacenteno@gmail.com, phone at +54 9 11 6891-6607, or connect on LinkedIn at linkedin.com/in/leilagcenteno.";
-        } else if(lower.includes('experience') || lower.includes('years') || lower.includes('background')) {
-          botMsg.textContent = "Leila brings 8+ years of experience in Project Management and Client Success, having successfully led 40+ client implementations and managed up to 30 concurrent fast-paced engagements with a sustained 10 NPS score.";
-        } else if(lower.includes('tool') || lower.includes('software') || lower.includes('tech')) {
-          botMsg.textContent = "Her primary stack includes Intercom, Zendesk, HubSpot, ConnectWise, Asana, Monday.com, Rocketlane, Notion, Slack, and Google Workspace.";
-        } else if(lower.includes('timezone') || lower.includes('hours') || lower.includes('remote') || lower.includes('location')) {
-          botMsg.textContent = "Leila is based in Buenos Aires, Argentina (GMT-3), offering 100% full business hour overlap with U.S. Eastern (EST) and Central (CST) timezones.";
-        } else {
-          botMsg.textContent = "Thanks for asking! Leila is a seasoned Project Manager and CSM with a proven track record in fast-paced remote environments. Feel free to download her resume using the button above or reach out via email!";
-        }
-        body.appendChild(botMsg);
-        body.scrollTop = body.scrollHeight;
-      }, 500);
-    }
-
-    function handleKeyPress(e) {
-      if (e.key === 'Enter') sendChatMessage();
-    }
-
-    // Audio SFX Stubs (Prevent runtime error if missing)
-    function playHoverSound() {}
-    function playClickSound() {}
+    // Auto-open first item on load
+    document.addEventListener("DOMContentLoaded", () => {
+      const firstCard = document.querySelector('.timeline-card');
+      if(firstCard) firstCard.classList.add('active');
+    });
   </script>
 
 </body>
